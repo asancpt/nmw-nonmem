@@ -1,1 +1,2 @@
-Rscript -e "rmarkdown::render('d.Rmd', output_file = 'README.html', output_format = 'html_document')"
+Rscript -e "rmarkdown::render('README.Rmd', output_format = 'pdf_document')"
+Rscript -e "rmarkdown::render('README.Rmd', output_format = 'html_document')"

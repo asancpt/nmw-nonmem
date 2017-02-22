@@ -1,17 +1,11 @@
----
-output:
-  html_document:
-    toc: yes
-    keep_md: yes
-  word_document:
-    toc: yes
-editor_options: 
-  chunk_output_type: console
----
 
 
 
-![](cover.jpg)
+
+
+
+
+![Cover](cover.jpg)
 
 # NONMEM workshop 2017
 
@@ -28,6 +22,24 @@ NONMEM Workshop 2017에서 사용된 nmw 패키지를 사용한 Edison 사이언
 
 A table (head) and a figure of input dataset is shown below.
 
+### Initial values
+
+
+```r
+kable(inputFirst)
+```
+
+            V2                                          
+----------  --------------------------------------------
+Dataset     Theoph                                      
+Method      ZERO                                        
+nTheta      3                                           
+nEta        3                                           
+nEps        2                                           
+THETAinit   2, 50, 0.1                                  
+OMinit      0.2, 0.1, 0.1, 0.1, 0.2, 0.1, 0.1, 0.1, 0.2 
+SGinit      0.1, 0, 0, 0.1                              
+
 ### Input Table
 
 
@@ -39,34 +51,36 @@ kable(head(DataAll, n = 20), caption = "input data")
 
 
 
-|ID |  TIME|    DV|
-|:--|-----:|-----:|
-|1  |  0.00|  0.74|
-|1  |  0.25|  2.84|
-|1  |  0.57|  6.57|
-|1  |  1.12| 10.50|
-|1  |  2.02|  9.66|
-|1  |  3.82|  8.58|
-|1  |  5.10|  8.36|
-|1  |  7.03|  7.47|
-|1  |  9.05|  6.89|
-|1  | 12.12|  5.94|
-|1  | 24.37|  3.28|
-|2  |  0.00|  0.00|
-|2  |  0.27|  1.72|
-|2  |  0.52|  7.91|
-|2  |  1.00|  8.31|
-|2  |  1.92|  8.33|
-|2  |  3.50|  6.85|
-|2  |  5.02|  6.08|
-|2  |  7.03|  5.40|
-|2  |  9.00|  4.55|
+Table: input data
+
+ID     TIME      DV
+---  ------  ------
+1      0.00    0.74
+1      0.25    2.84
+1      0.57    6.57
+1      1.12   10.50
+1      2.02    9.66
+1      3.82    8.58
+1      5.10    8.36
+1      7.03    7.47
+1      9.05    6.89
+1     12.12    5.94
+1     24.37    3.28
+2      0.00    0.00
+2      0.27    1.72
+2      0.52    7.91
+2      1.00    8.31
+2      1.92    8.33
+2      3.50    6.85
+2      5.02    6.08
+2      7.03    5.40
+2      9.00    4.55
 
 ### Figure
 
 
 
-![](xyplot.jpg)
+![Concentration-time curve of Theoph](xyplot.jpg)
 
 ### Method Calculation
 
@@ -89,7 +103,7 @@ InitPara = InitStep(DataAll, THETAinit=THETAinit, OMinit=OMinit, SGinit=SGinit,
 ## [1] 141.3076
 ## 
 ## $Time
-## Time difference of 8.23192 secs
+## Time difference of 15.3741 secs
 ## 
 ## $Optim
 ## $Optim$par
@@ -161,7 +175,7 @@ InitPara = InitStep(DataAll, THETAinit=THETAinit, OMinit=OMinit, SGinit=SGinit,
 
 ```
 ## $Time
-## Time difference of 2.162555 secs
+## Time difference of 5.114908 secs
 ## 
 ## $`Standard Error`
 ##  [1] 0.641082199 1.685216557 0.023072282 0.420631738 0.082198220

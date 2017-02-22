@@ -2,6 +2,8 @@
 
 print("v 11:50")
 
+## ---- IndependentChunk
+
 # functions ---------------------------------------------------------------
 
 Get_os <- function(){
@@ -38,6 +40,8 @@ lapply(edisonlib, library, character.only = TRUE) # if needed # install.packages
 if (length(intersect(dir(), "result")) == 0) {
     system("mkdir result")
 }
+
+## ---- ArgumentChunk
 
 # Argument ----------------------------------------------------------------
 

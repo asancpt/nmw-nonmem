@@ -5,9 +5,19 @@ output:
     keep_md: yes
   word_document:
     toc: yes
+  pdf_document:
+    includes:
+      in_header: preamble.tex
 editor_options: 
   chunk_output_type: console
 ---
+
+```{r include = FALSE}
+knitr::read_chunk("c.R")
+```
+
+```{r IndependentChunk, include = FALSE}
+```
 
 ```{r include = FALSE}
 ## input_tidy --------------------------------------------------------------
@@ -19,6 +29,7 @@ editor_options:
 #THETAinit = 10,100
 #OMinit = 0.2
 #SGinit = 1
+
 
 inputFirst <- read.csv("result/inputFirst.csv", as.is = TRUE, row.names = 1)
 input <- data.frame(t(inputFirst), stringsAsFactors = FALSE)
@@ -41,7 +52,7 @@ if (length(intersect(dir(), "result")) == 0) {
 system("cp cover.jpg result")
 ```
 
-![](cover.jpg)
+![Cover](cover.jpg)
 
 # NONMEM workshop 2017
 
@@ -57,6 +68,12 @@ NONMEM Workshop 2017에서 사용된 nmw 패키지를 사용한 Edison 사이언
 ## Result
 
 A table (head) and a figure of input dataset is shown below.
+
+### Initial values
+
+```{r}
+kable(inputFirst)
+```
 
 ### Input Table
 
@@ -93,7 +110,7 @@ if (Get_os() == "windows") {
 }
 ```
 
-![](xyplot.jpg)
+![Concentration-time curve of `r NMDataset`](xyplot.jpg)
 
 ### Method Calculation
 
