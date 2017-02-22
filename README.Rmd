@@ -1,0 +1,22 @@
+# Edison 접속 및 설문조사 방법
+
+shan@acp.kr
+
+2017-02-22 
+
+1. https://www.edison.re.kr/ 에 접속합니다. <Fig 1.>
+2. 부여받은 아이디와 비밀번호(아이디와 동일)를 입력합니다. <Fig 2.>
+3. 비밀번호를 변경합니다. <Fig 3.>
+4. "설문조사 참여" 클릭합니다 <Fig 4.>
+5. 설문조사 참여합니다.
+
+![Fig 1](Fig1.png)
+
+![Fig 2](Fig2.png)
+
+![Fig 3](Fig3.png)
+
+![Fig 4](Fig4.png)
+
+![Fig 5](Fig5.png)
+
