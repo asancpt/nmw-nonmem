@@ -1,8 +1,8 @@
-Dataset = Emax
-Method = LAPL
-nTheta = 2
-nEta = 1
-nEps = 1
-THETAinit = 10,100
-OMinit = 0.2
-SGinit = 1
+Dataset = Theoph
+Method = ZERO
+nTheta = 3
+nEta = 3
+nEps = 2
+THETAinit = 2, 50, 0.1
+OMinit = 0.2, 0.1, 0.1, 0.1, 0.2, 0.1, 0.1, 0.1, 0.2
+SGinit = 0.1, 0, 0, 0.1

@@ -1,24 +1,6 @@
 #!/SYSTEM/R/3.3.2/bin/Rscript
 
-
 print("v 11:50")
-
-print("Initial .libPaths() of Edison")
-.libPaths()
-
-localLibPath <- c("./lib", .libPaths())
-.libPaths(localLibPath)
-#.libPaths(.libPaths()[2])
-print("Changed .libPaths() of Edison")
-.libPaths()
-
-edisonlib <- c("nmw", "lattice", "compiler", "knitr", "markdown")
-lapply(edisonlib, library, character.only = TRUE) # if needed # install.packages(mylib, lib = localLibPath)
-#install.packages("stringi", .lib = .libPaths()[1], repo = "http://cran.rstudio.com")
-
-if (length(intersect(dir(), "result")) == 0) {
-    system("mkdir result")
-}
 
 # functions ---------------------------------------------------------------
 
@@ -36,6 +18,25 @@ Get_os <- function(){
             os <- "linux"
     }
     tolower(os)
+}
+
+###
+
+print("Initial .libPaths() of Edison")
+.libPaths()
+
+localLibPath <- c("./lib", .libPaths())
+if (Get_os()=="linux") {.libPaths(localLibPath)}
+#.libPaths(.libPaths()[2])
+print("Changed .libPaths() of Edison")
+.libPaths()
+
+edisonlib <- c("nmw", "lattice", "compiler", "knitr", "markdown")
+lapply(edisonlib, library, character.only = TRUE) # if needed # install.packages(mylib, lib = localLibPath)
+#install.packages("stringi", .lib = .libPaths()[1], repo = "http://cran.rstudio.com")
+
+if (length(intersect(dir(), "result")) == 0) {
+    system("mkdir result")
 }
 
 # Argument ----------------------------------------------------------------
@@ -71,10 +72,10 @@ write.csv(inputFirst, "result/inputFirst.csv", row.names = TRUE)
 #
 #write.csv(inputSummary, "result/Data_Input.csv", row.names = FALSE)
 
-file_doc2 <- "d"
+file_doc2 <- "README"
 knitr::knit(paste0(file_doc2, ".Rmd"), paste0(file_doc2, ".md"))
 markdown::markdownToHTML(paste0(file_doc2, ".md"), 
-                         "result/Report.html", 
+                         "result/README.html", 
                          options = c("toc", "mathjax")) #, stylesheet = "mycss.css")
 
 #browseURL("result/Report_Appendix.html")
