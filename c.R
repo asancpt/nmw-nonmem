@@ -78,3 +78,5 @@ markdown::markdownToHTML(paste0(file_doc2, ".md"),
                          options = c("toc", "mathjax")) #, stylesheet = "mycss.css")
 
 #browseURL("result/Report_Appendix.html")
+
+print("Complete.")

@@ -1,14 +1,6 @@
----
-title: "Edison for NONMEM workshop 2017"
-author: "Sungpil Han <shan@acp.kr>"
-date: '2017-02-22'
-output:
-  word_document:
-    toc: yes
-  html_document:
-    toc: yes
-    keep_md: yes
----
+# Edison for NONMEM workshop 2017
+Sungpil Han <shan@acp.kr>  
+2017-02-22  
 
 [Edison](http://www.edison.re.kr)은 [Open Science](http://www.ytn.co.kr/_ln/0115_201702010301329538)를 지향하는 계산과학 소프트웨어 연구개발 협업 플랫폼입니다. 여러분의 참여가 Edison 커뮤니티를 발전시키게 됩니다. 아래와 같이 참여해 주세요. 감사합니다.
 

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>NONMEM workshop 2017</title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+
+
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<div id="toc">
+<div id="toc_header">Table of Contents</div>
+<ul>
+<li>
+<a href="#toc_0">NONMEM workshop 2017</a>
+<ul>
+<li>
+<a href="#toc_1">Introduction</a>
+</li>
+<li>
+<a href="#toc_2">Result</a>
+<ul>
+<li>
+<a href="#toc_3">Input Table</a>
+</li>
+<li>
+<a href="#toc_4">Figure</a>
+</li>
+<li>
+<a href="#toc_5">Method Calculation</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+<p><img src="cover.jpg" alt=""></p>
+
+<h1 id="toc_0">NONMEM workshop 2017</h1>
+
+<ul>
+<li>author: Sungpil Han, Kyun-Seop Bae</li>
+<li>date: 2017-02-22</li>
+<li><a href="https://github.com/asancpt/nmw2017edison">https://github.com/asancpt/nmw2017edison</a></li>
+<li>license: GPL-3</li>
+</ul>
+
+<h2 id="toc_1">Introduction</h2>
+
+<h2 id="toc_2">Result</h2>
+
+<h3 id="toc_3">Input Table</h3>
+
+<h3 id="toc_4">Figure</h3>
+
+<p><img src="xyplot.jpg" alt=""></p>
+
+<h3 id="toc_5">Method Calculation</h3>
+
+<ul>
+<li>Dataset: Emax</li>
+<li>Method: LAPL</li>
+</ul>
+
+<pre><code class="r">########
+PREDFILE &lt;- ifelse(NMDataset == &quot;Emax&quot;, &quot;03-Emax/PRED.R&quot;, &quot;04-THEO/PRED.R&quot;)
+
+InitPara = InitStep(DataAll, THETAinit=THETAinit, OMinit=OMinit, SGinit=SGinit, 
+                    nTheta=nTheta, LB=LB, UB=UB, METHOD=METHOD, PredFile=PREDFILE)
+
+(EstRes = EstStep())           # 0.6200359 secs, 0.4930282 secs
+</code></pre>
+
+<pre><code>## $`Initial OFV`
+## [1] 20011.59
+## 
+## $Time
+## Time difference of 10.08711 secs
+## 
+## $Optim
+## $Optim$par
+## [1] -1.0501146 -0.1350324 -1.6319945  1.1015540
+## 
+## $Optim$value
+## [1] 219.1097
+## 
+## $Optim$counts
+## function gradient 
+##       54       54 
+## 
+## $Optim$convergence
+## [1] 0
+## 
+## $Optim$message
+## [1] &quot;CONVERGENCE: REL_REDUCTION_OF_F &lt;= FACTR*EPSMCH&quot;
+## 
+## $Optim$hessian
+##             [,1]         [,2]      [,3]        [,4]
+## [1,]  656.391707 2.112855e+03 -1.796362   1.7589136
+## [2,] 2112.855408 8.523999e+04  3.011961   0.5139452
+## [3,]   -1.796362 3.011961e+00  4.228184   3.9976838
+## [4,]    1.758914 5.139452e-01  3.997684 275.7848643
+## 
+## 
+## $`Final Estimates`
+## [1]  3.166026403 79.056181424  0.006260927  7.412056839
+</code></pre>
+
+<pre><code class="r">(CovRes = CovStep())
+</code></pre>
+
+<pre><code>## $Time
+## Time difference of 1.466418 secs
+## 
+## $`Standard Error`
+## [1] 0.220422217 0.409550974 0.005474408 1.269827834
+## 
+## $`Covariance Matrix of Estimates`
+##               [,1]          [,2]          [,3]        [,4]
+## [1,]  0.0485859535 -0.0789257787 -3.799125e-04 0.072281620
+## [2,] -0.0789257787  0.1677320006 -1.977460e-05 0.012827930
+## [3,] -0.0003799125 -0.0000197746  2.996915e-05 0.001578315
+## [4,]  0.0722816198  0.0128279301  1.578315e-03 1.612462729
+## 
+## $`Correlation Matrix of Estimates`
+##            [,1]         [,2]         [,3]       [,4]
+## [1,]  1.0000000 -0.874290071 -0.314840791 0.25824247
+## [2,] -0.8742901  1.000000000 -0.008819878 0.02466629
+## [3,] -0.3148408 -0.008819878  1.000000000 0.22704478
+## [4,]  0.2582425  0.024666287  0.227044783 1.00000000
+## 
+## $`Inverse Covariance Matrix of Estimates`
+##           [,1]        [,2]       [,3]         [,4]
+## [1,]  17115196   8171247.4  280653761  -1106936.70
+## [2,]   8171247   3901175.7  133991540   -528480.93
+## [3,] 280653761 133991539.7 4602175592 -18151503.70
+## [4,]  -1106937   -528480.9  -18151504     71592.52
+## 
+## $`Eigen Values`
+## [1] 5.749535e-07 8.330777e-01 1.225585e+00 1.941337e+00
+## 
+## $`R Matrix`
+##              [,1]         [,2]         [,3]         [,4]
+## [1,]  32.16246987 4.2320295296   -21.487947 7.679714e-02
+## [2,]   4.23202953 6.8196360996     1.550535 8.464139e-04
+## [3,] -21.48794694 1.5505347433 13479.902358 1.074944e+01
+## [4,]   0.07679714 0.0008464139    10.749436 5.880076e-01
+## 
+## $`S Matrix`
+##             [,1]        [,2]       [,3]       [,4]
+## [1,]   32.689280  -7.2209445 -175.87338  1.4077642
+## [2,]   -7.220944   4.1105643  -10.16234  0.1904331
+## [3,] -175.873380 -10.1623435 6303.74012 25.9912735
+## [4,]    1.407764   0.1904331   25.99127  0.5871185
+</code></pre>
+
+<pre><code class="r">PostHocEta() # FinalPara from EstStep()
+</code></pre>
+
+<pre><code>##      ID         ETA1
+## [1,]  1 -0.086421925
+## [2,]  2 -0.005285026
+## [3,]  3  0.021540797
+## [4,]  4  0.070107560
+</code></pre>
+
+<pre><code class="r">get(&quot;EBE&quot;, envir=e)
+</code></pre>
+
+<pre><code>##      ID         ETA1
+## [1,]  1 -0.086421925
+## [2,]  2 -0.005285026
+## [3,]  3  0.021540797
+## [4,]  4  0.070107560
+</code></pre>
+
+</body>
+
+</html>
