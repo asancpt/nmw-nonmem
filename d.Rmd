@@ -1,0 +1,67 @@
+# NONMEM workshop
+
+
+```{r}
+# input_tidy --------------------------------------------------------------
+
+inputFirst <- read.csv("result/inputFirst.csv", as.is = TRUE, row.names = 1)
+input <- data.frame(t(inputFirst), stringsAsFactors = FALSE)
+nTheta <- as.numeric(input$nTheta)
+nEta <- as.numeric(input$nEta)
+nEps <- as.numeric(input$nEps)
+THETAinit <- c(as.numeric(gsub(pattern = "\\(|\\)|\\,.*$", replacement = "", input$THETAinit)),
+               as.numeric(gsub(pattern = "\\(|\\)|^.*\\,", replacement = "", input$THETAinit)))
+OMinit <- matrix(as.numeric(input$OMinit), nrow=nEta, ncol=nEta)
+SGinit <- matrix(as.numeric(input$SGinit), nrow=nEps, ncol=nEps)
+
+LB = rep(0, nTheta)
+UB = rep(1000000, nTheta)
+
+```
+
+```{r}
+enableJIT(3)
+#setwd("C:/NMW2017/03-Emax")
+DataSelect <- "EmaxSim"
+
+if (DataSelect == "EmaxSim"){
+    DataFile <- "03-Emax/SimData.CSV"
+}
+
+DataAll <- read.csv(DataFile)
+
+kable(DataAll, caption = "input data")
+```
+
+```{r}
+#pdf("result/xyplot.pdf")
+#xyplot(DV ~ log(CE) | ID, data=DataAll, type="b")
+#dev.off()
+
+#######
+METHOD = "ZERO"
+InitPara = InitStep(DataAll, THETAinit=THETAinit, OMinit=OMinit, SGinit=SGinit, 
+                    nTheta=nTheta, LB=LB, UB=UB, METHOD=METHOD, PredFile="03-Emax/PRED.R")
+(EstRes = EstStep())           # 0.6200359 secs, 0.4930282 secs
+(CovRes = CovStep())
+
+PostHocEta() # FinalPara from EstStep()
+
+########
+METHOD = "COND"
+InitStep(DataAll, THETAinit=THETAinit, OMinit=OMinit, SGinit=SGinit, 
+         nTheta=nTheta, LB=LB, UB=UB, METHOD=METHOD, PredFile="03-Emax/PRED.R")
+(EstRes = EstStep())            # 4.89328 secs, 3.967227 secs
+(CovRes = CovStep())            # 0.904052 secs, 0.7790442 secs
+get("EBE", envir=e)
+
+########
+METHOD = "LAPL"
+InitStep(DataAll, THETAinit=THETAinit, OMinit=OMinit, SGinit=SGinit, 
+         nTheta=nTheta, LB=LB, UB=UB, METHOD=METHOD, PredFile="03-Emax/PRED.R")
+(EstRes = EstStep())            # 5.609321 secs, 4.486256 secs
+(CovRes = CovStep())            # 0.9640551 secs, 0.749043 secs
+get("EBE", envir=e)
+
+```
+
