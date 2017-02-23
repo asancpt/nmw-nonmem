@@ -158,45 +158,45 @@ $(document).ready(function () {
 <p>A table (head) and a figure of input dataset is shown below.</p>
 <div id="initial-values" class="section level3">
 <h3>Initial values</h3>
-<pre class="r"><code>kable(inputFirst)</code></pre>
+<pre class="r"><code>kable(inputFirst, format = &quot;markdown&quot;)</code></pre>
 <table>
 <thead>
 <tr class="header">
-<th></th>
+<th align="left"></th>
 <th align="left">V2</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Dataset</td>
+<td align="left">Dataset</td>
 <td align="left">Theoph</td>
 </tr>
 <tr class="even">
-<td>Method</td>
+<td align="left">Method</td>
 <td align="left">ZERO</td>
 </tr>
 <tr class="odd">
-<td>nTheta</td>
+<td align="left">nTheta</td>
 <td align="left">3</td>
 </tr>
 <tr class="even">
-<td>nEta</td>
+<td align="left">nEta</td>
 <td align="left">3</td>
 </tr>
 <tr class="odd">
-<td>nEps</td>
+<td align="left">nEps</td>
 <td align="left">2</td>
 </tr>
 <tr class="even">
-<td>THETAinit</td>
+<td align="left">THETAinit</td>
 <td align="left">2, 50, 0.1</td>
 </tr>
 <tr class="odd">
-<td>OMinit</td>
+<td align="left">OMinit</td>
 <td align="left">0.2, 0.1, 0.1, 0.1, 0.2, 0.1, 0.1, 0.1, 0.2</td>
 </tr>
 <tr class="even">
-<td>SGinit</td>
+<td align="left">SGinit</td>
 <td align="left">0.1, 0, 0, 0.1</td>
 </tr>
 </tbody>
@@ -342,7 +342,7 @@ InitPara = InitStep(DataAll, THETAinit=THETAinit, OMinit=OMinit, SGinit=SGinit,
 ## [1] 141.3076
 ## 
 ## $Time
-## Time difference of 10.95609 secs
+## Time difference of 8.754787 secs
 ## 
 ## $Optim
 ## $Optim$par
@@ -408,7 +408,7 @@ InitPara = InitStep(DataAll, THETAinit=THETAinit, OMinit=OMinit, SGinit=SGinit,
 ## [11]  0.05427434</code></pre>
 <pre class="r"><code>(CovRes = CovStep())</code></pre>
 <pre><code>## $Time
-## Time difference of 2.672224 secs
+## Time difference of 2.438244 secs
 ## 
 ## $`Standard Error`
 ##  [1] 0.641082199 1.685216557 0.023072282 0.420631738 0.082198220

@@ -26,19 +26,21 @@ A table (head) and a figure of input dataset is shown below.
 
 
 ```r
-kable(inputFirst)
+kable(inputFirst, format = "markdown")
 ```
 
-            V2                                          
-----------  --------------------------------------------
-Dataset     Theoph                                      
-Method      ZERO                                        
-nTheta      3                                           
-nEta        3                                           
-nEps        2                                           
-THETAinit   2, 50, 0.1                                  
-OMinit      0.2, 0.1, 0.1, 0.1, 0.2, 0.1, 0.1, 0.1, 0.2 
-SGinit      0.1, 0, 0, 0.1                              
+
+
+|          |V2                                          |
+|:---------|:-------------------------------------------|
+|Dataset   |Theoph                                      |
+|Method    |ZERO                                        |
+|nTheta    |3                                           |
+|nEta      |3                                           |
+|nEps      |2                                           |
+|THETAinit |2, 50, 0.1                                  |
+|OMinit    |0.2, 0.1, 0.1, 0.1, 0.2, 0.1, 0.1, 0.1, 0.2 |
+|SGinit    |0.1, 0, 0, 0.1                              |
 
 ### Input Table
 
@@ -103,7 +105,7 @@ InitPara = InitStep(DataAll, THETAinit=THETAinit, OMinit=OMinit, SGinit=SGinit,
 ## [1] 141.3076
 ## 
 ## $Time
-## Time difference of 10.95609 secs
+## Time difference of 8.754787 secs
 ## 
 ## $Optim
 ## $Optim$par
@@ -175,7 +177,7 @@ InitPara = InitStep(DataAll, THETAinit=THETAinit, OMinit=OMinit, SGinit=SGinit,
 
 ```
 ## $Time
-## Time difference of 2.672224 secs
+## Time difference of 2.438244 secs
 ## 
 ## $`Standard Error`
 ##  [1] 0.641082199 1.685216557 0.023072282 0.420631738 0.082198220
@@ -441,9 +443,6 @@ THETAinit = 4, 50, 0.2
 The other values are the same with those of `Theoph (ZERO, CONC)`.
 
 ## Reference
-
-
-
 
 [1] K. Bae. _nmw: NONMEM Workshop 2017_. R package version 0.1.0. 2017. <URL:
 http://optimizer.r-forge.r-project.org/>.

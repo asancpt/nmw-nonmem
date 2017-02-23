@@ -73,7 +73,7 @@ A table (head) and a figure of input dataset is shown below.
 ### Initial values
 
 ```{r}
-kable(inputFirst)
+kable(inputFirst, format = "markdown")
 ```
 
 ### Input Table
