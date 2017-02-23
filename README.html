@@ -131,6 +131,8 @@ $(document).ready(function () {
 <li><a href="#appendix">Appendix</a><ul>
 <li><a href="#examples-for-initial-values">Examples for Initial Values</a></li>
 </ul></li>
+<li><a href="#reference">Reference</a></li>
+<li><a href="#bibliography">Bibliography</a></li>
 </ul></li>
 </ul>
 </div>
@@ -149,7 +151,7 @@ $(document).ready(function () {
 </ul>
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
-<p>NONMEM Workshop 2017에서 사용된 nmw 패키지를 사용한 Edison 사이언스 앱입니다.</p>
+<p>NONMEM Workshop 2017에서 사용된 nmw 패키지를 사용한 Edison 사이언스 앱입니다. <span class="citation">(Kim, Yim, and Bae 2015; Bae and Yim 2016; Bae 2017)</span></p>
 </div>
 <div id="result" class="section level2">
 <h2>Result</h2>
@@ -340,7 +342,7 @@ InitPara = InitStep(DataAll, THETAinit=THETAinit, OMinit=OMinit, SGinit=SGinit,
 ## [1] 141.3076
 ## 
 ## $Time
-## Time difference of 15.3741 secs
+## Time difference of 8.510498 secs
 ## 
 ## $Optim
 ## $Optim$par
@@ -406,7 +408,7 @@ InitPara = InitStep(DataAll, THETAinit=THETAinit, OMinit=OMinit, SGinit=SGinit,
 ## [11]  0.05427434</code></pre>
 <pre class="r"><code>(CovRes = CovStep())</code></pre>
 <pre><code>## $Time
-## Time difference of 5.114908 secs
+## Time difference of 2.259074 secs
 ## 
 ## $`Standard Error`
 ##  [1] 0.641082199 1.685216557 0.023072282 0.420631738 0.082198220
@@ -653,6 +655,26 @@ SGinit = 0.1, 0, 0, 0.1</code></pre>
 <h4>Theoph (LAPL)</h4>
 <pre><code>THETAinit = 4, 50, 0.2</code></pre>
 <p>The other values are the same with those of <code>Theoph (ZERO, CONC)</code>.</p>
+</div>
+</div>
+</div>
+<div id="reference" class="section level2">
+<h2>Reference</h2>
+<p>[1] K. Bae. <em>nmw: NONMEM Workshop 2017</em>. R package version 0.1.0. 2017. &lt;URL: <a href="http://optimizer.r-forge.r-project.org/" class="uri">http://optimizer.r-forge.r-project.org/</a>&gt;.</p>
+<p>[2] K. Bae and D. Yim. “R-based reproduction of the estimation process hidden behind NONMEM® Part 2: First-order conditional estimation”. In: <em>Translational and Clinical Pharmacology</em> 24.4 (2016), p. 161. DOI: 10.12793/tcp.2016.24.4.161. &lt;URL: <a href="https://doi.org/10.12793%2Ftcp.2016.24.4.161">https://doi.org/10.12793%2Ftcp.2016.24.4.161</a>}.&gt;</p>
+<p>[3] M. Kim, D. Yim and K. Bae. “R-based reproduction of the estimation process hidden behind NONMEM® Part 1: first-order approximation method”. In: <em>Translational and Clinical Pharmacology</em> 23.1 (2015), p. 1. DOI: 10.12793/tcp.2015.23.1.1. &lt;URL: <a href="https://doi.org/10.12793%2Ftcp.2015.23.1.1">https://doi.org/10.12793%2Ftcp.2015.23.1.1</a>}.&gt;</p>
+</div>
+<div id="bibliography" class="section level2 unnumbered">
+<h2>Bibliography</h2>
+<div id="refs" class="references">
+<div id="ref-Bae_2017">
+<p>Bae, Kyun-Seop. 2017. <em>Nmw: NONMEM Workshop 2017</em>. <a href="http://optimizer.r-forge.r-project.org/" class="uri">http://optimizer.r-forge.r-project.org/</a>.</p>
+</div>
+<div id="ref-Bae_2016">
+<p>Bae, Kyun-Seop, and Dong-Seok Yim. 2016. “R-Based Reproduction of the Estimation Process Hidden Behind NONMEM Part 2: First-Order Conditional Estimation.” <em>Translational and Clinical Pharmacology</em> 24 (4). Korean Society for Clinical Pharmacology; Therapeutics (KAMJE): 161. doi:<a href="https://doi.org/10.12793/tcp.2016.24.4.161">10.12793/tcp.2016.24.4.161</a>.</p>
+</div>
+<div id="ref-Kim_2015">
+<p>Kim, Min-Gul, Dong-Seok Yim, and Kyun-Seop Bae. 2015. “R-Based Reproduction of the Estimation Process Hidden Behind NONMEM Part 1: First-Order Approximation Method.” <em>Translational and Clinical Pharmacology</em> 23 (1). Korean Society for Clinical Pharmacology; Therapeutics (KAMJE): 1. doi:<a href="https://doi.org/10.12793/tcp.2015.23.1.1">10.12793/tcp.2015.23.1.1</a>.</p>
 </div>
 </div>
 </div>

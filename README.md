@@ -16,7 +16,7 @@
 
 ## Introduction
 
-NONMEM Workshop 2017에서 사용된 nmw 패키지를 사용한 Edison 사이언스 앱입니다.
+NONMEM Workshop 2017에서 사용된 nmw 패키지를 사용한 Edison 사이언스 앱입니다. [@Kim_2015;@Bae_2016;@Bae_2017]
 
 ## Result
 
@@ -103,7 +103,7 @@ InitPara = InitStep(DataAll, THETAinit=THETAinit, OMinit=OMinit, SGinit=SGinit,
 ## [1] 141.3076
 ## 
 ## $Time
-## Time difference of 15.3741 secs
+## Time difference of 8.510498 secs
 ## 
 ## $Optim
 ## $Optim$par
@@ -175,7 +175,7 @@ InitPara = InitStep(DataAll, THETAinit=THETAinit, OMinit=OMinit, SGinit=SGinit,
 
 ```
 ## $Time
-## Time difference of 5.114908 secs
+## Time difference of 2.259074 secs
 ## 
 ## $`Standard Error`
 ##  [1] 0.641082199 1.685216557 0.023072282 0.420631738 0.082198220
@@ -439,3 +439,20 @@ THETAinit = 4, 50, 0.2
 ```
 
 The other values are the same with those of `Theoph (ZERO, CONC)`.
+
+## Reference
+
+[1] K. Bae. _nmw: NONMEM Workshop 2017_. R package version 0.1.0. 2017. <URL:
+http://optimizer.r-forge.r-project.org/>.
+
+[2] K. Bae and D. Yim. “R-based reproduction of the estimation process hidden
+behind NONMEM® Part 2: First-order conditional estimation”. In: _Translational and
+Clinical Pharmacology_ 24.4 (2016), p. 161. DOI: 10.12793/tcp.2016.24.4.161. <URL:
+https://doi.org/10.12793%2Ftcp.2016.24.4.161}.>
+
+[3] M. Kim, D. Yim and K. Bae. “R-based reproduction of the estimation process
+hidden behind NONMEM® Part 1: first-order approximation method”. In:
+_Translational and Clinical Pharmacology_ 23.1 (2015), p. 1. DOI:
+10.12793/tcp.2015.23.1.1. <URL: https://doi.org/10.12793%2Ftcp.2015.23.1.1}.>
+
+## Bibliography
