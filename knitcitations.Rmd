@@ -1,3 +1,8 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
 ```{r}
 library(knitcitations)
 cleanbib()
@@ -9,5 +14,9 @@ write.bibtex(file = "bibliography.bib")
 ```
 
 ```{r results = 'asis'}
-bibliography()
+suppressWarnings(bibliography())
+
+sink("bibliography.txt")
+suppressWarnings(bibliography())
+sink()
 ```
