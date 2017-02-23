@@ -93,7 +93,7 @@ if (NMDataset == "Emax"){
 ```
 
 ```{r}
-kable(head(DataAll, n = 20), caption = "input data")
+kable(head(DataAll, n = 20), caption = "input data", format = "markdown")
 ```
 
 ### Figure

@@ -204,9 +204,8 @@ $(document).ready(function () {
 </div>
 <div id="input-table" class="section level3">
 <h3>Input Table</h3>
-<pre class="r"><code>kable(head(DataAll, n = 20), caption = &quot;input data&quot;)</code></pre>
+<pre class="r"><code>kable(head(DataAll, n = 20), caption = &quot;input data&quot;, format = &quot;markdown&quot;)</code></pre>
 <table>
-<caption>input data</caption>
 <thead>
 <tr class="header">
 <th align="left">ID</th>
@@ -342,7 +341,7 @@ InitPara = InitStep(DataAll, THETAinit=THETAinit, OMinit=OMinit, SGinit=SGinit,
 ## [1] 141.3076
 ## 
 ## $Time
-## Time difference of 8.754787 secs
+## Time difference of 8.702691 secs
 ## 
 ## $Optim
 ## $Optim$par
@@ -408,7 +407,7 @@ InitPara = InitStep(DataAll, THETAinit=THETAinit, OMinit=OMinit, SGinit=SGinit,
 ## [11]  0.05427434</code></pre>
 <pre class="r"><code>(CovRes = CovStep())</code></pre>
 <pre><code>## $Time
-## Time difference of 2.438244 secs
+## Time difference of 2.405215 secs
 ## 
 ## $`Standard Error`
 ##  [1] 0.641082199 1.685216557 0.023072282 0.420631738 0.082198220

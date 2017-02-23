@@ -48,35 +48,33 @@ kable(inputFirst, format = "markdown")
 
 
 ```r
-kable(head(DataAll, n = 20), caption = "input data")
+kable(head(DataAll, n = 20), caption = "input data", format = "markdown")
 ```
 
 
 
-Table: input data
-
-ID     TIME      DV
----  ------  ------
-1      0.00    0.74
-1      0.25    2.84
-1      0.57    6.57
-1      1.12   10.50
-1      2.02    9.66
-1      3.82    8.58
-1      5.10    8.36
-1      7.03    7.47
-1      9.05    6.89
-1     12.12    5.94
-1     24.37    3.28
-2      0.00    0.00
-2      0.27    1.72
-2      0.52    7.91
-2      1.00    8.31
-2      1.92    8.33
-2      3.50    6.85
-2      5.02    6.08
-2      7.03    5.40
-2      9.00    4.55
+|ID |  TIME|    DV|
+|:--|-----:|-----:|
+|1  |  0.00|  0.74|
+|1  |  0.25|  2.84|
+|1  |  0.57|  6.57|
+|1  |  1.12| 10.50|
+|1  |  2.02|  9.66|
+|1  |  3.82|  8.58|
+|1  |  5.10|  8.36|
+|1  |  7.03|  7.47|
+|1  |  9.05|  6.89|
+|1  | 12.12|  5.94|
+|1  | 24.37|  3.28|
+|2  |  0.00|  0.00|
+|2  |  0.27|  1.72|
+|2  |  0.52|  7.91|
+|2  |  1.00|  8.31|
+|2  |  1.92|  8.33|
+|2  |  3.50|  6.85|
+|2  |  5.02|  6.08|
+|2  |  7.03|  5.40|
+|2  |  9.00|  4.55|
 
 ### Figure
 
@@ -105,7 +103,7 @@ InitPara = InitStep(DataAll, THETAinit=THETAinit, OMinit=OMinit, SGinit=SGinit,
 ## [1] 141.3076
 ## 
 ## $Time
-## Time difference of 8.754787 secs
+## Time difference of 8.702691 secs
 ## 
 ## $Optim
 ## $Optim$par
@@ -177,7 +175,7 @@ InitPara = InitStep(DataAll, THETAinit=THETAinit, OMinit=OMinit, SGinit=SGinit,
 
 ```
 ## $Time
-## Time difference of 2.438244 secs
+## Time difference of 2.405215 secs
 ## 
 ## $`Standard Error`
 ##  [1] 0.641082199 1.685216557 0.023072282 0.420631738 0.082198220
