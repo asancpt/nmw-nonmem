@@ -1,3 +1,3 @@
 rm nmw.zip
-cp c.R $1.R
-zip -r nmw.zip $1.R README.Rmd input.deck cover.jpg
+cp index.R $1.R
+zip -r releases/nmw-$1.zip $1.R README.Rmd data-raw input.deck cover.jpg

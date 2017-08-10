@@ -46,7 +46,7 @@ if (length(intersect(dir(), "result")) == 0) {
 # Argument ----------------------------------------------------------------
 
 Args <- commandArgs(trailingOnly = TRUE) # SKIP THIS LINE IN R if you're testing!
-if (identical(Args, character(0))) Args <- c("-inp", "input.deck")
+if (identical(Args, character(0))) Args <- c("-inp", "data-raw/input.deck")
 
 if (Args[1] == "-inp") InputParameter <- Args[2] # InputPara.inp
 
