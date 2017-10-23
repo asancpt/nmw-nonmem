@@ -201,7 +201,6 @@ script_files <- dir('data-raw/2-THEO-R-OUT', pattern = '\\.R$', full.names = TRU
 
 ## FO v2
 
-
 $$
 \Omega
 \Sigma
