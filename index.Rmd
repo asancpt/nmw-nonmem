@@ -4,7 +4,7 @@ author: "Sungpil Han"
 date: "`r Sys.Date()`"
 knit: "bookdown::render_book"
 documentclass: krantz
-bibliography: ["bib/ref.bib"] # "bib/packages.bib"
+bibliography: ["bib/ref.bib", "bib/packages.bib"]
 biblio-style: apalike
 link-citations: yes
 colorlinks: yes
@@ -64,7 +64,10 @@ editor_options:
 library(knitr)
 ```
 
+
 # nmw 패키지
+
+NONMEM Workshop 2017에서 사용된 nmw 패키지입니다. [@Kim_2015;@Bae_2016;@R-nmw]
 
 먼저 설치를 해야 합니다. 
 
@@ -203,5 +206,11 @@ DiagrammeR::mermaid("
 graph LR
 A --> B
 ", height = 200)
+```
+
+# Bibliography {-}
+
+```{r, include = FALSE}
+knitr::write_bib(file = 'bib/packages.bib')
 ```
 
