@@ -195,3 +195,13 @@ G =
   \end{bmatrix}
 $$
 
+
+
+
+```{r, echo = FALSE}
+DiagrammeR::mermaid("
+graph LR
+A --> B
+", height = 200)
+```
+
