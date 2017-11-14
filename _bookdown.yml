@@ -1,3 +1,9 @@
-output_dir: ./docs
-rmd_files: [index.Rmd]
+book_filename: "nmw"
 delete_merged_file: yes
+before_chapter_script: ["R/before.R"]
+# after_chapter_script: []
+edit: https://github.com/asancpt/book-nmw/edit/master/%s
+rmd_subdir: no
+output_dir: "docs"
+rmd_files: ["index.Rmd"]
+

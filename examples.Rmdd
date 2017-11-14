@@ -1,0 +1,36 @@
+
+# 스크립트를 사용한 예제
+
+```{r include = FALSE}
+script_files <- dir('data-raw/2-THEO-R-OUT', pattern = '\\.R$', full.names = TRUE)
+```
+
+[1] "data-raw/2-THEO-R-OUT/Script-FO_v2.R"      "data-raw/2-THEO-R-OUT/Script-FOCEI_v2.1.R" "data-raw/2-THEO-R-OUT/Script-FOCEI_v3.R"  
+[4] "data-raw/2-THEO-R-OUT/Script-LAPLI_v2.1.R"
+
+## FO v2
+
+$$
+\Omega
+\Sigma
+$$
+
+- unconstrained minimization : DFP -> BFGS -2LL로 잘 풀린다. $-\infty to \infty$
+
+```{r, code = readLines(script_files[1]), cache = TRUE}
+```
+
+## FOCEI v2.1
+
+```{r, code = readLines(script_files[2]), cache = TRUE}
+```
+
+## FOCEI v3
+
+```{r, code = readLines(script_files[3]), cache = TRUE}
+```
+
+## LAPLI v2.1
+
+```{r, code = readLines(script_files[4]), cache = TRUE}
+```

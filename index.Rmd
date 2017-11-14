@@ -1,10 +1,10 @@
 ---
-title: "nmw"
+title: "NONMEM estimation using R"
 author: "Sungpil Han"
 date: "`r Sys.Date()`"
 knit: "bookdown::render_book"
 documentclass: krantz
-#bibliography: [manual.bib] #, packages.bib]
+bibliography: ["bib/ref.bib"] # "bib/packages.bib"
 biblio-style: apalike
 link-citations: yes
 colorlinks: yes
@@ -14,21 +14,21 @@ fontsize: 12pt
 monofont: "Source Code Pro"
 monofontoptions: "Scale=0.7"
 site: bookdown::bookdown_site
-description: "A guide to authoring books with R Markdown, including how to generate figures and tables, and insert cross-references, citations, HTML widgets, and Shiny apps in R Markdown. The book can be exported to HTML, PDF, and e-books (e.g. EPUB). The book style is customizable. You can easily write and preview the book in RStudio IDE or other editors, and host the book wherever you want (e.g. bookdown.org)."
-url: 'https\://wnl.netlify.com/'
-github-repo: shanmdphd/wnl
-cover-image: images/cover.jpg
+description: ""
+url: 'https\://book-nmw.netlify.com/'
+github-repo: asancpt/book-nmw
+cover-image: assets/cover.jpg
 output:
   bookdown::gitbook:
     df_print: kable
     dev: svglite
     css: css/style.css
-    split_by: section
+    split_by: chapter
     config:
       toc:
-        collapse: none
+        collapse: chapter
         before: |
-          <li><a href="./index.html">PKPD by R</a></li>
+          <li><a href="./index.html">NONMEM estimation using R</a></li>
         after: |
           <li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
       #download: [pdf, epub, mobi]
@@ -62,17 +62,17 @@ editor_options:
 
 ```{r setup, include = FALSE}
 library(knitr)
-opts_chunk$set(error = TRUE)
 ```
 
 # nmw 패키지
 
-CRAN에 올라온 
+먼저 설치를 해야 합니다. 
 
 ```{r}
-#install.packages('lib/nmw_0.1.3.tar.gz', repos = NULL, type = 'source') # local
-#install.packages('nmw') # CRAN
+#install.packages(c('nmw', 'compiler')) # CRAN
 library(nmw)
+library(compiler)
+enableJIT(3)
 ```
 
 `THEO-FO.OUT`와 비교할 때 값이 같습니다.
@@ -88,7 +88,11 @@ Scaling factor는 소스 코드를 보고 알아낸 것입니다.
 DataAll = Theoph
 colnames(DataAll) = c("ID", "BWT", "DOSE", "TIME", "DV")
 DataAll[,"ID"] = as.numeric(as.character(DataAll[,"ID"]))
+```
 
+그림을 그려보면 다음과 같습니다. (Figure \@ref(fig:xyplot))
+
+```{r xyplot, fig.cap = 'xyplot'}
 require(lattice)
 xyplot(DV ~ TIME | as.factor(ID), data=DataAll, type="b")
 ```
@@ -101,10 +105,9 @@ nEta = 3
 nEps = 2
 
 THETAinit = c(2, 50, 0.1)
-OMinit = matrix(c(0.2, 0.1, 0.1, 0.1, 0.2, 0.1, 0.1, 0.1, 0.2), nrow=nEta, ncol=nEta)
+OMinit = matrix(c(0.2, 0.1, 0.1, 0.1, 0.2, 0.1, 0.1, 0.1, 0.2), nrow=nEta, ncol=nEta) 
 data.frame(OMinit)
-
-SGinit = diag(c(0.1, 0.1))
+SGinit = diag(c(0.1, 0.1)) 
 data.frame(SGinit)
 ```
 
@@ -121,17 +124,18 @@ H = deriv(~F + F*EPS1 + EPS2, c("EPS1", "EPS2"), function.arg=c("F", "EPS1", "EP
 
 PRED = function(THETA, ETA, DATAi)
 {
-  FGDres = FGD(THETA[1], THETA[2], THETA[3], ETA[1], ETA[2], ETA[3], DOSE=320, DATAi[,"TIME"])
+
+  FGDres = FGD(THETA[1], THETA[2], THETA[3], ETA[1], ETA[2], ETA[3], DOSE=320, DATAi[,"TIME"]) 
   Gres = attr(FGDres, "gradient")
   Hres = attr(H(FGDres, 0, 0), "gradient")
-
+  
   if (e$METHOD == "LAPL") {
     Dres = attr(FGDres, "hessian")
     Res = cbind(FGDres, Gres, Hres, Dres[,1,1], Dres[,2,1], Dres[,2,2], Dres[,3,])
-    colnames(Res) = c("F", "G1", "G2", "G3", "H1", "H2", "D11", "D21", "D22", "D31", "D32", "D33")
+    colnames(Res) = c("F", "G1", "G2", "G3", "H1", "H2", "D11", "D21", "D22", "D31", "D32", "D33") 
   } else {
     Res = cbind(FGDres, Gres, Hres)
-    colnames(Res) = c("F", "G1", "G2", "G3", "H1", "H2")
+    colnames(Res) = c("F", "G1", "G2", "G3", "H1", "H2") 
   }
   return(Res)
 }
@@ -140,7 +144,7 @@ PRED = function(THETA, ETA, DATAi)
 ## First Order Approximation Method
 
 ```{r}
-InitStep(DataAll, THETAinit=THETAinit, OMinit=OMinit, SGinit=SGinit, LB=LB, UB=UB, Pred=PRED, METHOD="ZERO")
+InitStep(DataAll, THETAinit=THETAinit, OMinit=OMinit, SGinit=SGinit, nTheta=nTheta, LB=LB, UB=UB, Pred=PRED, METHOD="ZERO")
 ```
 
 먼저 `InitStep()`을 통해서 초기화를 합니다.
@@ -163,65 +167,31 @@ InitStep(DataAll, THETAinit=THETAinit, OMinit=OMinit, SGinit=SGinit, LB=LB, UB=U
 PostHocEta() # FinalPara from EstStep()
 ```
 
-### TabStep
-
-```{r}
-TabStep()
-```
-
 ## First Order Conditional Estimation with Interaction Method
 
 ```{r eval = FALSE}
-InitStep(DataAll, THETAinit=THETAinit, OMinit=OMinit, SGinit=SGinit, LB=LB, UB=UB, Pred=PRED, METHOD="COND")
+InitStep(DataAll, THETAinit=THETAinit, OMinit=OMinit, SGinit=SGinit, nTheta=nTheta, LB=LB, UB=UB, Pred=PRED, METHOD="COND")
 (EstRes = EstStep())           # 1.7 min
 (CovRes = CovStep())           # 44 sec
 get("EBE", envir=e)
-TabStep()
 ```
 
 ## Laplacian Approximation with Interacton Method
 
 ```{r eval = FALSE}
-InitStep(DataAll, THETAinit=THETAinit, OMinit=OMinit, SGinit=SGinit, LB=LB, UB=UB, Pred=PRED, METHOD="LAPL")
+InitStep(DataAll, THETAinit=THETAinit, OMinit=OMinit, SGinit=SGinit, nTheta=nTheta, LB=LB, UB=UB, Pred=PRED, METHOD="LAPL")
 (EstRes = EstStep())           # 3.4 min
 (CovRes = CovStep())           # 52 sec
 get("EBE", envir=e)
-TabStep()
 ```
 
-
-# 스크립트를 사용한 예제
-
-```{r include = FALSE}
-script_files <- dir('data-raw/2-THEO-R-OUT', pattern = '\\.R$', full.names = TRUE)
-```
-
-[1] "data-raw/2-THEO-R-OUT/Script-FO_v2.R"      "data-raw/2-THEO-R-OUT/Script-FOCEI_v2.1.R" "data-raw/2-THEO-R-OUT/Script-FOCEI_v3.R"  
-[4] "data-raw/2-THEO-R-OUT/Script-LAPLI_v2.1.R"
-
-## FO v2
 
 $$
-\Omega
-\Sigma
+G =
+  \begin{bmatrix}
+    \frac{\partial F}{\partial \eta_1} & \frac{\partial^2 F}{\partial \eta_1 \partial \eta_1}  & [blank] & [blank] \\
+    \frac{F}{\eta_2} & \frac{\partial^2 F}{\partial \eta_2 \partial \eta_1} & \frac{\partial^2 F}{\partial \eta_2 \partial \eta_2} & [blank] \\
+    \frac{F}{\eta_3} & \frac{\partial^2 F}{\partial \eta_3 \partial \eta_1} & \frac{\partial^2 F}{\partial \eta_3 \partial \eta_2} & \frac{\partial^2 F}{\partial \eta_3 \partial \eta_3}
+  \end{bmatrix}
 $$
 
-- unconstrained minimization : DFP -> BFGS -2LL로 잘 풀린다. $-\infty to \infty$
-
-```{r, code = readLines(script_files[1]), cache = TRUE}
-```
-
-## FOCEI v2.1
-
-```{r, code = readLines(script_files[2]), cache = TRUE}
-```
-
-## FOCEI v3
-
-```{r, code = readLines(script_files[3]), cache = TRUE}
-```
-
-## LAPLI v2.1
-
-```{r, code = readLines(script_files[4]), cache = TRUE}
-```

@@ -1,0 +1,3 @@
+[submodule "lib/nmw"]
+	path = lib/nmw
+	url = https://github.com/cran/nmw
