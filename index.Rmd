@@ -22,7 +22,7 @@ output:
   bookdown::gitbook:
     df_print: kable
     dev: svglite
-    css: css/style.css
+    css: style.css
     split_by: chapter
     config:
       toc:
@@ -63,9 +63,19 @@ editor_options:
 ```{r setup, include = FALSE}
 library(knitr)
 ```
+# Abstract
 
+TBD
 
-# nmw 패키지
+# Introduction
+
+TBD
+
+# Materials and Methods
+
+TBD
+
+## nmw R package
 
 NONMEM Workshop 2017에서 사용된 nmw 패키지입니다. [@Kim_2015;@Bae_2016;@R-nmw]
 
@@ -82,7 +92,7 @@ enableJIT(3)
 
 Scaling factor는 소스 코드를 보고 알아낸 것입니다.
 
-# 패키지를 사용한 예제 {#examples}
+# Results 
 
 <!--```{r, code = readLines('lib/nmw/inst/doc/nmw-vignette.R'), cache = TRUE}
 ```-->
@@ -201,14 +211,18 @@ $$
 
 
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, eval = FALSE}
 DiagrammeR::mermaid("
 graph LR
 A --> B
 ", height = 200)
 ```
 
-# Bibliography {-}
+# Discussion
+
+# Acknowledgement
+
+# References {-}
 
 ```{r, include = FALSE}
 knitr::write_bib(file = 'bib/packages.bib')
