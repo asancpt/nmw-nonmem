@@ -62,6 +62,7 @@ editor_options:
 
 ```{r setup, include = FALSE}
 library(knitr)
+opts_chunk$set(message = FALSE, warning = FALSE, error = TRUE)
 ```
 # Abstract
 
@@ -84,15 +85,15 @@ NONMEM Workshop 2017에서 사용된 nmw 패키지입니다. [@Kim_2015;@Bae_201
 ```{r}
 #install.packages(c('nmw', 'compiler')) # CRAN
 library(nmw)
-library(compiler)
-enableJIT(3)
+# library(compiler)
+# enableJIT(3)
 ```
 
 `THEO-FO.OUT`와 비교할 때 값이 같습니다.
 
 Scaling factor는 소스 코드를 보고 알아낸 것입니다.
 
-# Results 
+## Datasets
 
 <!--```{r, code = readLines('lib/nmw/inst/doc/nmw-vignette.R'), cache = TRUE}
 ```-->
@@ -110,25 +111,28 @@ require(lattice)
 xyplot(DV ~ TIME | as.factor(ID), data=DataAll, type="b")
 ```
 
+# Results 
+
 $\theta, \eta, \epsilon$ 개수를 먼저 지정해 주고 초기값을 설정합니다.
 
 ```{r}
+DataAll = Theoph
+colnames(DataAll) = c("ID", "BWT", "DOSE", "TIME", "DV")
+DataAll[,"ID"] = as.numeric(as.character(DataAll[,"ID"]))
+
 nTheta = 3
 nEta = 3
 nEps = 2
 
 THETAinit = c(2, 50, 0.1)
-OMinit = matrix(c(0.2, 0.1, 0.1, 0.1, 0.2, 0.1, 0.1, 0.1, 0.2), nrow=nEta, ncol=nEta) 
-data.frame(OMinit)
-SGinit = diag(c(0.1, 0.1)) 
-data.frame(SGinit)
-```
+OMinit = matrix(c(0.2, 0.1, 0.1, 0.1, 0.2, 0.1, 0.1, 0.1, 0.2), nrow=nEta, ncol=nEta)
+SGinit = diag(c(0.1, 0.1))
 
-```{r}
-LB = rep(0, nTheta)
-UB = rep(1000000, nTheta)
+LB = rep(0, nTheta) # Lower bound
+UB = rep(1000000, nTheta) # Upper bound
 
-FGD = deriv(~DOSE/(TH2*exp(ETA2))*TH1*exp(ETA1)/(TH1*exp(ETA1) - TH3*exp(ETA3))*(exp(-TH3*exp(ETA3)*TIME)-exp(-TH1*exp(ETA1)*TIME)),
+FGD = deriv(~DOSE/(TH2*exp(ETA2))*TH1*exp(ETA1)/(TH1*exp(ETA1) - TH3*exp(ETA3))*
+              (exp(-TH3*exp(ETA3)*TIME)-exp(-TH1*exp(ETA1)*TIME)),
             c("ETA1","ETA2","ETA3"),
             function.arg=c("TH1", "TH2", "TH3", "ETA1", "ETA2", "ETA3", "DOSE", "TIME"),
             func=TRUE,
@@ -137,7 +141,6 @@ H = deriv(~F + F*EPS1 + EPS2, c("EPS1", "EPS2"), function.arg=c("F", "EPS1", "EP
 
 PRED = function(THETA, ETA, DATAi)
 {
-
   FGDres = FGD(THETA[1], THETA[2], THETA[3], ETA[1], ETA[2], ETA[3], DOSE=320, DATAi[,"TIME"]) 
   Gres = attr(FGDres, "gradient")
   Hres = attr(H(FGDres, 0, 0), "gradient")
@@ -152,12 +155,26 @@ PRED = function(THETA, ETA, DATAi)
   }
   return(Res)
 }
+
+
+
 ```
+
+
+
+####### First Order Approximation Method
+InitStep(DataAll, THETAinit=THETAinit, OMinit=OMinit, SGinit=SGinit, LB=LB, UB=UB, 
+         Pred=PRED, METHOD="ZERO")
+(EstRes = EstStep())           # 4 sec
+(CovRes = CovStep())           # 2 sec
+PostHocEta() # Using e$FinalPara from EstStep()
+TabStep()
 
 ## First Order Approximation Method
 
 ```{r}
-InitStep(DataAll, THETAinit=THETAinit, OMinit=OMinit, SGinit=SGinit, nTheta=nTheta, LB=LB, UB=UB, Pred=PRED, METHOD="ZERO")
+InitStep(DataAll, THETAinit=THETAinit, OMinit=OMinit, SGinit=SGinit, LB=LB, UB=UB, 
+         Pred=PRED, METHOD="ZERO")
 ```
 
 먼저 `InitStep()`을 통해서 초기화를 합니다.
@@ -179,6 +196,13 @@ InitStep(DataAll, THETAinit=THETAinit, OMinit=OMinit, SGinit=SGinit, nTheta=nThe
 ```{r}
 PostHocEta() # FinalPara from EstStep()
 ```
+
+### TabStep
+
+```{r}
+TabStep()
+```
+
 
 ## First Order Conditional Estimation with Interaction Method
 

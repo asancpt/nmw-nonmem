@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>NONMEM estimation using R</title>
   <meta name="description" content="NONMEM estimation using R">
-  <meta name="generator" content="bookdown 0.5.9 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.5.10 and GitBook 2.6.7">
 
   <meta property="og:title" content="NONMEM estimation using R" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Sungpil Han">
 
 
-<meta name="date" content="2017-11-28">
+<meta name="date" content="2017-12-07">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -107,12 +107,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
 <li class="chapter" data-level="3" data-path="materials-and-methods.html"><a href="materials-and-methods.html"><i class="fa fa-check"></i><b>3</b> Materials and Methods</a><ul>
 <li class="chapter" data-level="3.1" data-path="materials-and-methods.html"><a href="materials-and-methods.html#nmw-r-package"><i class="fa fa-check"></i><b>3.1</b> nmw R package</a></li>
+<li class="chapter" data-level="3.2" data-path="materials-and-methods.html"><a href="materials-and-methods.html#datasets"><i class="fa fa-check"></i><b>3.2</b> Datasets</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>4</b> Results</a><ul>
-<li class="chapter" data-level="4.1" data-path="results.html"><a href="results.html#first-order-approximation-method"><i class="fa fa-check"></i><b>4.1</b> First Order Approximation Method</a><ul>
+<li class="chapter" data-level="4.1" data-path="results.html"><a href="results.html#first-order-approximation-method-1"><i class="fa fa-check"></i><b>4.1</b> First Order Approximation Method</a><ul>
 <li class="chapter" data-level="4.1.1" data-path="results.html"><a href="results.html#estres"><i class="fa fa-check"></i><b>4.1.1</b> EstRes</a></li>
 <li class="chapter" data-level="4.1.2" data-path="results.html"><a href="results.html#covres"><i class="fa fa-check"></i><b>4.1.2</b> CovRes</a></li>
 <li class="chapter" data-level="4.1.3" data-path="results.html"><a href="results.html#posthoceta"><i class="fa fa-check"></i><b>4.1.3</b> PostHocEta</a></li>
+<li class="chapter" data-level="4.1.4" data-path="results.html"><a href="results.html#tabstep"><i class="fa fa-check"></i><b>4.1.4</b> TabStep</a></li>
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="results.html"><a href="results.html#first-order-conditional-estimation-with-interaction-method"><i class="fa fa-check"></i><b>4.2</b> First Order Conditional Estimation with Interaction Method</a></li>
 <li class="chapter" data-level="4.3" data-path="results.html"><a href="results.html#laplacian-approximation-with-interacton-method"><i class="fa fa-check"></i><b>4.3</b> Laplacian Approximation with Interacton Method</a></li>
@@ -148,13 +150,28 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>NONMEM Workshop 2017에서 사용된 nmw 패키지입니다. <span class="citation">(Kim, Yim, and Bae <a href="#ref-Kim_2015">2015</a>; Bae and Yim <a href="#ref-Bae_2016">2016</a>; Bae <a href="#ref-R-nmw">2017</a>)</span></p>
 <p>먼저 설치를 해야 합니다.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install.packages(c(&#39;nmw&#39;, &#39;compiler&#39;)) # CRAN</span>
-<span class="kw">library</span>(nmw)</code></pre></div>
-<pre><code>## Loading required package: numDeriv</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(compiler)
-<span class="kw">enableJIT</span>(<span class="dv">3</span>)</code></pre></div>
-<pre><code>## [1] 3</code></pre>
+<span class="kw">library</span>(nmw)
+<span class="co"># library(compiler)</span>
+<span class="co"># enableJIT(3)</span></code></pre></div>
 <p><code>THEO-FO.OUT</code>와 비교할 때 값이 같습니다.</p>
 <p>Scaling factor는 소스 코드를 보고 알아낸 것입니다.</p>
+</div>
+<div id="datasets" class="section level2">
+<h2><span class="header-section-number">3.2</span> Datasets</h2>
+<!--```{r, code = readLines('lib/nmw/inst/doc/nmw-vignette.R'), cache = TRUE}
+```-->
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DataAll =<span class="st"> </span>Theoph
+<span class="kw">colnames</span>(DataAll) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ID&quot;</span>, <span class="st">&quot;BWT&quot;</span>, <span class="st">&quot;DOSE&quot;</span>, <span class="st">&quot;TIME&quot;</span>, <span class="st">&quot;DV&quot;</span>)
+DataAll[,<span class="st">&quot;ID&quot;</span>] =<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">as.character</span>(DataAll[,<span class="st">&quot;ID&quot;</span>]))</code></pre></div>
+<p>그림을 그려보면 다음과 같습니다. (Figure <a href="materials-and-methods.html#fig:xyplot">3.1</a>)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(lattice)
+<span class="kw">xyplot</span>(DV <span class="op">~</span><span class="st"> </span>TIME <span class="op">|</span><span class="st"> </span><span class="kw">as.factor</span>(ID), <span class="dt">data=</span>DataAll, <span class="dt">type=</span><span class="st">&quot;b&quot;</span>)</code></pre></div>
+<div class="figure"><span id="fig:xyplot"></span>
+<img src="nmw_files/figure-html/xyplot-1.svg" alt="xyplot" width="672" />
+<p class="caption">
+Figure 3.1: xyplot
+</p>
+</div>
 </div>
 </div>
 <h3>References</h3>
@@ -166,7 +183,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Bae, Kyun-Seop, and Dong-Seok Yim. 2016. “R-Based Reproduction of the Estimation Process Hidden Behind NONMEM Part 2: First-Order Conditional Estimation.” <em>Translational and Clinical Pharmacology</em> 24 (4). Korean Society for Clinical Pharmacology; Therapeutics (KAMJE): 161. doi:<a href="https://doi.org/10.12793/tcp.2016.24.4.161">10.12793/tcp.2016.24.4.161</a>.</p>
 </div>
 <div id="ref-R-nmw">
-<p>Bae, Kyun-Seop. 2017. <em>Nmw: Understanding Nonlinear Mixed Effects Modeling for Population Pharmacokinetics</em>. <a href="https://CRAN.R-project.org/package=nmw" class="uri">https://CRAN.R-project.org/package=nmw</a>.</p>
+<p>Bae, Kyun-Seop. 2017. <em>Nmw: Understanding Nonlinear Mixed Effects Modeling for Population Pharmacokinetics</em>. <a href="https://cran.r-project.org/package=nmw" class="uri">https://cran.r-project.org/package=nmw</a>.</p>
 </div>
 </div>
             </section>
