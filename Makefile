@@ -6,3 +6,6 @@ gitbook:
 
 all:
 	Rscript --quiet _render.R
+
+readme:
+	Rscript -e "rmarkdown::render('README.Rmd', output_format = 'github_document')"
