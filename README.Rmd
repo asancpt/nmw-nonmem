@@ -120,7 +120,6 @@ if (Get_os() == "windows") {
 - Method: `r METHOD`
 
 ```{r ZERO}
-########
 PREDFILE <- ifelse(NMDataset == "Emax", "03-Emax/PRED.R", "04-THEO/PRED.R")
 
 InitPara = InitStep(DataAll, THETAinit=THETAinit, OMinit=OMinit, SGinit=SGinit, 
