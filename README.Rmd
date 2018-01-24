@@ -34,7 +34,6 @@ knitr::read_chunk("c.R")
 #OMinit = 0.2
 #SGinit = 1
 
-
 inputFirst <- read.csv("result/inputFirst.csv", as.is = TRUE, row.names = 1)
 input <- data.frame(t(inputFirst), stringsAsFactors = FALSE)
 NMDataset <- input$Dataset
