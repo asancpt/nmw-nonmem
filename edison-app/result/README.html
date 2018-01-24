@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>Introduction</title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+
+
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<div id="toc">
+<div id="toc_header">Table of Contents</div>
+<ul>
+<li>
+<a href="#toc_0">Introduction</a>
+</li>
+<li>
+<a href="#toc_1">Result</a>
+<ul>
+<li>
+<a href="#toc_2">Initial values</a>
+</li>
+<li>
+<a href="#toc_3">Input Table</a>
+</li>
+<li>
+<a href="#toc_4">Figure</a>
+</li>
+<li>
+<a href="#toc_5">Method Calculation</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_6">Appendix</a>
+<ul>
+<li>
+<a href="#toc_7">Examples for Initial Values</a>
+<ul>
+<li>
+<a href="#toc_8">Emax</a>
+</li>
+<li>
+<a href="#toc_9">Theoph (ZERO, CONC)</a>
+</li>
+<li>
+<a href="#toc_10">Theoph (LAPL)</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_11">Reference</a>
+</li>
+<li>
+<a href="#toc_12">Bibliography</a>
+</li>
+</ul>
+</div>
+
+
+<p><img src="cover.jpg" alt="Cover"></p>
+
+<p><a href="https://github.com/asancpt/nmw2017edison">https://github.com/asancpt/nmw2017edison</a>
+license: GPL-3</p>
+
+<h2 id="toc_0">Introduction</h2>
+
+<p>NONMEM Workshop 2017<ec>뿉<ec>꽌 <ec>궗<ec>슜<eb>맂 nmw <ed>뙣<ed>궎吏瑜<bc> <ec>궗<ec>슜<ed>븳 Edison <ec>궗<ec>씠<ec>뼵<ec>뒪 <ec>빋<ec>엯<eb>땲<eb>떎. [@Kim_2015;@Bae_2016;@Bae_2017]</p>
+
+<h2 id="toc_1">Result</h2>
+
+<p>A table (head) and a figure of input dataset is shown below.</p>
+
+<h3 id="toc_2">Initial values</h3>
+
+<pre><code class="r">kable(inputFirst, format = &quot;markdown&quot;)
+</code></pre>
+
+<table><thead>
+<tr>
+<th align="left"></th>
+<th align="left">V2</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="left">Dataset</td>
+<td align="left">Theoph</td>
+</tr>
+<tr>
+<td align="left">Method</td>
+<td align="left">ZERO</td>
+</tr>
+<tr>
+<td align="left">nTheta</td>
+<td align="left">3</td>
+</tr>
+<tr>
+<td align="left">nEta</td>
+<td align="left">3</td>
+</tr>
+<tr>
+<td align="left">nEps</td>
+<td align="left">2</td>
+</tr>
+<tr>
+<td align="left">THETAinit</td>
+<td align="left">2, 50, 0.1</td>
+</tr>
+<tr>
+<td align="left">OMinit</td>
+<td align="left">0.2, 0.1, 0.1, 0.1, 0.2, 0.1, 0.1, 0.1, 0.2</td>
+</tr>
+<tr>
+<td align="left">SGinit</td>
+<td align="left">0.1, 0, 0, 0.1</td>
+</tr>
+</tbody></table>
+
+<h3 id="toc_3">Input Table</h3>
+
+<pre><code class="r">kable(head(DataAll, n = 20), caption = &quot;input data&quot;, format = &quot;markdown&quot;)
+</code></pre>
+
+<table><thead>
+<tr>
+<th align="left">ID</th>
+<th align="right">TIME</th>
+<th align="right">DV</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="left">1</td>
+<td align="right">0.00</td>
+<td align="right">0.74</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="right">0.25</td>
+<td align="right">2.84</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="right">0.57</td>
+<td align="right">6.57</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="right">1.12</td>
+<td align="right">10.50</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="right">2.02</td>
+<td align="right">9.66</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="right">3.82</td>
+<td align="right">8.58</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="right">5.10</td>
+<td align="right">8.36</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="right">7.03</td>
+<td align="right">7.47</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="right">9.05</td>
+<td align="right">6.89</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="right">12.12</td>
+<td align="right">5.94</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="right">24.37</td>
+<td align="right">3.28</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="right">0.27</td>
+<td align="right">1.72</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="right">0.52</td>
+<td align="right">7.91</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="right">1.00</td>
+<td align="right">8.31</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="right">1.92</td>
+<td align="right">8.33</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="right">3.50</td>
+<td align="right">6.85</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="right">5.02</td>
+<td align="right">6.08</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="right">7.03</td>
+<td align="right">5.40</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="right">9.00</td>
+<td align="right">4.55</td>
+</tr>
+</tbody></table>
+
+<h3 id="toc_4">Figure</h3>
+
+<p><img src="xyplot.jpg" alt="Concentration-time curve of Theoph"></p>
+
+<h3 id="toc_5">Method Calculation</h3>
+
+<ul>
+<li>Dataset: Theoph</li>
+<li>Method: ZERO</li>
+</ul>
+
+<pre><code class="r">########
+PREDFILE &lt;- ifelse(NMDataset == &quot;Emax&quot;, &quot;03-Emax/PRED.R&quot;, &quot;04-THEO/PRED.R&quot;)
+
+InitPara = InitStep(DataAll, THETAinit=THETAinit, OMinit=OMinit, SGinit=SGinit, 
+                    nTheta=nTheta, LB=LB, UB=UB, METHOD=METHOD, PredFile=PREDFILE)
+</code></pre>
+
+<pre><code>## Error in InitStep(DataAll, THETAinit = THETAinit, OMinit = OMinit, SGinit = SGinit, : unused arguments (nTheta = nTheta, PredFile = PREDFILE)
+</code></pre>
+
+<pre><code class="r">(EstRes = EstStep())           # 0.6200359 secs, 0.4930282 secs
+</code></pre>
+
+<pre><code>## Error in rep(0.1, e$nPara): invalid &#39;times&#39; argument
+</code></pre>
+
+<pre><code class="r">(CovRes = CovStep())
+</code></pre>
+
+<pre><code>## Error in 1:e$nTheta: argument of length 0
+</code></pre>
+
+<pre><code class="r">PostHocEta() # FinalPara from EstStep()
+</code></pre>
+
+<pre><code>## Error in 1:e$nTheta: argument of length 0
+</code></pre>
+
+<pre><code class="r">get(&quot;EBE&quot;, envir=e)
+</code></pre>
+
+<pre><code>## Error in get(&quot;EBE&quot;, envir = e): object &#39;EBE&#39; not found
+</code></pre>
+
+<h2 id="toc_6">Appendix</h2>
+
+<h3 id="toc_7">Examples for Initial Values</h3>
+
+<h4 id="toc_8">Emax</h4>
+
+<pre><code>nTheta = 2
+nEta = 1
+nEps = 1
+
+THETAinit = 10, 100
+OMinit = 0.2
+SGinit = 1
+</code></pre>
+
+<h4 id="toc_9">Theoph (ZERO, CONC)</h4>
+
+<pre><code>nTheta = 3
+nEta = 3
+nEps = 2
+
+THETAinit = 2, 50, 0.1
+OMinit = 0.2, 0.1, 0.1, 0.1, 0.2, 0.1, 0.1, 0.1, 0.2
+SGinit = 0.1, 0, 0, 0.1
+</code></pre>
+
+<h4 id="toc_10">Theoph (LAPL)</h4>
+
+<pre><code>THETAinit = 4, 50, 0.2
+</code></pre>
+
+<p>The other values are the same with those of <code>Theoph (ZERO, CONC)</code>.</p>
+
+<h2 id="toc_11">Reference</h2>
+
+<p>[1] K. Bae. <em>nmw: NONMEM Workshop 2017</em>. R package version 0.1.0. 2017. <URL:
+http://optimizer.r-forge.r-project.org/>.</p>
+
+<p>[2] K. Bae and D. Yim. <U+FFFD>쏳-based reproduction of the estimation process hidden behind
+NONMEM짰 Part 2: First-order conditional estimation<U+FFFD><U+FFFD>. In: <em>Translational and Clinical
+Pharmacology</em> 24.4 (2016), p. 161. DOI: 10.12793/tcp.2016.24.4.161. <URL:
+https://doi.org/10.12793%2Ftcp.2016.24.4.161}.></p>
+
+<p>[3] M. Kim, D. Yim and K. Bae. <U+FFFD>쏳-based reproduction of the estimation process hidden
+behind NONMEM짰 Part 1: first-order approximation method<U+FFFD><U+FFFD>. In: <em>Translational and Clinical
+Pharmacology</em> 23.1 (2015), p. 1. DOI: 10.12793/tcp.2015.23.1.1. <URL:
+https://doi.org/10.12793%2Ftcp.2015.23.1.1}.></p>
+
+<h2 id="toc_12">Bibliography</h2>
+
+</body>
+
+</html>
