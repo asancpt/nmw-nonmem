@@ -1,5 +1,5 @@
 ---
-title: NONMEM workshop 2017
+title: NONMEM workshop 2018
 author: Sungpil Han, Kyun-Seop Bae
 date: 2017-02-22
 bibliography: bibliography.bib
