@@ -1,0 +1,12 @@
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+InitStep(),Initialization Step,초기값 지정 및 추정 방법 등을 설정 한다.
+EstStep(),Estimation Step,"초기화 후 objective function value, 최종 모수 등을 계산한다."
+CovStep(),Covariance Step,"EstStep() 후 얻어진 최종모수를 통해 표준 오차, 분산 행렬, correlation 행렬, 역분산 행렬, 고유값, R, S 행렬 등을 계산한다."
+PostHocEta(),Empirical bayesian estimate (EBE),각 대상자 별로 ETA에 대한 EBE 값을 보여준다.
+TabStep(),Table Step,각 농도 포인트 별로 예측값과 관측값 및 잔차 등을 표 형식으로 보여준다.

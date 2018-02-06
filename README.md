@@ -1,18 +1,17 @@
+NONMEM workshop
+====================
 
 ![Cover](cover.jpg)
 
-NONMEM workshop 2017
-====================
-
 -   author: Sungpil Han, Kyun-Seop Bae
--   date: 2017-02-22
--   <https://github.com/asancpt/nmw2017edison>
+-   <https://github.com/asancpt/edison-nmw>
 -   license: GPL-3
+
+`manuscript-2018.docx`는 에디슨 경진대회 제출 논문이다.
+
 
 Introduction
 ------------
-
-NA
 
 Result
 ------
@@ -426,3 +425,5 @@ NA NA Pharmacology\_ 23.1 (2015), p. 1. DOI: 10.12793/tcp.2015.23.1.1. &lt;URL: 
 
 Bibliography
 ------------
+
+
