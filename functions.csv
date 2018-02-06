@@ -1,0 +1,18 @@
+
+
+
+
+
+함수명,,기능
+CovStep,Covariance Step,"Estimation step (EstStep) 후 표준 오차와 분산 행렬을 계산한다."
+
+
+It calculates standard errors and various variance matrices with the e$FinalPara after estimation step.
+
+
+EstStep,Estimation Step
+InitStep,Initialization Step
+nmw,Understanding Nonlinear Mixed Effects Modeling for Population Pharmacokinetics
+TabStep,Table Step
+
+
