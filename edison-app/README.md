@@ -1,7 +1,7 @@
 ---
-title: NONMEM workshop 2017
+title: NONMEM workshop
 author: Sungpil Han, Kyun-Seop Bae
-date: 2017-02-22
+date: '2018-02-08'
 bibliography: bibliography.bib
 output:
   html_document:
@@ -23,8 +23,6 @@ editor_options:
 
 
 ![Cover](cover.jpg)
-
-
 
 <https://github.com/asancpt/nmw2017edison>
 license: GPL-3
@@ -104,7 +102,6 @@ kable(head(DataAll, n = 20), caption = "input data", format = "markdown")
 
 
 ```r
-########
 PREDFILE <- ifelse(NMDataset == "Emax", "03-Emax/PRED.R", "04-THEO/PRED.R")
 
 InitPara = InitStep(DataAll, THETAinit=THETAinit, OMinit=OMinit, SGinit=SGinit, 

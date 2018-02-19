@@ -16,7 +16,6 @@ write.bibtex(file = "bibliography.bib")
 
 ```{r results = 'asis'}
 suppressWarnings(bibliography())
-
 sink("bibliography.txt")
 suppressWarnings(bibliography())
 sink()

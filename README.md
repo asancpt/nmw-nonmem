@@ -1,13 +1,41 @@
-NONMEM workshop
+Understanding NONMEM workshop
 ====================
-
-![Cover](cover.jpg)
 
 -   author: Sungpil Han, Kyun-Seop Bae
 -   <https://github.com/asancpt/edison-nmw>
 -   license: GPL-3
 
-`manuscript-2018.docx`는 에디슨 경진대회 제출 논문이다.
+![Cover](cover.jpg)
+
+## 중요한 링크
+
+- <https://github.com/cran/nmw>
+
+## 중요한 파일
+
+- `docs-edison-2018/manuscript-2018.pdf` : 에디슨 경진대회 2018 논문 - 제출본
+
+
+
+
+
+
+
+
+
+
+|           | V2                                          |
+|:----------|:--------------------------------------------|
+| Dataset   | Theoph                                      |
+| Method    | ZERO                                        |
+| nTheta    | 3                                           |
+| nEta      | 3                                           |
+| nEps      | 2                                           |
+| THETAinit | 2, 50, 0.1                                  |
+| OMinit    | 0.2, 0.1, 0.1, 0.1, 0.2, 0.1, 0.1, 0.1, 0.2 |
+| SGinit    | 0.1, 0, 0, 0.1                              |
+
+
 
 
 Introduction
@@ -24,16 +52,6 @@ A table (head) and a figure of input dataset is shown below.
 kable(inputFirst, format = "markdown")
 ```
 
-|           | V2                                          |
-|:----------|:--------------------------------------------|
-| Dataset   | Theoph                                      |
-| Method    | ZERO                                        |
-| nTheta    | 3                                           |
-| nEta      | 3                                           |
-| nEps      | 2                                           |
-| THETAinit | 2, 50, 0.1                                  |
-| OMinit    | 0.2, 0.1, 0.1, 0.1, 0.2, 0.1, 0.1, 0.1, 0.2 |
-| SGinit    | 0.1, 0, 0, 0.1                              |
 
 ### Input Table
 

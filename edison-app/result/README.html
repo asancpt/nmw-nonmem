@@ -398,8 +398,7 @@ license: GPL-3</p>
 <li>Method: ZERO</li>
 </ul>
 
-<pre><code class="r">########
-PREDFILE &lt;- ifelse(NMDataset == &quot;Emax&quot;, &quot;03-Emax/PRED.R&quot;, &quot;04-THEO/PRED.R&quot;)
+<pre><code class="r">PREDFILE &lt;- ifelse(NMDataset == &quot;Emax&quot;, &quot;03-Emax/PRED.R&quot;, &quot;04-THEO/PRED.R&quot;)
 
 InitPara = InitStep(DataAll, THETAinit=THETAinit, OMinit=OMinit, SGinit=SGinit, 
                     nTheta=nTheta, LB=LB, UB=UB, METHOD=METHOD, PredFile=PREDFILE)
