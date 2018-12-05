@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>EDISON 2018: NONMEM estimation using R</title>
   <meta name="description" content="EDISON 2018: NONMEM estimation using R">
-  <meta name="generator" content="bookdown 0.6 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
 
   <meta property="og:title" content="EDISON 2018: NONMEM estimation using R" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Sungpil Han">
 
 
-<meta name="date" content="2018-02-06">
+<meta name="date" content="2018-03-12">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -50,41 +50,69 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -103,24 +131,26 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="./index.html">NONMEM estimation using R</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Abstract</a></li>
-<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
-<li class="chapter" data-level="3" data-path="materials-and-methods.html"><a href="materials-and-methods.html"><i class="fa fa-check"></i><b>3</b> Materials and Methods</a><ul>
-<li class="chapter" data-level="3.1" data-path="materials-and-methods.html"><a href="materials-and-methods.html#nmw-r-package"><i class="fa fa-check"></i><b>3.1</b> nmw R package</a></li>
-<li class="chapter" data-level="3.2" data-path="materials-and-methods.html"><a href="materials-and-methods.html#datasets"><i class="fa fa-check"></i><b>3.2</b> Datasets</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> 계량약리학 초급</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#nmw-r-package"><i class="fa fa-check"></i><b>1.1</b> nmw R package</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#datasets"><i class="fa fa-check"></i><b>1.2</b> Datasets</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>4</b> Results</a><ul>
-<li class="chapter" data-level="4.1" data-path="results.html"><a href="results.html#first-order-approximation-method-1"><i class="fa fa-check"></i><b>4.1</b> First Order Approximation Method</a><ul>
-<li class="chapter" data-level="4.1.1" data-path="results.html"><a href="results.html#estres"><i class="fa fa-check"></i><b>4.1.1</b> EstRes</a></li>
-<li class="chapter" data-level="4.1.2" data-path="results.html"><a href="results.html#covres"><i class="fa fa-check"></i><b>4.1.2</b> CovRes</a></li>
-<li class="chapter" data-level="4.1.3" data-path="results.html"><a href="results.html#posthoceta"><i class="fa fa-check"></i><b>4.1.3</b> PostHocEta</a></li>
-<li class="chapter" data-level="4.1.4" data-path="results.html"><a href="results.html#tabstep"><i class="fa fa-check"></i><b>4.1.4</b> TabStep</a></li>
+<li class="chapter" data-level="2" data-path="nonmem-.html"><a href="nonmem-.html"><i class="fa fa-check"></i><b>2</b> NONMEM 설치하는 법</a></li>
+<li class="chapter" data-level="3" data-path="abstract.html"><a href="abstract.html"><i class="fa fa-check"></i><b>3</b> Abstract</a></li>
+<li class="chapter" data-level="4" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>4</b> Introduction</a></li>
+<li class="chapter" data-level="5" data-path="materials-and-methods.html"><a href="materials-and-methods.html"><i class="fa fa-check"></i><b>5</b> Materials and Methods</a></li>
+<li class="chapter" data-level="6" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>6</b> Results</a><ul>
+<li class="chapter" data-level="6.1" data-path="results.html"><a href="results.html#first-order-approximation-method-1"><i class="fa fa-check"></i><b>6.1</b> First Order Approximation Method</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="results.html"><a href="results.html#estres"><i class="fa fa-check"></i><b>6.1.1</b> EstRes</a></li>
+<li class="chapter" data-level="6.1.2" data-path="results.html"><a href="results.html#covres"><i class="fa fa-check"></i><b>6.1.2</b> CovRes</a></li>
+<li class="chapter" data-level="6.1.3" data-path="results.html"><a href="results.html#posthoceta"><i class="fa fa-check"></i><b>6.1.3</b> PostHocEta</a></li>
+<li class="chapter" data-level="6.1.4" data-path="results.html"><a href="results.html#tabstep"><i class="fa fa-check"></i><b>6.1.4</b> TabStep</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="results.html"><a href="results.html#first-order-conditional-estimation-with-interaction-method"><i class="fa fa-check"></i><b>4.2</b> First Order Conditional Estimation with Interaction Method</a></li>
-<li class="chapter" data-level="4.3" data-path="results.html"><a href="results.html#laplacian-approximation-with-interacton-method"><i class="fa fa-check"></i><b>4.3</b> Laplacian Approximation with Interacton Method</a></li>
+<li class="chapter" data-level="6.2" data-path="results.html"><a href="results.html#first-order-conditional-estimation-with-interaction-method"><i class="fa fa-check"></i><b>6.2</b> First Order Conditional Estimation with Interaction Method</a></li>
+<li class="chapter" data-level="6.3" data-path="results.html"><a href="results.html#laplacian-approximation-with-interacton-method"><i class="fa fa-check"></i><b>6.3</b> Laplacian Approximation with Interacton Method</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>5</b> Discussion</a></li>
-<li class="chapter" data-level="6" data-path="acknowledgement.html"><a href="acknowledgement.html"><i class="fa fa-check"></i><b>6</b> Acknowledgement</a></li>
+<li class="chapter" data-level="7" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>7</b> Discussion</a></li>
+<li class="chapter" data-level="8" data-path="acknowledgement.html"><a href="acknowledgement.html"><i class="fa fa-check"></i><b>8</b> Acknowledgement</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
@@ -143,64 +173,69 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="results" class="section level1">
-<h1><span class="header-section-number">4</span> Results</h1>
+<h1><span class="header-section-number">6</span> Results</h1>
 <p><span class="math inline">\(\theta, \eta, \epsilon\)</span> 개수를 먼저 지정해 주고 초기값을 설정합니다.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DataAll =<span class="st"> </span>Theoph
-<span class="kw">colnames</span>(DataAll) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ID&quot;</span>, <span class="st">&quot;BWT&quot;</span>, <span class="st">&quot;DOSE&quot;</span>, <span class="st">&quot;TIME&quot;</span>, <span class="st">&quot;DV&quot;</span>)
-DataAll[,<span class="st">&quot;ID&quot;</span>] =<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">as.character</span>(DataAll[,<span class="st">&quot;ID&quot;</span>]))
-
-nTheta =<span class="st"> </span><span class="dv">3</span>
-nEta =<span class="st"> </span><span class="dv">3</span>
-nEps =<span class="st"> </span><span class="dv">2</span>
-
-THETAinit =<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">50</span>, <span class="fl">0.1</span>)
-OMinit =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="fl">0.2</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.2</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.2</span>), <span class="dt">nrow=</span>nEta, <span class="dt">ncol=</span>nEta)
-SGinit =<span class="st"> </span><span class="kw">diag</span>(<span class="kw">c</span>(<span class="fl">0.1</span>, <span class="fl">0.1</span>))
-
-LB =<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>, nTheta) <span class="co"># Lower bound</span>
-UB =<span class="st"> </span><span class="kw">rep</span>(<span class="dv">1000000</span>, nTheta) <span class="co"># Upper bound</span>
-
-FGD =<span class="st"> </span><span class="kw">deriv</span>(<span class="op">~</span>DOSE<span class="op">/</span>(TH2<span class="op">*</span><span class="kw">exp</span>(ETA2))<span class="op">*</span>TH1<span class="op">*</span><span class="kw">exp</span>(ETA1)<span class="op">/</span>(TH1<span class="op">*</span><span class="kw">exp</span>(ETA1) <span class="op">-</span><span class="st"> </span>TH3<span class="op">*</span><span class="kw">exp</span>(ETA3))<span class="op">*</span>
-<span class="st">              </span>(<span class="kw">exp</span>(<span class="op">-</span>TH3<span class="op">*</span><span class="kw">exp</span>(ETA3)<span class="op">*</span>TIME)<span class="op">-</span><span class="kw">exp</span>(<span class="op">-</span>TH1<span class="op">*</span><span class="kw">exp</span>(ETA1)<span class="op">*</span>TIME)),
-            <span class="kw">c</span>(<span class="st">&quot;ETA1&quot;</span>,<span class="st">&quot;ETA2&quot;</span>,<span class="st">&quot;ETA3&quot;</span>),
-            <span class="dt">function.arg=</span><span class="kw">c</span>(<span class="st">&quot;TH1&quot;</span>, <span class="st">&quot;TH2&quot;</span>, <span class="st">&quot;TH3&quot;</span>, <span class="st">&quot;ETA1&quot;</span>, <span class="st">&quot;ETA2&quot;</span>, <span class="st">&quot;ETA3&quot;</span>, <span class="st">&quot;DOSE&quot;</span>, <span class="st">&quot;TIME&quot;</span>),
-            <span class="dt">func=</span><span class="ot">TRUE</span>,
-            <span class="dt">hessian=</span>(e<span class="op">$</span>METHOD <span class="op">==</span><span class="st"> &quot;LAPL&quot;</span>))
-H =<span class="st"> </span><span class="kw">deriv</span>(<span class="op">~</span>F <span class="op">+</span><span class="st"> </span>F<span class="op">*</span>EPS1 <span class="op">+</span><span class="st"> </span>EPS2, <span class="kw">c</span>(<span class="st">&quot;EPS1&quot;</span>, <span class="st">&quot;EPS2&quot;</span>), <span class="dt">function.arg=</span><span class="kw">c</span>(<span class="st">&quot;F&quot;</span>, <span class="st">&quot;EPS1&quot;</span>, <span class="st">&quot;EPS2&quot;</span>), <span class="dt">func=</span><span class="ot">TRUE</span>)
-
-PRED =<span class="st"> </span><span class="cf">function</span>(THETA, ETA, DATAi)
-{
-  FGDres =<span class="st"> </span><span class="kw">FGD</span>(THETA[<span class="dv">1</span>], THETA[<span class="dv">2</span>], THETA[<span class="dv">3</span>], ETA[<span class="dv">1</span>], ETA[<span class="dv">2</span>], ETA[<span class="dv">3</span>], <span class="dt">DOSE=</span><span class="dv">320</span>, DATAi[,<span class="st">&quot;TIME&quot;</span>]) 
-  Gres =<span class="st"> </span><span class="kw">attr</span>(FGDres, <span class="st">&quot;gradient&quot;</span>)
-  Hres =<span class="st"> </span><span class="kw">attr</span>(<span class="kw">H</span>(FGDres, <span class="dv">0</span>, <span class="dv">0</span>), <span class="st">&quot;gradient&quot;</span>)
-  
-  <span class="cf">if</span> (e<span class="op">$</span>METHOD <span class="op">==</span><span class="st"> &quot;LAPL&quot;</span>) {
-    Dres =<span class="st"> </span><span class="kw">attr</span>(FGDres, <span class="st">&quot;hessian&quot;</span>)
-    Res =<span class="st"> </span><span class="kw">cbind</span>(FGDres, Gres, Hres, Dres[,<span class="dv">1</span>,<span class="dv">1</span>], Dres[,<span class="dv">2</span>,<span class="dv">1</span>], Dres[,<span class="dv">2</span>,<span class="dv">2</span>], Dres[,<span class="dv">3</span>,])
-    <span class="kw">colnames</span>(Res) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;F&quot;</span>, <span class="st">&quot;G1&quot;</span>, <span class="st">&quot;G2&quot;</span>, <span class="st">&quot;G3&quot;</span>, <span class="st">&quot;H1&quot;</span>, <span class="st">&quot;H2&quot;</span>, <span class="st">&quot;D11&quot;</span>, <span class="st">&quot;D21&quot;</span>, <span class="st">&quot;D22&quot;</span>, <span class="st">&quot;D31&quot;</span>, <span class="st">&quot;D32&quot;</span>, <span class="st">&quot;D33&quot;</span>) 
-  } <span class="cf">else</span> {
-    Res =<span class="st"> </span><span class="kw">cbind</span>(FGDres, Gres, Hres)
-    <span class="kw">colnames</span>(Res) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;F&quot;</span>, <span class="st">&quot;G1&quot;</span>, <span class="st">&quot;G2&quot;</span>, <span class="st">&quot;G3&quot;</span>, <span class="st">&quot;H1&quot;</span>, <span class="st">&quot;H2&quot;</span>) 
-  }
-  <span class="kw">return</span>(Res)
-}</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">DataAll =<span class="st"> </span>Theoph</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">colnames</span>(DataAll) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ID&quot;</span>, <span class="st">&quot;BWT&quot;</span>, <span class="st">&quot;DOSE&quot;</span>, <span class="st">&quot;TIME&quot;</span>, <span class="st">&quot;DV&quot;</span>)</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">DataAll[,<span class="st">&quot;ID&quot;</span>] =<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">as.character</span>(DataAll[,<span class="st">&quot;ID&quot;</span>]))</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">nTheta =<span class="st"> </span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">nEta =<span class="st"> </span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">nEps =<span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9">THETAinit =<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">50</span>, <span class="fl">0.1</span>)</a>
+<a class="sourceLine" id="cb4-10" data-line-number="10">OMinit =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="fl">0.2</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.2</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.2</span>), <span class="dt">nrow=</span>nEta, <span class="dt">ncol=</span>nEta)</a>
+<a class="sourceLine" id="cb4-11" data-line-number="11">SGinit =<span class="st"> </span><span class="kw">diag</span>(<span class="kw">c</span>(<span class="fl">0.1</span>, <span class="fl">0.1</span>))</a>
+<a class="sourceLine" id="cb4-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb4-13" data-line-number="13">LB =<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>, nTheta) <span class="co"># Lower bound</span></a>
+<a class="sourceLine" id="cb4-14" data-line-number="14">UB =<span class="st"> </span><span class="kw">rep</span>(<span class="dv">1000000</span>, nTheta) <span class="co"># Upper bound</span></a>
+<a class="sourceLine" id="cb4-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb4-16" data-line-number="16">FGD =<span class="st"> </span><span class="kw">deriv</span>(<span class="op">~</span>DOSE<span class="op">/</span>(TH2<span class="op">*</span><span class="kw">exp</span>(ETA2))<span class="op">*</span>TH1<span class="op">*</span><span class="kw">exp</span>(ETA1)<span class="op">/</span>(TH1<span class="op">*</span><span class="kw">exp</span>(ETA1) <span class="op">-</span><span class="st"> </span>TH3<span class="op">*</span><span class="kw">exp</span>(ETA3))<span class="op">*</span></a>
+<a class="sourceLine" id="cb4-17" data-line-number="17"><span class="st">              </span>(<span class="kw">exp</span>(<span class="op">-</span>TH3<span class="op">*</span><span class="kw">exp</span>(ETA3)<span class="op">*</span>TIME)<span class="op">-</span><span class="kw">exp</span>(<span class="op">-</span>TH1<span class="op">*</span><span class="kw">exp</span>(ETA1)<span class="op">*</span>TIME)),</a>
+<a class="sourceLine" id="cb4-18" data-line-number="18">            <span class="kw">c</span>(<span class="st">&quot;ETA1&quot;</span>,<span class="st">&quot;ETA2&quot;</span>,<span class="st">&quot;ETA3&quot;</span>),</a>
+<a class="sourceLine" id="cb4-19" data-line-number="19">            <span class="dt">function.arg=</span><span class="kw">c</span>(<span class="st">&quot;TH1&quot;</span>, <span class="st">&quot;TH2&quot;</span>, <span class="st">&quot;TH3&quot;</span>, <span class="st">&quot;ETA1&quot;</span>, <span class="st">&quot;ETA2&quot;</span>, <span class="st">&quot;ETA3&quot;</span>, <span class="st">&quot;DOSE&quot;</span>, <span class="st">&quot;TIME&quot;</span>),</a>
+<a class="sourceLine" id="cb4-20" data-line-number="20">            <span class="dt">func=</span><span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb4-21" data-line-number="21">            <span class="dt">hessian=</span>(e<span class="op">$</span>METHOD <span class="op">==</span><span class="st"> &quot;LAPL&quot;</span>))</a>
+<a class="sourceLine" id="cb4-22" data-line-number="22">H =<span class="st"> </span><span class="kw">deriv</span>(<span class="op">~</span>F <span class="op">+</span><span class="st"> </span>F<span class="op">*</span>EPS1 <span class="op">+</span><span class="st"> </span>EPS2, <span class="kw">c</span>(<span class="st">&quot;EPS1&quot;</span>, <span class="st">&quot;EPS2&quot;</span>), <span class="dt">function.arg=</span><span class="kw">c</span>(<span class="st">&quot;F&quot;</span>, <span class="st">&quot;EPS1&quot;</span>, <span class="st">&quot;EPS2&quot;</span>), <span class="dt">func=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb4-23" data-line-number="23"></a>
+<a class="sourceLine" id="cb4-24" data-line-number="24">PRED =<span class="st"> </span><span class="cf">function</span>(THETA, ETA, DATAi)</a>
+<a class="sourceLine" id="cb4-25" data-line-number="25">{</a>
+<a class="sourceLine" id="cb4-26" data-line-number="26">  FGDres =<span class="st"> </span><span class="kw">FGD</span>(THETA[<span class="dv">1</span>], THETA[<span class="dv">2</span>], THETA[<span class="dv">3</span>], ETA[<span class="dv">1</span>], ETA[<span class="dv">2</span>], ETA[<span class="dv">3</span>], <span class="dt">DOSE=</span><span class="dv">320</span>, DATAi[,<span class="st">&quot;TIME&quot;</span>]) </a>
+<a class="sourceLine" id="cb4-27" data-line-number="27">  Gres =<span class="st"> </span><span class="kw">attr</span>(FGDres, <span class="st">&quot;gradient&quot;</span>)</a>
+<a class="sourceLine" id="cb4-28" data-line-number="28">  Hres =<span class="st"> </span><span class="kw">attr</span>(<span class="kw">H</span>(FGDres, <span class="dv">0</span>, <span class="dv">0</span>), <span class="st">&quot;gradient&quot;</span>)</a>
+<a class="sourceLine" id="cb4-29" data-line-number="29">  </a>
+<a class="sourceLine" id="cb4-30" data-line-number="30">  <span class="cf">if</span> (e<span class="op">$</span>METHOD <span class="op">==</span><span class="st"> &quot;LAPL&quot;</span>) {</a>
+<a class="sourceLine" id="cb4-31" data-line-number="31">    Dres =<span class="st"> </span><span class="kw">attr</span>(FGDres, <span class="st">&quot;hessian&quot;</span>)</a>
+<a class="sourceLine" id="cb4-32" data-line-number="32">    Res =<span class="st"> </span><span class="kw">cbind</span>(FGDres, Gres, Hres, Dres[,<span class="dv">1</span>,<span class="dv">1</span>], Dres[,<span class="dv">2</span>,<span class="dv">1</span>], Dres[,<span class="dv">2</span>,<span class="dv">2</span>], Dres[,<span class="dv">3</span>,])</a>
+<a class="sourceLine" id="cb4-33" data-line-number="33">    <span class="kw">colnames</span>(Res) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;F&quot;</span>, <span class="st">&quot;G1&quot;</span>, <span class="st">&quot;G2&quot;</span>, <span class="st">&quot;G3&quot;</span>, <span class="st">&quot;H1&quot;</span>, <span class="st">&quot;H2&quot;</span>, <span class="st">&quot;D11&quot;</span>, <span class="st">&quot;D21&quot;</span>, <span class="st">&quot;D22&quot;</span>, <span class="st">&quot;D31&quot;</span>, <span class="st">&quot;D32&quot;</span>, <span class="st">&quot;D33&quot;</span>) </a>
+<a class="sourceLine" id="cb4-34" data-line-number="34">  } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb4-35" data-line-number="35">    Res =<span class="st"> </span><span class="kw">cbind</span>(FGDres, Gres, Hres)</a>
+<a class="sourceLine" id="cb4-36" data-line-number="36">    <span class="kw">colnames</span>(Res) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;F&quot;</span>, <span class="st">&quot;G1&quot;</span>, <span class="st">&quot;G2&quot;</span>, <span class="st">&quot;G3&quot;</span>, <span class="st">&quot;H1&quot;</span>, <span class="st">&quot;H2&quot;</span>) </a>
+<a class="sourceLine" id="cb4-37" data-line-number="37">  }</a>
+<a class="sourceLine" id="cb4-38" data-line-number="38">  <span class="kw">return</span>(Res)</a>
+<a class="sourceLine" id="cb4-39" data-line-number="39">}</a></code></pre></div>
 <div id="first-order-approximation-method" class="section level7">
-<p><span class="header-section-number">4.0.0.0.0.0.1</span> First Order Approximation Method</p>
-<p>InitStep(DataAll, THETAinit=THETAinit, OMinit=OMinit, SGinit=SGinit, LB=LB, UB=UB, Pred=PRED, METHOD=“ZERO”) (EstRes = EstStep()) # 4 sec (CovRes = CovStep()) # 2 sec PostHocEta() # Using e$FinalPara from EstStep() TabStep()</p>
+<p><span class="header-section-number">6.0.0.0.0.0.1</span> First Order Approximation Method</p>
+<p>InitStep(DataAll, THETAinit=THETAinit, OMinit=OMinit, SGinit=SGinit, LB=LB, UB=UB,
+Pred=PRED, METHOD=“ZERO”)
+(EstRes = EstStep()) # 4 sec
+(CovRes = CovStep()) # 2 sec
+PostHocEta() # Using e$FinalPara from EstStep()
+TabStep()</p>
 </div>
 <div id="first-order-approximation-method-1" class="section level2">
-<h2><span class="header-section-number">4.1</span> First Order Approximation Method</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">InitStep</span>(DataAll, <span class="dt">THETAinit=</span>THETAinit, <span class="dt">OMinit=</span>OMinit, <span class="dt">SGinit=</span>SGinit, <span class="dt">LB=</span>LB, <span class="dt">UB=</span>UB, 
-         <span class="dt">Pred=</span>PRED, <span class="dt">METHOD=</span><span class="st">&quot;ZERO&quot;</span>)</code></pre></div>
+<h2><span class="header-section-number">6.1</span> First Order Approximation Method</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">InitStep</span>(DataAll, <span class="dt">THETAinit=</span>THETAinit, <span class="dt">OMinit=</span>OMinit, <span class="dt">SGinit=</span>SGinit, <span class="dt">LB=</span>LB, <span class="dt">UB=</span>UB, </a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">         <span class="dt">Pred=</span>PRED, <span class="dt">METHOD=</span><span class="st">&quot;ZERO&quot;</span>)</a></code></pre></div>
 <p>먼저 <code>InitStep()</code>을 통해서 초기화를 합니다.</p>
 <div id="estres" class="section level3">
-<h3><span class="header-section-number">4.1.1</span> EstRes</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(<span class="dt">EstRes =</span> <span class="kw">EstStep</span>())           <span class="co"># 4 sec</span></code></pre></div>
+<h3><span class="header-section-number">6.1.1</span> EstRes</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">(<span class="dt">EstRes =</span> <span class="kw">EstStep</span>())           <span class="co"># 4 sec</span></a></code></pre></div>
 <pre><code>## $`Initial OFV`
 ## [1] 141.3076
 ## 
 ## $Time
-## Time difference of 3.5092 secs
+## Time difference of 3.468198 secs
 ## 
 ## $Optim
 ## $Optim$par
@@ -228,10 +263,10 @@ PRED =<span class="st"> </span><span class="cf">function</span>(THETA, ETA, DATA
 ## [11]  0.05427434</code></pre>
 </div>
 <div id="covres" class="section level3">
-<h3><span class="header-section-number">4.1.2</span> CovRes</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(<span class="dt">CovRes =</span> <span class="kw">CovStep</span>())           <span class="co"># 2 sec</span></code></pre></div>
+<h3><span class="header-section-number">6.1.2</span> CovRes</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">(<span class="dt">CovRes =</span> <span class="kw">CovStep</span>())           <span class="co"># 2 sec</span></a></code></pre></div>
 <pre><code>## $Time
-## Time difference of 1.261072 secs
+## Time difference of 1.22907 secs
 ## 
 ## $`Standard Error`
 ##  [1] 0.641076544 1.685217844 0.023072024 0.420617306 0.082197497
@@ -422,8 +457,8 @@ PRED =<span class="st"> </span><span class="cf">function</span>(THETA, ETA, DATA
 ## [11,]  24042.66052</code></pre>
 </div>
 <div id="posthoceta" class="section level3">
-<h3><span class="header-section-number">4.1.3</span> PostHocEta</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">PostHocEta</span>() <span class="co"># FinalPara from EstStep()</span></code></pre></div>
+<h3><span class="header-section-number">6.1.3</span> PostHocEta</h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">PostHocEta</span>() <span class="co"># FinalPara from EstStep()</span></a></code></pre></div>
 <pre><code>##       ID       ETA1         ETA2        ETA3
 ##  [1,]  1 -0.6367109 -0.232258352 -0.73648224
 ##  [2,]  2 -0.5895843 -0.153341805 -0.06619115
@@ -439,8 +474,8 @@ PRED =<span class="st"> </span><span class="cf">function</span>(THETA, ETA, DATA
 ## [12,] 12 -1.2863346 -0.388864841 -0.10134440</code></pre>
 </div>
 <div id="tabstep" class="section level3">
-<h3><span class="header-section-number">4.1.4</span> TabStep</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">TabStep</span>()</code></pre></div>
+<h3><span class="header-section-number">6.1.4</span> TabStep</h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">TabStep</span>()</a></code></pre></div>
 <div class="kable-table">
 <table>
 <thead>
@@ -2181,18 +2216,18 @@ PRED =<span class="st"> </span><span class="cf">function</span>(THETA, ETA, DATA
 </div>
 </div>
 <div id="first-order-conditional-estimation-with-interaction-method" class="section level2">
-<h2><span class="header-section-number">4.2</span> First Order Conditional Estimation with Interaction Method</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">InitStep</span>(DataAll, <span class="dt">THETAinit=</span>THETAinit, <span class="dt">OMinit=</span>OMinit, <span class="dt">SGinit=</span>SGinit, <span class="dt">nTheta=</span>nTheta, <span class="dt">LB=</span>LB, <span class="dt">UB=</span>UB, <span class="dt">Pred=</span>PRED, <span class="dt">METHOD=</span><span class="st">&quot;COND&quot;</span>)
-(<span class="dt">EstRes =</span> <span class="kw">EstStep</span>())           <span class="co"># 1.7 min</span>
-(<span class="dt">CovRes =</span> <span class="kw">CovStep</span>())           <span class="co"># 44 sec</span>
-<span class="kw">get</span>(<span class="st">&quot;EBE&quot;</span>, <span class="dt">envir=</span>e)</code></pre></div>
+<h2><span class="header-section-number">6.2</span> First Order Conditional Estimation with Interaction Method</h2>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">InitStep</span>(DataAll, <span class="dt">THETAinit=</span>THETAinit, <span class="dt">OMinit=</span>OMinit, <span class="dt">SGinit=</span>SGinit, <span class="dt">nTheta=</span>nTheta, <span class="dt">LB=</span>LB, <span class="dt">UB=</span>UB, <span class="dt">Pred=</span>PRED, <span class="dt">METHOD=</span><span class="st">&quot;COND&quot;</span>)</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">(<span class="dt">EstRes =</span> <span class="kw">EstStep</span>())           <span class="co"># 1.7 min</span></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3">(<span class="dt">CovRes =</span> <span class="kw">CovStep</span>())           <span class="co"># 44 sec</span></a>
+<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="kw">get</span>(<span class="st">&quot;EBE&quot;</span>, <span class="dt">envir=</span>e)</a></code></pre></div>
 </div>
 <div id="laplacian-approximation-with-interacton-method" class="section level2">
-<h2><span class="header-section-number">4.3</span> Laplacian Approximation with Interacton Method</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">InitStep</span>(DataAll, <span class="dt">THETAinit=</span>THETAinit, <span class="dt">OMinit=</span>OMinit, <span class="dt">SGinit=</span>SGinit, <span class="dt">nTheta=</span>nTheta, <span class="dt">LB=</span>LB, <span class="dt">UB=</span>UB, <span class="dt">Pred=</span>PRED, <span class="dt">METHOD=</span><span class="st">&quot;LAPL&quot;</span>)
-(<span class="dt">EstRes =</span> <span class="kw">EstStep</span>())           <span class="co"># 3.4 min</span>
-(<span class="dt">CovRes =</span> <span class="kw">CovStep</span>())           <span class="co"># 52 sec</span>
-<span class="kw">get</span>(<span class="st">&quot;EBE&quot;</span>, <span class="dt">envir=</span>e)</code></pre></div>
+<h2><span class="header-section-number">6.3</span> Laplacian Approximation with Interacton Method</h2>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">InitStep</span>(DataAll, <span class="dt">THETAinit=</span>THETAinit, <span class="dt">OMinit=</span>OMinit, <span class="dt">SGinit=</span>SGinit, <span class="dt">nTheta=</span>nTheta, <span class="dt">LB=</span>LB, <span class="dt">UB=</span>UB, <span class="dt">Pred=</span>PRED, <span class="dt">METHOD=</span><span class="st">&quot;LAPL&quot;</span>)</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">(<span class="dt">EstRes =</span> <span class="kw">EstStep</span>())           <span class="co"># 3.4 min</span></a>
+<a class="sourceLine" id="cb14-3" data-line-number="3">(<span class="dt">CovRes =</span> <span class="kw">CovStep</span>())           <span class="co"># 52 sec</span></a>
+<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="kw">get</span>(<span class="st">&quot;EBE&quot;</span>, <span class="dt">envir=</span>e)</a></code></pre></div>
 <p><span class="math display">\[
 G =
   \begin{bmatrix}
@@ -2227,10 +2262,11 @@ gitbook.start({
 "facebook": false,
 "twitter": true,
 "google": false,
+"linkedin": false,
 "weibo": false,
 "instapper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -2238,7 +2274,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown/edit/master/inst/examples/index.Rmd",
+"link": "https://github.com/rstudio/bookdown/edit/master/inst/examples/01-how-to-install-nonmem.Rmd",
 "text": "Edit"
 },
 "download": null,
@@ -2254,7 +2290,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

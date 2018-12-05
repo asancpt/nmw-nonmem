@@ -1,25 +1,27 @@
-#!/SYSTEM/R/3.3.3/bin/Rscript
+#!/SYSTEM/R/3.5.1/bin/Rscript
+# `simrc` should contain `module load gcc/5.3.0` and `module load R/3.5.1`
 
-# 1. setup ----
+options(bitmapType='cairo')
+if (length(intersect(dir(), "result")) == 0) { system("mkdir result") }
 
-# library folders
-is.linux <- grepl('linux', R.version$os)
-if (is.linux) .libPaths(c("./lib", '/SYSTEM/R/3.3.3/lib64/R/library'))
-mylib <- c("nmw", "lattice", "compiler", "knitr", "markdown")
-lapply(mylib, library, character.only = TRUE) 
+arguments <- commandArgs(trailingOnly = TRUE) 
+if (identical(arguments, character(0))) { arguments <- c("-inp", "data-raw/input.deck") }
+InputParameter <- arguments[2]
+
+#mylib <- c("nmw", "lattice", "compiler", "knitr", "markdown")
+
+library(markdown)
+library(knitr)
+library(compiler)
+library(lattice)
+
+if (Sys.info()['sysname'] == 'Linux') { .libPaths("./lib") } # for user-installed libs
+library(nmw)
 
 # current status
-print(lapply(.libPaths(), dir))
+print(sapply(.libPaths(), dir))
 print(capabilities())
 print(sessionInfo())
-
-# create result folder
-if (length(intersect(dir(), 'result')) == 0) system('mkdir result')
-
-# arguments
-Args <- commandArgs(trailingOnly = TRUE) 
-if (identical(Args, character(0))) Args <- c("-inp", "data-raw/input.deck")
-if (Args[1] == "-inp") InputParameter <- Args[2] # InputPara.inp
 
 # 2. main ----
 
@@ -36,10 +38,12 @@ write.csv(inputFirst, "result/inputFirst.csv", row.names = TRUE)
 
 # 3. report ----
 
-system("cp cover.jpg result")
-knit(input = "README.Rmd", output = "README.md")
-markdownToHTML('README.md', "result/README.html", 
-                         options = c("toc", "mathjax"))
+knitr::knit2html("README.Rmd", 
+                 "result/README.html", 
+                 options = c("toc", "mathjax"), force_v1 = TRUE)
+
+system("cp cover.jpg xyplot.jpg result")
+
 print("Complete.")
 
 # old ----
