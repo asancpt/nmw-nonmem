@@ -1,3 +1,0 @@
-exportPattern("^[[:alpha:]]+")
-importFrom("stats", "cov2cor", "optim")
-importFrom("numDeriv", "grad", "hessian")
