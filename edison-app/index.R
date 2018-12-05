@@ -8,14 +8,11 @@ arguments <- commandArgs(trailingOnly = TRUE)
 if (identical(arguments, character(0))) { arguments <- c("-inp", "data-raw/input.deck") }
 InputParameter <- arguments[2]
 
-#mylib <- c("nmw", "lattice", "compiler", "knitr", "markdown")
-
-library(markdown)
 library(knitr)
 library(compiler)
 library(lattice)
 
-if (Sys.info()['sysname'] == 'Linux') { .libPaths("./lib") } # for user-installed libs
+if (Sys.info()['sysname'] == 'Linux') { .libPaths("./Rlib") } # for user-installed libs
 library(nmw)
 
 # current status
