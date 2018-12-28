@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>nmw: R패키지와 Edison 사이언스 앱을 이용한 비선형 혼합효과 모델링과 시뮬레이션</title>
-  <meta name="description" content="nmw: R패키지와 Edison 사이언스 앱을 이용한 비선형 혼합효과 모델링과 시뮬레이션">
+  <title>3 이론 및 계산방법 | nmw: R패키지와 Edison 사이언스 앱을 이용한 비선형 혼합효과 모델링과 시뮬레이션</title>
+  <meta name="description" content="3 이론 및 계산방법 | nmw: R패키지와 Edison 사이언스 앱을 이용한 비선형 혼합효과 모델링과 시뮬레이션">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="nmw: R패키지와 Edison 사이언스 앱을 이용한 비선형 혼합효과 모델링과 시뮬레이션" />
+  <meta property="og:title" content="3 이론 및 계산방법 | nmw: R패키지와 Edison 사이언스 앱을 이용한 비선형 혼합효과 모델링과 시뮬레이션" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://book-nmw.netlify.com/" />
   <meta property="og:image" content="https://book-nmw.netlify.com/assets/cover.jpg" />
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="asancpt/book-nmw" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="nmw: R패키지와 Edison 사이언스 앱을 이용한 비선형 혼합효과 모델링과 시뮬레이션" />
+  <meta name="twitter:title" content="3 이론 및 계산방법 | nmw: R패키지와 Edison 사이언스 앱을 이용한 비선형 혼합효과 모델링과 시뮬레이션" />
   
   
   <meta name="twitter:image" content="https://book-nmw.netlify.com/assets/cover.jpg" />
@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="section-1.html">
+<link rel="prev" href="section-2.html">
+<link rel="next" href="section-6.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -161,25 +161,77 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">nmw: R패키지와 Edison 사이언스 앱을 이용한 비선형 혼합효과 모델링과 시뮬레이션</h1>
-<p class="author"><em>Sungpil Han</em></p>
-<p class="date"><em>2018-12-28</em></p>
+<div id="section-3" class="section level1">
+<h1><span class="header-section-number">3</span> 이론 및 계산방법</h1>
+<div id="section-4" class="section level2">
+<h2><span class="header-section-number">3.1</span> 설치</h2>
+<p>먼저 R 패키지의 설치 및 로딩 과정은 다음의 명령어를 R 콘솔에 입력함으로서 가능하다.</p>
+<pre><code>install.packages(&#39;nmw&#39;)
+library(nmw)</code></pre>
+<p>NONMEM Workshop 2017에서 사용된 nmw 패키지입니다. <span class="citation">(Kim, Yim, and Bae <a href="#ref-Kim_2015">2015</a>; Bae and Yim <a href="#ref-Bae_2016">2016</a>; Bae <a href="#ref-R-nmw">2017</a>)</span></p>
+<p>먼저 설치를 해야 합니다.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install.packages(c(&#39;nmw&#39;, &#39;compiler&#39;)) # CRAN</span>
+<span class="kw">library</span>(nmw)</code></pre>
+<p><code>THEO-FO.OUT</code>와 비교할 때 값이 같습니다.</p>
+<p>Scaling factor는 소스 코드를 보고 알아낸 것입니다.</p>
 </div>
-<div id="section" class="section level1 unnumbered">
-<h1>저자 소개</h1>
-<p>한성필1, 조용순1, 김형섭1, 배균섭1</p>
-<p>1 서울아산병원 임상약리학과, 울산대학교병원, 서울특별시 송파구 올림픽로43길 88</p>
-<p>E-mail: 한성필 <a href="mailto:shan@acp.kr" class="email">shan@acp.kr</a>, 배균섭 <a href="mailto:ksbae@acp.kr" class="email">ksbae@acp.kr</a></p>
+<div id="section-5" class="section level2">
+<h2><span class="header-section-number">3.2</span> 자료</h2>
+<!--```{r, code = readLines('lib/nmw/inst/doc/nmw-vignette.R'), cache = TRUE}
+```-->
+<pre class="sourceCode r"><code class="sourceCode r">DataAll =<span class="st"> </span>Theoph
+<span class="kw">colnames</span>(DataAll) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ID&quot;</span>, <span class="st">&quot;BWT&quot;</span>, <span class="st">&quot;DOSE&quot;</span>, <span class="st">&quot;TIME&quot;</span>, <span class="st">&quot;DV&quot;</span>)
+DataAll[,<span class="st">&quot;ID&quot;</span>] =<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">as.character</span>(DataAll[,<span class="st">&quot;ID&quot;</span>]))</code></pre>
+<p>그림을 그려보면 다음과 같습니다. (Figure <a href="section-3.html#fig:xyplot">3.1</a>)</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(lattice)
+<span class="kw">xyplot</span>(DV <span class="op">~</span><span class="st"> </span>TIME <span class="op">|</span><span class="st"> </span><span class="kw">as.factor</span>(ID), <span class="dt">data=</span>DataAll, <span class="dt">type=</span><span class="st">&quot;b&quot;</span>)</code></pre>
+<div class="figure"><span id="fig:xyplot"></span>
+<img src="nmw_files/figure-html/xyplot-1.svg" alt="xyplot" width="672" />
+<p class="caption">
+Figure 3.1: xyplot
+</p>
+</div>
+<p>Figure 1. R에 내장된 Theoph 자료. 이 자료를 사용하여 분석을 시행하였다.</p>
+<p>이후 ?nmw 명령어를 통해 내장되어 있는 예제를 볼 수 있고 이를 실행해 볼 수 있다. 사용되는 자료는 R에 내장되어 있는 Theoph이며 이 자료는 12명의 환자에서 테오필린 320 mg을 경구 투여한 후 24시간 동안 혈장에서 측정한 농도를 포함하고 있다. (Figure 1)</p>
+<pre><code>nTheta = 3
+nEta = 3
+nEps = 2
 
+THETAinit = c(2, 50, 0.1) 
+OMinit = matrix(c(0.2, 0.1, 0.1, 0.1, 0.2, 0.1, 0.1, 0.1, 0.2), nrow=nEta, ncol=nEta)
+SGinit = diag(c(0.1, 0.1))
+
+LB = rep(0, nTheta) # Lower bound
+UB = rep(1000000, nTheta) # Upper bound</code></pre>
+<p>위 코드는 같이 θ (nTheta), η (nEta), ϵ (nEps)개수를 먼저 지정하고 초기값 (THETAinit, OMinit, SGinit)을 설정하는 과정이며 LB, UB는 θ값 추정의 상한값과 하한값을 정해주는 것으로 적합 (fit)을 성공적으로 수행하기 위해 적절한 범위를 지정해야 한다. 초기값, 하한값, 상한값은 InitStep() 함수의 인자로 입력되어 initialization step에 사용된다. (Figure 2) 이때 PRED 함수 (Figure 3)도 InitStep()의 입력 인자로 사용되는데, 이는 약동학 모델을 미분방정식 형태로 구현한 함수이다.InitStep()의 추정방식으로 세가지가 지원되며 ZERO (First Order Approximation Method), COND (First Order Conditional Estimation with Interaction Method), LAPL(Laplacian Approximation with Interacton Method) 에 따라 PRED 함수의 추정 방법이 달라지게 된다. [1, 2] 이후 EstStep(), CovStep(), PostHocEta(), TabStep() 함수를 실행하며 계산을 수행해 나가고 각 함수에 대해 Table 1에서 설명하였다.</p>
+<pre><code>######### First Order Approximation Method
+InitStep(DataAll, THETAinit=THETAinit, OMinit=OMinit, SGinit=SGinit, LB=LB, UB=UB,
+         Pred=PRED, METHOD=&quot;ZERO&quot;)
+(EstRes = EstStep())           # 4 sec
+(CovRes = CovStep())           # 2 sec
+PostHocEta() # Using e$FinalPara from EstStep()
+TabStep()</code></pre>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-Kim_2015">
+<p>Kim, Min-Gul, Dong-Seok Yim, and Kyun-Seop Bae. 2015. “R-Based Reproduction of the Estimation Process Hidden Behind NONMEM Part 1: First-Order Approximation Method.” <em>Translational and Clinical Pharmacology</em> 23 (1): 1. <a href="https://doi.org/10.12793/tcp.2015.23.1.1">https://doi.org/10.12793/tcp.2015.23.1.1</a>.</p>
+</div>
+<div id="ref-Bae_2016">
+<p>Bae, Kyun-Seop, and Dong-Seok Yim. 2016. “R-Based Reproduction of the Estimation Process Hidden Behind NONMEM Part 2: First-Order Conditional Estimation.” <em>Translational and Clinical Pharmacology</em> 24 (4): 161. <a href="https://doi.org/10.12793/tcp.2016.24.4.161">https://doi.org/10.12793/tcp.2016.24.4.161</a>.</p>
+</div>
+<div id="ref-R-nmw">
+<p>Bae, Kyun-Seop. 2017. <em>Nmw: Understanding Nonlinear Mixed Effects Modeling for Population Pharmacokinetics</em>. <a href="https://cran.r-project.org/package=nmw">https://cran.r-project.org/package=nmw</a>.</p>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="section-1.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="section-2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="section-6.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -209,7 +261,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown/edit/master/inst/examples/index.Rmd",
+"link": "https://github.com/rstudio/bookdown/edit/master/inst/examples/10-manuscript.Rmd",
 "text": "Edit"
 },
 "history": {

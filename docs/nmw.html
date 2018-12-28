@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>EDISON 2018: NONMEM estimation using R</title>
-  <meta name="description" content="EDISON 2018: NONMEM estimation using R">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <title>2 nmw | EDISON 2018: NONMEM estimation using R</title>
+  <meta name="description" content="2 nmw | EDISON 2018: NONMEM estimation using R">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="EDISON 2018: NONMEM estimation using R" />
+  <meta property="og:title" content="2 nmw | EDISON 2018: NONMEM estimation using R" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://book-nmw.netlify.com/" />
   <meta property="og:image" content="https://book-nmw.netlify.com/assets/cover.jpg" />
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="asancpt/book-nmw" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="EDISON 2018: NONMEM estimation using R" />
+  <meta name="twitter:title" content="2 nmw | EDISON 2018: NONMEM estimation using R" />
   
   
   <meta name="twitter:image" content="https://book-nmw.netlify.com/assets/cover.jpg" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Sungpil Han">
 
 
-<meta name="date" content="2018-03-12">
+<meta name="date" content="2018-12-28">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,9 +33,10 @@
   
   
 <link rel="prev" href="index.html">
-
+<link rel="next" href="acknowledgement.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
@@ -52,7 +53,7 @@
 <style type="text/css">
 a.sourceLine { display: inline-block; line-height: 1.25; }
 a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -65,13 +66,11 @@ code.sourceCode { white-space: pre-wrap; }
 a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
 pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
+  { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -136,6 +135,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#datasets"><i class="fa fa-check"></i><b>1.2</b> Datasets</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="nmw.html"><a href="nmw.html"><i class="fa fa-check"></i><b>2</b> nmw</a></li>
+<li class="chapter" data-level="3" data-path="acknowledgement.html"><a href="acknowledgement.html"><i class="fa fa-check"></i><b>3</b> Acknowledgement</a></li>
+<li class="chapter" data-level="4" data-path="section-1.html"><a href="section-1.html"><i class="fa fa-check"></i><b>4</b> 참고문헌</a></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
 
@@ -161,7 +162,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>nmw: R패키지와 Edison사이언스 앱을 이용한 비선형 혼합효과 모델링과 시뮬레이션
 한성필1, 조용순1, 김형섭1, 배균섭1
 1 서울아산병원 임상약리학과, 울산대학교병원, 서울특별시 송파구 올림픽로43길 88
-E-mail: 한성필 <a href="mailto:shan@acp.kr">shan@acp.kr</a>, 배균섭 <a href="mailto:ksbae@acp.kr">ksbae@acp.kr</a>
+E-mail: 한성필 <a href="mailto:shan@acp.kr" class="email">shan@acp.kr</a>, 배균섭 <a href="mailto:ksbae@acp.kr" class="email">ksbae@acp.kr</a>
 초록
 본 연구의 목적은 비선형 혼합효과 모델링 과정을 이해하고자 개발된R패키지의 사용법을 소개하고 이를 활용한 Edison 사이언스앱의 활용법을 제시하는 것이다. Nmw R Package의 기본적인 원리를 설명하고, R 패키지의 함수 사용법을 보이며, 에디슨 앱에서 구현된 활용 예시를 논하고자 한다. 이를 바탕으로 비선형 혼합효과 모델링의 원리를 익힐 수 있고, 더 나아가 약물의 용법/용량, 모델 파라미터의 변화에 따른 혈중농도 등의 약동학 변화에 대한 다양한 시뮬레이션으로 응용될 수 있다.</p>
 <p>서론
@@ -206,7 +207,7 @@ function gradient
 <p><span class="math inline">\(Optim\)</span>convergence
 [1] 0</p>
 <p><span class="math inline">\(Optim\)</span>message
-[1] “CONVERGENCE: REL_REDUCTION_OF_F &lt;= FACTR*EPSMCH&quot;</p>
+[1] "CONVERGENCE: REL_REDUCTION_OF_F &lt;= FACTR*EPSMCH"</p>
 <p>$<code>Final Estimates</code>
 [1] 3.16946754 38.25213460 0.10501808 1.19823325 0.13747849 0.03134899 0.37015671 0.04340042 0.25068582
 [10] 0.01207782 0.05427434</p>
@@ -224,33 +225,15 @@ TabStep() Table Step 각 농도 포인트 별로 예측값과 관측값 및 잔�
 <p>Nmw 패키지가 사용되어 개발된 에디슨 앱을 사용할 수 있으며 다양한 값과 초기값을 바꾸면서 모델링이 어떻게 변화하는지를 관찰할 수 있다. (Figure 4)
 결론
 본 연구에서는 NONMEM의 동작원리를 단계별로 실행하는 nmw R 패키지의 기본적인 원리와 함수 사용법이 소개되었다. 또한 함께 개발된 에디슨 앱을 통하여 더 많은 학생들이 이러한 비선형 혼합효과 모델에 대해서 이해할 수 있을 것으로 기대된다. 이를 바탕으로 구현된 모델링 원리는 약물의 용법/용량, 모델 파라미터의 변화에 따른 혈중농도 등의 약동학 변화에 대한 다양한 시뮬레이션 등으로 응용될 수 있을 것이다.</p>
-<p>Figure 4 에디슨 앱의 입력화면
-감사의 글
-본 논문은 2017년도 정부(미래창조과학부)의 재원으로 한국연구재단 첨단 사이언스·교육 허브 개발 사업의 지원을 받아 수행된 연구임(NRF-2011-0020576)
-참고문헌
-[1] Kim, Min-Gul, Dong-Seok Yim, and Kyun-Seop Bae. 2015. “R-Based Reproduction of the Estimation Process Hidden Behind NONMEM Part 1: First-Order Approximation Method.” Translational and Clinical Pharmacology 23 (1). Korean Society for Clinical Pharmacology; Therapeutics (KAMJE): 1. <a href="doi:10.12793/tcp.2015.23.1.1" class="uri">doi:10.12793/tcp.2015.23.1.1</a>.
-[2] Bae, Kyun-Seop, and Dong-Seok Yim. 2016. “R-Based Reproduction of the Estimation Process Hidden Behind NONMEM Part 2: First-Order Conditional Estimation.” Translational and Clinical Pharmacology 24 (4). Korean Society for Clinical Pharmacology; Therapeutics (KAMJE): 161. <a href="doi:10.12793/tcp.2016.24.4.161" class="uri">doi:10.12793/tcp.2016.24.4.161</a>.
-[3] Bae, Kyun-Seop. 2017. Nmw: Understanding Nonlinear Mixed Effects Modeling for Population Pharmacokinetics. <a href="https://cran.r-project.org/package=nmw" class="uri">https://cran.r-project.org/package=nmw</a>.</p>
-
-<div id="refs" class="references">
-<div>
-<p>Bae, Kyun-Seop. 2017. <em>Nmw: Understanding Nonlinear Mixed Effects Modeling for Population Pharmacokinetics</em>. <a href="https://cran.r-project.org/package=nmw" class="uri">https://cran.r-project.org/package=nmw</a>.</p>
-</div>
-<div>
-<p>Bae, Kyun-Seop, and Dong-Seok Yim. 2016. “R-Based Reproduction of the Estimation Process Hidden Behind NONMEM Part 2: First-Order Conditional Estimation.” <em>Translational and Clinical Pharmacology</em> 24 (4). Korean Society for Clinical Pharmacology; Therapeutics (KAMJE):161. <a href="https://doi.org/10.12793/tcp.2016.24.4.161" class="uri">https://doi.org/10.12793/tcp.2016.24.4.161</a>.</p>
-</div>
-<div>
-<p>Kim, Min-Gul, Dong-Seok Yim, and Kyun-Seop Bae. 2015. “R-Based Reproduction of the Estimation Process Hidden Behind NONMEM Part 1: First-Order Approximation Method.” <em>Translational and Clinical Pharmacology</em> 23 (1). Korean Society for Clinical Pharmacology; Therapeutics (KAMJE):1. <a href="https://doi.org/10.12793/tcp.2015.23.1.1" class="uri">https://doi.org/10.12793/tcp.2015.23.1.1</a>.</p>
-</div>
-</div>
+<p>Figure 4 에디슨 앱의 입력화면</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="acknowledgement.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -270,7 +253,7 @@ gitbook.start({
 "google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
 "all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
@@ -282,6 +265,10 @@ gitbook.start({
 "edit": {
 "link": "https://github.com/rstudio/bookdown/edit/master/inst/examples/10-manuscript.Rmd",
 "text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
 },
 "download": null,
 "toc": {
@@ -297,7 +284,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');
     script.src = src;

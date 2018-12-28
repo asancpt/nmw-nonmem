@@ -1,5 +1,5 @@
 ---
-title: "EDISON 2018: NONMEM estimation using R"
+title: "nmw: R패키지와 Edison 사이언스 앱을 이용한 비선형 혼합효과 모델링과 시뮬레이션"
 author: "Sungpil Han"
 date: "`r Sys.Date()`"
 knit: "bookdown::render_book"
@@ -66,40 +66,11 @@ opts_chunk$set(message = FALSE, warning = FALSE, error = TRUE)
 ```
 
 
+# 저자 소개 {-}
 
-# 계량약리학 초급
+한성필1, 조용순1, 김형섭1, 배균섭1
 
-## nmw R package
+1 서울아산병원 임상약리학과, 울산대학교병원, 서울특별시 송파구 올림픽로43길 88
 
-NONMEM Workshop 2017에서 사용된 nmw 패키지입니다. [@Kim_2015;@Bae_2016;@R-nmw]
+E-mail: 한성필 shan@acp.kr, 배균섭 ksbae@acp.kr
 
-먼저 설치를 해야 합니다. 
-
-```{r}
-#install.packages(c('nmw', 'compiler')) # CRAN
-library(nmw)
-# library(compiler)
-# enableJIT(3)
-```
-
-`THEO-FO.OUT`와 비교할 때 값이 같습니다.
-
-Scaling factor는 소스 코드를 보고 알아낸 것입니다.
-
-## Datasets
-
-<!--```{r, code = readLines('lib/nmw/inst/doc/nmw-vignette.R'), cache = TRUE}
-```-->
-
-```{r}
-DataAll = Theoph
-colnames(DataAll) = c("ID", "BWT", "DOSE", "TIME", "DV")
-DataAll[,"ID"] = as.numeric(as.character(DataAll[,"ID"]))
-```
-
-그림을 그려보면 다음과 같습니다. (Figure \@ref(fig:xyplot))
-
-```{r xyplot, fig.cap = 'xyplot'}
-require(lattice)
-xyplot(DV ~ TIME | as.factor(ID), data=DataAll, type="b")
-```

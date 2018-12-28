@@ -1,14 +1,16 @@
-Understanding NONMEM workshop
-===============================
+Understanding NONMEM using R
+====================
+
+[<img src="cover.jpg" style="max-width:50%;float:right;" />](https://github.com/asancpt/edison-nmw)
 
 -   author: Sungpil Han, Kyun-Seop Bae
 -   <https://github.com/asancpt/edison-nmw>
 -   license: GPL-3
 
-![Cover](cover.jpg)
-
 ## 중요한 링크
 
-- <https://github.com/cran/nmw>
-- <https://github.com/asancpt/edison-nmw-app>
+- R package: <https://github.com/cran/nmw>
+- Edison App: <https://github.com/asancpt/edison-nmw-app>
+
+[<img src="./docs-poster/poster-edison-2018.png" style="max-width:100%" />](docs-poster/poster-edison-2018.png)
 

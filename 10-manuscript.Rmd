@@ -1,21 +1,57 @@
-# nmw
-
-nmw: R패키지와 Edison사이언스 앱을 이용한 비선형 혼합효과 모델링과 시뮬레이션
-한성필1, 조용순1, 김형섭1, 배균섭1
-1 서울아산병원 임상약리학과, 울산대학교병원, 서울특별시 송파구 올림픽로43길 88
-E-mail: 한성필 shan@acp.kr, 배균섭 ksbae@acp.kr
-초록
+# 초록
 본 연구의 목적은 비선형 혼합효과 모델링 과정을 이해하고자 개발된R패키지의 사용법을 소개하고 이를 활용한 Edison 사이언스앱의 활용법을 제시하는 것이다. Nmw R Package의 기본적인 원리를 설명하고, R 패키지의 함수 사용법을 보이며, 에디슨 앱에서 구현된 활용 예시를 논하고자 한다. 이를 바탕으로 비선형 혼합효과 모델링의 원리를 익힐 수 있고, 더 나아가 약물의 용법/용량, 모델 파라미터의 변화에 따른 혈중농도 등의 약동학 변화에 대한 다양한 시뮬레이션으로 응용될 수 있다.
  
-서론
+# 서론
+
 비선형 혼합효과 모델링(Nonlinear mixed effect modeling)을 위해 가장 흔히 쓰이는 도구는 NONMEM®이라고 하는 소프트웨어이다. 현재 모델기반 약물개발 (Model-based drug development)를 위한 계량약리학 분야에서 가장 표준적인 도구로 생각되고 있으나 그 동작하는 원리를 이해하기는 쉽지 않다. 공개소프트웨어인 R을 통해서 NONMEM의 계산과 알고리듬을 구현하는 시도가 있었고, 성공적으로 결과값을 재현할 수 있음을 보였다. [1, 2] 이 연구를 통해서 NONMEM의 동작원리를 단계별로 실행하며 학습할 수 있게 되었으며, 더 나아가 저자들은 공개 소프트웨어인 nmw R 패키지를 개발 [3], 배포하여 이러한 원리를 누구나 비용없이 접근할 수 있게 하였다. 
-이론 및 계산방법
-먼저 R 패키지의 설치 및 로딩 과정은 다음의 명령어를 R 콘솔에 입력함으로서 가능하다.
-install.packages(‘nmw’)
-library(nmw)
+
+# 이론 및 계산방법
  
+## 설치
+
+먼저 R 패키지의 설치 및 로딩 과정은 다음의 명령어를 R 콘솔에 입력함으로서 가능하다.
+
+```
+install.packages('nmw')
+library(nmw)
+```
+
+NONMEM Workshop 2017에서 사용된 nmw 패키지입니다. [@Kim_2015;@Bae_2016;@R-nmw]
+
+먼저 설치를 해야 합니다. 
+
+```{r}
+#install.packages(c('nmw', 'compiler')) # CRAN
+library(nmw)
+```
+
+`THEO-FO.OUT`와 비교할 때 값이 같습니다.
+
+Scaling factor는 소스 코드를 보고 알아낸 것입니다.
+
+## 자료
+
+<!--```{r, code = readLines('lib/nmw/inst/doc/nmw-vignette.R'), cache = TRUE}
+```-->
+
+```{r}
+DataAll = Theoph
+colnames(DataAll) = c("ID", "BWT", "DOSE", "TIME", "DV")
+DataAll[,"ID"] = as.numeric(as.character(DataAll[,"ID"]))
+```
+
+그림을 그려보면 다음과 같습니다. (Figure \@ref(fig:xyplot))
+
+```{r xyplot, fig.cap = 'xyplot'}
+require(lattice)
+xyplot(DV ~ TIME | as.factor(ID), data=DataAll, type="b")
+```
+
 Figure 1. R에 내장된 Theoph 자료. 이 자료를 사용하여 분석을 시행하였다.
+
 이후 ?nmw 명령어를 통해 내장되어 있는 예제를 볼 수 있고 이를 실행해 볼 수 있다. 사용되는 자료는 R에 내장되어 있는 Theoph이며 이 자료는 12명의 환자에서 테오필린 320 mg을 경구 투여한 후 24시간 동안 혈장에서 측정한 농도를 포함하고 있다. (Figure 1)
+
+```
 nTheta = 3
 nEta = 3
 nEps = 2
@@ -26,7 +62,11 @@ SGinit = diag(c(0.1, 0.1))
 
 LB = rep(0, nTheta) # Lower bound
 UB = rep(1000000, nTheta) # Upper bound
+```
+
 위 코드는 같이 θ (nTheta), η (nEta), ϵ (nEps)개수를 먼저 지정하고 초기값 (THETAinit, OMinit, SGinit)을 설정하는 과정이며 LB, UB는 θ값 추정의 상한값과 하한값을 정해주는 것으로 적합 (fit)을 성공적으로 수행하기 위해 적절한 범위를 지정해야 한다. 초기값, 하한값, 상한값은 InitStep() 함수의 인자로 입력되어 initialization step에 사용된다. (Figure 2) 이때 PRED 함수 (Figure 3)도 InitStep()의 입력 인자로 사용되는데, 이는 약동학 모델을 미분방정식 형태로 구현한 함수이다.InitStep()의 추정방식으로 세가지가 지원되며 ZERO (First Order Approximation Method), COND (First Order Conditional Estimation with Interaction Method), LAPL(Laplacian Approximation with Interacton Method) 에 따라 PRED 함수의 추정 방법이 달라지게 된다. [1, 2] 이후 EstStep(), CovStep(), PostHocEta(), TabStep() 함수를 실행하며 계산을 수행해 나가고 각 함수에 대해 Table 1에서 설명하였다.
+
+```
 ######### First Order Approximation Method
 InitStep(DataAll, THETAinit=THETAinit, OMinit=OMinit, SGinit=SGinit, LB=LB, UB=UB,
          Pred=PRED, METHOD="ZERO")
@@ -34,9 +74,13 @@ InitStep(DataAll, THETAinit=THETAinit, OMinit=OMinit, SGinit=SGinit, LB=LB, UB=U
 (CovRes = CovStep())           # 2 sec
 PostHocEta() # Using e$FinalPara from EstStep()
 TabStep()
-결과 및 논의
+```
+
+# 결과 및 논의
+
 InitStep(), EstStep() 후 계산된 값은 다음과 같다. OFV (Objective Function Value), 최종 모수 (final parameter)를 계산한 것이 출력된다.
 
+```
 $`Initial OFV`
 [1] 141.3076
 
@@ -64,15 +108,16 @@ $Optim$message
 $`Final Estimates`
  [1]  3.16946754 38.25213460  0.10501808  1.19823325  0.13747849  0.03134899  0.37015671  0.04340042  0.25068582
 [10]  0.01207782  0.05427434
+```
 
 EstStep() 후 CovStep() 함수를 실행하면, 표준 오차, 분산 행렬, correlation 행렬, 역분산 행렬, 고유값, R, S 행렬 등을 출력하게 된다. PostHocEta()는각 대상자 별로 ETA에 대한 EBE 값을 보여주며, TabStep()은 각 농도 포인트 별로 예측값과 관측값 및 잔차 등을 표 형식으로 보여 주게 된다. 
  
 Figure 2 nmwR 패키지를 활용한 비선형 혼합효과 모델 사용 흐름도
-  
-
  
 Figure 3 PRED 함수를 정의하여numDeriv 패키지의 deriv() 함수를 사용하여 정의하고 InitStep() 함수의 인자로 입력되게 된다. 
+
 Table 1. nmw R 패키지에서 정의된 함수 설명.
+
 함수명	설명	기능
 InitStep()	Initialization Step	초기값 지정 및 추정 방법 등을 설정 한다.
 EstStep()	Estimation Step	초기화 후 objective function value, 최종 모수 등을 계산한다.
@@ -82,14 +127,23 @@ TabStep()	Table Step	각 농도 포인트 별로 예측값과 관측값 및 잔�
 
  
 Nmw 패키지가 사용되어 개발된 에디슨 앱을 사용할 수 있으며 다양한 값과 초기값을 바꾸면서 모델링이 어떻게 변화하는지를 관찰할 수 있다. (Figure 4)
-결론
+
+# 결론
+
 본 연구에서는  NONMEM의 동작원리를 단계별로 실행하는 nmw R 패키지의 기본적인 원리와 함수 사용법이 소개되었다. 또한 함께 개발된 에디슨 앱을 통하여 더 많은 학생들이 이러한 비선형 혼합효과 모델에 대해서 이해할 수 있을 것으로 기대된다. 이를 바탕으로 구현된 모델링 원리는 약물의 용법/용량, 모델 파라미터의 변화에 따른 혈중농도 등의 약동학 변화에 대한 다양한 시뮬레이션 등으로 응용될 수 있을 것이다. 
  
 Figure 4 에디슨 앱의 입력화면
-감사의 글
-본 논문은 2017년도 정부(미래창조과학부)의 재원으로 한국연구재단 첨단 사이언스·교육 허브 개발 사업의 지원을 받아 수행된 연구임(NRF-2011-0020576)
-참고문헌
+
+
+# Acknowledgement
+
+감사의 글 본 논문은 2017년도 정부(미래창조과학부)의 재원으로 한국연구재단 첨단 사이언스·교육 허브 개발 사업의 지원을 받아 수행된 연구임(NRF-2011-0020576)
+
+# 참고문헌
+
 [1] Kim, Min-Gul, Dong-Seok Yim, and Kyun-Seop Bae. 2015. “R-Based Reproduction of the Estimation Process Hidden Behind NONMEM Part 1: First-Order Approximation Method.” Translational and Clinical Pharmacology 23 (1). Korean Society for Clinical Pharmacology; Therapeutics (KAMJE): 1. doi:10.12793/tcp.2015.23.1.1.
+
 [2] Bae, Kyun-Seop, and Dong-Seok Yim. 2016. “R-Based Reproduction of the Estimation Process Hidden Behind NONMEM Part 2: First-Order Conditional Estimation.” Translational and Clinical Pharmacology 24 (4). Korean Society for Clinical Pharmacology; Therapeutics (KAMJE): 161. doi:10.12793/tcp.2016.24.4.161.
+
 [3] Bae, Kyun-Seop. 2017. Nmw: Understanding Nonlinear Mixed Effects Modeling for Population Pharmacokinetics. https://cran.r-project.org/package=nmw.
 

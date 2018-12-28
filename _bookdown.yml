@@ -5,5 +5,5 @@ before_chapter_script: ["R/before.R"]
 edit: https://github.com/asancpt/book-nmw/edit/master/%s
 rmd_subdir: no
 output_dir: "docs"
-# rmd_files: [index.Rmd, 01-how-to-install-nonmem.Rmd]
-
+#rmd_files: [index.Rmd, 01-how-to-install-nonmem.Rmd]
+rmd_files: [index.Rmd, 10-manuscript.Rmd]

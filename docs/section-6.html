@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>nmw: R패키지와 Edison 사이언스 앱을 이용한 비선형 혼합효과 모델링과 시뮬레이션</title>
-  <meta name="description" content="nmw: R패키지와 Edison 사이언스 앱을 이용한 비선형 혼합효과 모델링과 시뮬레이션">
+  <title>4 결과 및 논의 | nmw: R패키지와 Edison 사이언스 앱을 이용한 비선형 혼합효과 모델링과 시뮬레이션</title>
+  <meta name="description" content="4 결과 및 논의 | nmw: R패키지와 Edison 사이언스 앱을 이용한 비선형 혼합효과 모델링과 시뮬레이션">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="nmw: R패키지와 Edison 사이언스 앱을 이용한 비선형 혼합효과 모델링과 시뮬레이션" />
+  <meta property="og:title" content="4 결과 및 논의 | nmw: R패키지와 Edison 사이언스 앱을 이용한 비선형 혼합효과 모델링과 시뮬레이션" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://book-nmw.netlify.com/" />
   <meta property="og:image" content="https://book-nmw.netlify.com/assets/cover.jpg" />
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="asancpt/book-nmw" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="nmw: R패키지와 Edison 사이언스 앱을 이용한 비선형 혼합효과 모델링과 시뮬레이션" />
+  <meta name="twitter:title" content="4 결과 및 논의 | nmw: R패키지와 Edison 사이언스 앱을 이용한 비선형 혼합효과 모델링과 시뮬레이션" />
   
   
   <meta name="twitter:image" content="https://book-nmw.netlify.com/assets/cover.jpg" />
@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="section-1.html">
+<link rel="prev" href="section-3.html">
+<link rel="next" href="section-7.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -161,25 +161,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">nmw: R패키지와 Edison 사이언스 앱을 이용한 비선형 혼합효과 모델링과 시뮬레이션</h1>
-<p class="author"><em>Sungpil Han</em></p>
-<p class="date"><em>2018-12-28</em></p>
-</div>
-<div id="section" class="section level1 unnumbered">
-<h1>저자 소개</h1>
-<p>한성필1, 조용순1, 김형섭1, 배균섭1</p>
-<p>1 서울아산병원 임상약리학과, 울산대학교병원, 서울특별시 송파구 올림픽로43길 88</p>
-<p>E-mail: 한성필 <a href="mailto:shan@acp.kr" class="email">shan@acp.kr</a>, 배균섭 <a href="mailto:ksbae@acp.kr" class="email">ksbae@acp.kr</a></p>
+<div id="section-6" class="section level1">
+<h1><span class="header-section-number">4</span> 결과 및 논의</h1>
+<p>InitStep(), EstStep() 후 계산된 값은 다음과 같다. OFV (Objective Function Value), 최종 모수 (final parameter)를 계산한 것이 출력된다.</p>
+<pre><code>$`Initial OFV`
+[1] 141.3076
 
+$Time
+Time difference of 3.356192 secs
+
+$Optim
+$Optim$par
+ [1]  0.560417594 -0.167835388  0.148962362  0.995143048  0.056166719  0.151227211 -1.032468525  0.005776729  0.110936464
+[10] -0.956899772 -0.205559310
+
+$Optim$value
+[1] 57.32106
+
+$Optim$counts
+function gradient 
+      74       74 
+
+$Optim$convergence
+[1] 0
+
+$Optim$message
+[1] &quot;CONVERGENCE: REL_REDUCTION_OF_F &lt;= FACTR*EPSMCH&quot;
+
+$`Final Estimates`
+ [1]  3.16946754 38.25213460  0.10501808  1.19823325  0.13747849  0.03134899  0.37015671  0.04340042  0.25068582
+[10]  0.01207782  0.05427434</code></pre>
+<p>EstStep() 후 CovStep() 함수를 실행하면, 표준 오차, 분산 행렬, correlation 행렬, 역분산 행렬, 고유값, R, S 행렬 등을 출력하게 된다. PostHocEta()는각 대상자 별로 ETA에 대한 EBE 값을 보여주며, TabStep()은 각 농도 포인트 별로 예측값과 관측값 및 잔차 등을 표 형식으로 보여 주게 된다.</p>
+<p>Figure 2 nmwR 패키지를 활용한 비선형 혼합효과 모델 사용 흐름도</p>
+<p>Figure 3 PRED 함수를 정의하여numDeriv 패키지의 deriv() 함수를 사용하여 정의하고 InitStep() 함수의 인자로 입력되게 된다.</p>
+<p>Table 1. nmw R 패키지에서 정의된 함수 설명.</p>
+<p>함수명 설명 기능
+InitStep() Initialization Step 초기값 지정 및 추정 방법 등을 설정 한다.
+EstStep() Estimation Step 초기화 후 objective function value, 최종 모수 등을 계산한다.
+CovStep() Covariance Step EstStep() 후 얻어진 최종모수를 통해 표준 오차, 분산 행렬, correlation 행렬, 역분산 행렬, 고유값, R, S 행렬 등을 계산한다.
+PostHocEta() Empirical bayesian estimate (EBE) 각 대상자 별로 ETA에 대한 EBE 값을 보여준다.
+TabStep() Table Step 각 농도 포인트 별로 예측값과 관측값 및 잔차 등을 표 형식으로 보여준다.</p>
+<p>Nmw 패키지가 사용되어 개발된 에디슨 앱을 사용할 수 있으며 다양한 값과 초기값을 바꾸면서 모델링이 어떻게 변화하는지를 관찰할 수 있다. (Figure 4)</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="section-1.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="section-3.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="section-7.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -209,7 +239,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown/edit/master/inst/examples/index.Rmd",
+"link": "https://github.com/rstudio/bookdown/edit/master/inst/examples/10-manuscript.Rmd",
 "text": "Edit"
 },
 "history": {
