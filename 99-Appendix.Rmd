@@ -1,0 +1,11 @@
+\backmatter
+
+# (APPENDIX) 별첨 {-}
+
+# 세션정보
+
+```{r}
+sessionInfo()
+```
+
+# 참고문헌 {-}

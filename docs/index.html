@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html >
-
+<html lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>nmw: R패키지와 Edison 사이언스 앱을 이용한 비선형 혼합효과 모델링과 시뮬레이션</title>
-  <meta name="description" content="nmw: R패키지와 Edison 사이언스 앱을 이용한 비선형 혼합효과 모델링과 시뮬레이션">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="nmw: R패키지와 Edison 사이언스 앱을 이용한 비선형 혼합효과 모델링과 시뮬레이션" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="nmw: R패키지와 Edison 사이언스 앱을 이용한 비선형 혼합효과 모델링과 시뮬레이션" />
   <meta property="og:type" content="book" />
@@ -22,18 +21,19 @@
   
   <meta name="twitter:image" content="https://book-nmw.netlify.com/assets/cover.jpg" />
 
-<meta name="author" content="Sungpil Han">
+<meta name="author" content="한성필, 조용순, 김형섭, 배균섭" />
 
 
-<meta name="date" content="2019-01-29">
+<meta name="date" content="2020-05-20" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 
-<link rel="next" href="intro.html">
+<link rel="next" href="intro.html"/>
+<script src="libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -41,6 +41,7 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -48,29 +49,32 @@
 
 
 
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -79,9 +83,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -132,23 +136,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>책머리에</a></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> 서론</a></li>
-<li class="chapter" data-level="2" data-path="method.html"><a href="method.html"><i class="fa fa-check"></i><b>2</b> 이론 및 계산방법</a><ul>
+<li class="chapter" data-level="2" data-path="method.html"><a href="method.html"><i class="fa fa-check"></i><b>2</b> 이론 및 계산방법</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="method.html"><a href="method.html#maximum-likelihood-estimation"><i class="fa fa-check"></i><b>2.1</b> Maximum Likelihood Estimation</a></li>
 <li class="chapter" data-level="2.2" data-path="method.html"><a href="method.html#first-order-conditional-estimation-foce-method"><i class="fa fa-check"></i><b>2.2</b> First-order conditional estimation (FOCE) method</a></li>
-<li class="chapter" data-level="2.3" data-path="method.html"><a href="method.html#section-1"><i class="fa fa-check"></i><b>2.3</b> 설치</a></li>
-<li class="chapter" data-level="2.4" data-path="method.html"><a href="method.html#section-2"><i class="fa fa-check"></i><b>2.4</b> 자료</a></li>
+<li class="chapter" data-level="2.3" data-path="method.html"><a href="method.html#설치"><i class="fa fa-check"></i><b>2.3</b> 설치</a></li>
+<li class="chapter" data-level="2.4" data-path="method.html"><a href="method.html#자료"><i class="fa fa-check"></i><b>2.4</b> 자료</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="result.html"><a href="result.html"><i class="fa fa-check"></i><b>3</b> 결과 및 논의</a></li>
+<li class="chapter" data-level="3" data-path="result.html"><a href="result.html"><i class="fa fa-check"></i><b>3</b> 결과</a></li>
 <li class="chapter" data-level="4" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>4</b> 결론</a></li>
 <li class="chapter" data-level="5" data-path="acknowledgement.html"><a href="acknowledgement.html"><i class="fa fa-check"></i><b>5</b> 감사의 글</a></li>
-<li class="appendix"><span><b>Appendix</b></span></li>
-<li class="chapter" data-level="A" data-path="examples-for-initial-values.html"><a href="examples-for-initial-values.html"><i class="fa fa-check"></i><b>A</b> Examples for Initial Values</a><ul>
-<li class="chapter" data-level="A.1" data-path="examples-for-initial-values.html"><a href="examples-for-initial-values.html#emax"><i class="fa fa-check"></i><b>A.1</b> Emax</a></li>
-<li class="chapter" data-level="A.2" data-path="examples-for-initial-values.html"><a href="examples-for-initial-values.html#theoph-zero-conc"><i class="fa fa-check"></i><b>A.2</b> Theoph (ZERO, CONC)</a></li>
-<li class="chapter" data-level="A.3" data-path="examples-for-initial-values.html"><a href="examples-for-initial-values.html#theoph-lapl"><i class="fa fa-check"></i><b>A.3</b> Theoph (LAPL)</a></li>
-</ul></li>
-<li class="chapter" data-level="B" data-path="nonmem-codes.html"><a href="nonmem-codes.html"><i class="fa fa-check"></i><b>B</b> NONMEM codes</a></li>
-<li class="chapter" data-level="C" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>C</b> References</a></li>
+<li class="appendix"><span><b>별첨</b></span></li>
+<li class="chapter" data-level="A" data-path="세션정보.html"><a href="세션정보.html"><i class="fa fa-check"></i><b>A</b> 세션정보</a></li>
+<li class="chapter" data-level="" data-path="참고문헌.html"><a href="참고문헌.html"><i class="fa fa-check"></i>참고문헌</a></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
 
@@ -171,15 +171,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="header">
 <h1 class="title">nmw: R패키지와 Edison 사이언스 앱을 이용한 비선형 혼합효과 모델링과 시뮬레이션</h1>
-<p class="author"><em>Sungpil Han</em></p>
-<p class="date"><em>2019-01-29</em></p>
+<p class="author"><em>한성필, 조용순, 김형섭, 배균섭</em></p>
+<p class="date"><em>2020-05-20</em></p>
 </div>
-<div id="section" class="section level1 unnumbered">
+<div id="책머리에" class="section level1 unnumbered" number="">
 <h1>책머리에</h1>
-<p>본 연구의 목적은 비선형 혼합효과 모델링 과정을 이해하고자 개발된 R패키지의 사용법을 소개하고 이를 활용한 Edison 사이언스앱의 활용법을 제시하는 것입니다. Nmw R Package의 기본적인 원리를 설명하고, R 패키지의 함수 사용법을 보이며, 에디슨 앱에서 구현된 활용 예시를 논하고자 합니다. 이를 바탕으로 비선형 혼합효과 모델링의 원리를 익힐 수 있고, 더 나아가 약물의 용법/용량, 모델 파라미터의 변화에 따른 혈중농도 등의 약동학 변화에 대한 다양한 시뮬레이션으로 응용될 수 있습니다.</p>
-<p>한성필1, 조용순1, 김형섭1, 배균섭1<br />
-1 서울아산병원 임상약리학과, 울산대학교병원, 서울특별시 송파구 올림픽로43길 88<br />
-E-mail: 한성필 <a href="mailto:shan@acp.kr" class="email">shan@acp.kr</a>, 배균섭 <a href="mailto:ksbae@acp.kr" class="email">ksbae@acp.kr</a></p>
+<p>본 연구의 목적은 비선형 혼합효과 모델링 과정을 이해하고자 개발된 R패키지의 사용법을 소개하고 이를 활용한 Edison 사이언스앱의 활용법을 제시하는 것입니다. <code>nmw</code> R Package의 기본적인 원리를 설명하고, R 패키지의 함수 사용법을 보이며, 에디슨 앱에서 구현된 활용 예시를 논하고자 합니다. 이를 바탕으로 비선형 혼합효과 모델링의 원리를 익힐 수 있고, 더 나아가 약물의 용법/용량, 모델 파라미터의 변화에 따른 혈중농도 등의 약동학 변화에 대한 다양한 시뮬레이션으로 응용될 수 있습니다.</p>
+<p>한성필<sup>1</sup>, 조용순<sup>2</sup>, 김형섭<sup>2</sup>, 배균섭<sup>2</sup><br />
+<sup>1</sup> 가톨릭대학교 약리학교실
+<sup>2</sup> 서울아산병원 임상약리학과, 울산대학교병원, 서울특별시 송파구 올림픽로43길 88<br />
+E-mail: 한성필 <a href="mailto:shan@catholic.ac.kr" class="email">shan@catholic.ac.kr</a>, 배균섭 <a href="mailto:ksbae@acp.kr" class="email">ksbae@acp.kr</a></p>
 
 </div>
             </section>
@@ -193,11 +194,13 @@ E-mail: 한성필 <a href="mailto:shan@acp.kr" class="email">shan@acp.kr</a>, �
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -205,12 +208,11 @@ gitbook.start({
 "github": true,
 "facebook": false,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -218,14 +220,18 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown/edit/master/inst/examples/index.Rmd",
+"link": "https://github.com/asancpt/edison-nmw/edit/master/inst/examples/index.Rmd",
 "text": "Edit"
 },
 "history": {
 "link": null,
 "text": null
 },
-"download": null,
+"view": {
+"link": null,
+"text": null
+},
+"download": ["nmw.pdf"],
 "toc": {
 "collapse": "chapter"
 }
@@ -240,8 +246,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

@@ -1,11 +1,16 @@
-pdf:
-	Rscript --quiet _render.R "bookdown::pdf_book"
+all: gitbook pdf epub
 
 gitbook:
 	Rscript --quiet _render.R "bookdown::gitbook"
 
-all:
-	Rscript --quiet _render.R
+pdf:
+	Rscript --quiet _render.R "bookdown::pdf_book"
+
+epub:
+	Rscript --quiet _render.R "bookdown::epub_book"
 
 readme:
 	Rscript -e "rmarkdown::render('README.Rmd', output_format = 'github_document')"
+
+clean:
+	rm -rf docs
