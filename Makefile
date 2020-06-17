@@ -13,4 +13,6 @@ readme:
 	Rscript -e "rmarkdown::render('README.Rmd', output_format = 'github_document')"
 
 clean:
-	rm -rf docs
+	rm -rf docs _bookdown_files
+
+
