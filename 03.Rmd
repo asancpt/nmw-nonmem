@@ -1,0 +1,51 @@
+## 자료
+
+<!--```{r, code = readLines('lib/nmw/inst/doc/nmw-vignette.R'), cache = TRUE}
+```-->
+
+```{r}
+DataAll <- Theoph
+colnames(DataAll) <- c("ID", "BWT", "DOSE", "TIME", "DV")
+DataAll[,"ID"] <- as.numeric(as.character(DataAll[,"ID"]))
+```
+
+이후 `?nmw` 명령어를 통해 내장되어 있는 예제를 볼 수 있고 이를 실행해 볼 수 있습니다. 사용되는 자료는 R에 내장되어 있는 Theoph이며 이 자료는 12명의 환자에서 테오필린 320 mg을 경구 투여한 후 24시간 동안 혈장에서 측정한 농도를 포함하고 있습니다. 그림을 그려보면 다음과 같습니다. (Figure \@ref(fig:xyplot))
+
+```{r xyplot, fig.cap = '(ref:xyplot)'}
+lattice::xyplot(DV ~ TIME | as.factor(ID), data=DataAll, type="b")
+```
+
+(ref:xyplot) R에 내장된 Theoph 자료. 이 자료를 사용하여 분석을 시행하였습니다.
+
+
+```r
+nTheta = 3
+nEta = 3
+nEps = 2
+
+THETAinit = c(2, 50, 0.1) 
+OMinit = matrix(c(0.2, 0.1, 0.1, 0.1, 0.2, 0.1, 0.1, 0.1, 0.2), 
+                nrow=nEta, ncol=nEta)
+SGinit = diag(c(0.1, 0.1))
+
+LB = rep(0, nTheta) # Lower bound
+UB = rep(1000000, nTheta) # Upper bound
+```
+
+위 코드는 같이 θ (nTheta), η (nEta), ϵ (nEps)개수를 먼저 지정하고 초기값 (THETAinit, OMinit, SGinit)을 설정하는 과정이며 LB, UB는 θ값 추정의 상한값과 하한값을 정해주는 것으로 적합 (fit)을 성공적으로 수행하기 위해 적절한 범위를 지정해야 한다. 
+
+
+초기값, 하한값, 상한값은 InitStep() 함수의 인자로 입력되어 initialization step에 사용됩니다. (Figure 2) 이때 PRED 함수 (Figure 3)도 InitStep()의 입력 인자로 사용되는데, 이는 약동학 모델을 미분방정식 형태로 구현한 함수입니다. {@kang2012standard}
+
+InitStep()의 추정방식으로 세가지가 지원되며 ZERO (First Order Approximation Method), COND (First Order Conditional Estimation with Interaction Method), LAPL(Laplacian Approximation with Interacton Method) 에 따라 PRED 함수의 추정 방법이 달라지게 됩니다. [1, 2] 이후 EstStep(), CovStep(), PostHocEta(), TabStep() 함수를 실행하며 계산을 수행해 나가고 각 함수에 대해 Table 1에서 설명하였습니다.
+
+```r
+######### First Order Approximation Method
+InitStep(DataAll, THETAinit=THETAinit, OMinit=OMinit, SGinit=SGinit, 
+         LB=LB, UB=UB, Pred=PRED, METHOD="ZERO")
+(EstRes = EstStep())           # 4 sec
+(CovRes = CovStep())           # 2 sec
+PostHocEta() # Using e$FinalPara from EstStep()
+TabStep()
+```
+

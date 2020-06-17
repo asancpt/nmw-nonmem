@@ -1,0 +1,174 @@
+---
+title: NONMEM workshop 2018
+author: Sungpil Han, Kyun-Seop Bae
+date: 2017-02-22
+bibliography: bibliography.bib
+output:
+  html_document:
+    toc: yes
+    keep_md: yes
+  word_document:
+    toc: yes
+  pdf_document:
+    includes:
+      in_header: preamble.tex
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r include = FALSE}
+knitr::read_chunk("c.R")
+```
+
+```{r IndependentChunk, include = FALSE}
+```
+
+```{r include = FALSE}
+## input_tidy --------------------------------------------------------------
+#NMDataset = Emax
+#Method = ZERO
+#nTheta = 2
+#nEta = 1
+#nEps = 1
+#THETAinit = 10,100
+#OMinit = 0.2
+#SGinit = 1
+
+inputFirst <- read.csv("result/inputFirst.csv", as.is = TRUE, row.names = 1)
+input <- data.frame(t(inputFirst), stringsAsFactors = FALSE)
+NMDataset <- input$Dataset
+METHOD <- input$Method 
+nTheta <- as.numeric(input$nTheta)
+nEta <- as.numeric(input$nEta)
+nEps <- as.numeric(input$nEps)
+THETAinit <- as.numeric(unlist(strsplit(input$THETAinit, split=",")))
+OMinit <- matrix(as.numeric(unlist(strsplit(input$OMinit, split=","))), nrow=nEta, ncol=nEta)
+SGinit <- matrix(as.numeric(unlist(strsplit(input$SGinit, split=","))), nrow=nEps, ncol=nEps)
+
+LB = rep(0, nTheta)
+UB = rep(1000000, nTheta)
+
+if (length(intersect(dir(), "result")) == 0) {
+    system("mkdir result")
+}
+
+system("cp cover.jpg result")
+```
+
+![Cover](cover.jpg)
+
+
+
+<https://github.com/asancpt/nmw2017edison>
+license: GPL-3
+
+## Introduction
+
+NONMEM Workshop 2017에서 사용된 nmw 패키지를 사용한 Edison 사이언스 앱입니다. [@Kim_2015;@Bae_2016;@Bae_2017]
+
+## Result
+
+A table (head) and a figure of input dataset is shown below.
+
+### Initial values
+
+```{r}
+kable(inputFirst, format = "markdown")
+```
+
+### Input Table
+
+```{r include = FALSE}
+enableJIT(3)
+##setwd("C:/NMW2017/03-Emax")
+
+if (NMDataset == "Emax"){
+    DataFile <- "03-Emax/SimData.CSV"
+    DataAll <- read.csv(DataFile)
+} else if (NMDataset == "Theoph") {
+    Theo = Theoph[,c("Subject", "Time", "conc")]
+    colnames(Theo) = c("ID" ,"TIME", "DV")
+    DataAll <- Theo
+}
+```
+
+```{r}
+kable(head(DataAll, n = 20), caption = "input data", format = "markdown")
+```
+
+### Figure
+
+```{r include = FALSE}
+pdf("result/xyplot.pdf")
+if (NMDataset == "Emax") xyplot(DV ~ log(CE) | ID, data=DataAll, type="b")
+if (NMDataset == "Theoph") xyplot(DV~TIME|ID, data=Theo, type="b", index.cond=list(order(as.numeric(levels(unique(Theo$ID))))))
+dev.off()
+
+if (Get_os() == "windows") {
+} else {
+    system('convert -density 300 result/xyplot.pdf result/xyplot.jpg')
+    system("cp result/xyplot.jpg xyplot.jpg")
+}
+```
+
+![Concentration-time curve of `r NMDataset`](xyplot.jpg)
+
+### Method Calculation
+
+- Dataset: `r NMDataset`
+- Method: `r METHOD`
+
+```{r ZERO}
+PREDFILE <- ifelse(NMDataset == "Emax", "03-Emax/PRED.R", "04-THEO/PRED.R")
+
+InitPara = InitStep(DataAll, THETAinit=THETAinit, OMinit=OMinit, SGinit=SGinit, 
+                    nTheta=nTheta, LB=LB, UB=UB, METHOD=METHOD, PredFile=PREDFILE)
+
+(EstRes = EstStep())           # 0.6200359 secs, 0.4930282 secs
+(CovRes = CovStep())
+
+PostHocEta() # FinalPara from EstStep()
+
+get("EBE", envir=e)
+```
+
+## Appendix
+
+### Examples for Initial Values
+
+#### Emax
+```
+nTheta = 2
+nEta = 1
+nEps = 1
+
+THETAinit = 10, 100
+OMinit = 0.2
+SGinit = 1
+```
+
+#### Theoph (ZERO, CONC)
+```
+nTheta = 3
+nEta = 3
+nEps = 2
+
+THETAinit = 2, 50, 0.1
+OMinit = 0.2, 0.1, 0.1, 0.1, 0.2, 0.1, 0.1, 0.1, 0.2
+SGinit = 0.1, 0, 0, 0.1
+```
+
+#### Theoph (LAPL)
+
+```
+THETAinit = 4, 50, 0.2
+```
+
+The other values are the same with those of `Theoph (ZERO, CONC)`.
+
+## Reference
+
+`r paste(readLines("bibliography.txt"), collapse = "\n")`
+
+## Bibliography
+

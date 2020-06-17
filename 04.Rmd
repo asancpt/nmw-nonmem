@@ -1,0 +1,78 @@
+# 결과 {#result}
+
+`InitStep()`, `EstStep()` 후 계산된 값은 다음과 같다. OFV (Objective Function Value), 최종 모수 (final parameter)를 계산한 것이 출력된다.
+
+```r
+$`Initial OFV`
+[1] 141.3076
+
+$Time
+Time difference of 3.356192 secs
+
+$Optim
+$Optim$par
+ [1]  0.560417594 -0.167835388  0.148962362  0.995143048  0.056166719  0.151227211 -1.032468525  0.005776729  0.110936464
+[10] -0.956899772 -0.205559310
+
+$Optim$value
+[1] 57.32106
+
+$Optim$counts
+function gradient 
+      74       74 
+
+$Optim$convergence
+[1] 0
+
+$Optim$message
+[1] "CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH"
+
+$`Final Estimates`
+ [1]  3.16946754 38.25213460  0.10501808  1.19823325  0.13747849  0.03134899  0.37015671  0.04340042  0.25068582
+[10]  0.01207782  0.05427434
+```
+
+`EstStep()` 후 `CovStep()` 함수를 실행하면, 표준 오차, 분산 행렬, correlation 행렬, 역분산 행렬, 고유값, R, S 행렬 등을 출력하게 됩니다. `PostHocEta()`는각 대상자 별로 ETA에 대한 EBE 값을 보여주며, `TabStep()`은 각 농도 포인트 별로 예측값과 관측값 및 잔차 등을 표 형식으로 보여 주게 됩니다. (Table \@ref(tab:function-table))
+
+
+```{r flow, fig.cap="(ref:flow)", echo = FALSE}
+include_graphics("assets/figure-2.png")
+```
+
+(ref:flow) nmw R 패키지를 활용한 비선형 혼합효과 모델 사용 흐름도
+
+```{r pred-deriv, fig.cap="(ref:pred-deriv)", echo = FALSE}
+include_graphics("assets/figure-3.png")
+```
+
+(ref:pred-deriv) PRED 함수를 정의하여numDeriv 패키지의 deriv() 함수를 사용하여 정의하고 InitStep() 함수의 인자로 입력함
+
+```{r function-table, echo = FALSE}
+tibble::tribble(
+~`함수명`,~`설명`,~`기능`,
+"InitStep()","Initialization Step","초기값 지정 및 추정 방법 등을 설정 합니다.",
+"EstStep()","Estimation Step","초기화 후 objective function value, 최종 모수 등을 계산합니다.",
+"CovStep()","Covariance Step","EstStep() 후 얻어진 최종모수를 통해 표준 오차, 분산 행렬, correlation 행렬, 역분산 행렬, 고유값, R, S 행렬 등을 계산합니다.",
+"PostHocEta()","Empirical bayesian estimate (EBE)","각 대상자 별로 ETA에 대한 EBE 값을 보여줍니다.",
+"TabStep()","Table Step","각 농도 포인트 별로 예측값과 관측값 및 잔차 등을 표 형식으로 보여줍니다.") %>% 
+  #kable(booktabs=TRUE, caption = "nmw R 패키지에서 정의된 함수 설명") %>%
+  kable(longtable = TRUE, booktabs=TRUE, caption = "nmw R 패키지에서 정의된 함수 설명", escape = FALSE) %>%
+  column_spec(1:3, width = "5cm") %>% 
+  kable_styling(latex_options = c("striped"))
+```
+
+NONMEM의 Covariance step을 이해하기 위해 R로 NONMEM의 output을 재현해 보았다. 그러나, R이 NONMEM을 대체할 수 없는 이유 두 가지는 다음과 같다.
+
+1.  NMTRAN의 역할을 해줄 함수들이 없다.
+2.  속도가 적어도 수 십에서 수 백 배 느리다.
+
+나머지 FOCE나 Laplacian에 대해서는 nmw 패키지의 도움말^[https://cran.r-project.org/web/packages/nmw/nmw.pdf]을 보고 실행하면 알 수 있다. [@R-nmw]\index{1차 조건부 추정방법(FOCE) / first-order conditional estimation method(FOCE)}\index{first-order conditional estimation method(FOCE) / 1차 조건부 추정방법(FOCE)}
+
+
+<!--
+참고문헌
+
+1.  NONMEM User’s Guide I - VIII
+2.  김우철. 수리통계학. 민영사. 2012
+-->
+

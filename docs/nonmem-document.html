@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 NONMEM document | nmw: R패키지를 통해 이해하는 비선형 혼합효과 모델링</title>
+  <meta name="description" content="3 NONMEM document | nmw: R패키지를 통해 이해하는 비선형 혼합효과 모델링" />
+  <meta name="generator" content="bookdown 0.19.1 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 NONMEM document | nmw: R패키지를 통해 이해하는 비선형 혼합효과 모델링" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://book-nmw.netlify.com/" />
+  <meta property="og:image" content="https://book-nmw.netlify.com/assets/cover.jpg" />
+  
+  <meta name="github-repo" content="asancpt/book-nmw" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 NONMEM document | nmw: R패키지를 통해 이해하는 비선형 혼합효과 모델링" />
+  
+  
+  <meta name="twitter:image" content="https://book-nmw.netlify.com/assets/cover.jpg" />
+
+<meta name="author" content="한성필, 배균섭" />
+
+
+<meta name="date" content="2020-06-17" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="method.html"/>
+<link rel="next" href="result.html"/>
+<script src="libs/header-attrs-2.2/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./index.html">NONMEM estimation using R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>책머리에</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> 서론</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#maximum-likelihood-estimation"><i class="fa fa-check"></i><b>1.1</b> Maximum Likelihood Estimation</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#이론적-배경"><i class="fa fa-check"></i><b>1.2</b> 이론적 배경</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#first-order-conditional-estimation-foce-method"><i class="fa fa-check"></i><b>1.3</b> First-order conditional estimation (FOCE) method</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="method.html"><a href="method.html"><i class="fa fa-check"></i><b>2</b> 이론 및 계산방법</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="method.html"><a href="method.html#설치"><i class="fa fa-check"></i><b>2.1</b> 설치</a></li>
+<li class="chapter" data-level="2.2" data-path="method.html"><a href="method.html#actual-example"><i class="fa fa-check"></i><b>2.2</b> 실제 사례</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="nonmem-document.html"><a href="nonmem-document.html"><i class="fa fa-check"></i><b>3</b> NONMEM document</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="nonmem-document.html"><a href="nonmem-document.html#r에서의-구현"><i class="fa fa-check"></i><b>3.1</b> R에서의 구현</a></li>
+<li class="chapter" data-level="3.2" data-path="nonmem-document.html"><a href="nonmem-document.html#Theoph"><i class="fa fa-check"></i><b>3.2</b> Theophylline 예제 데이터셋</a></li>
+<li class="chapter" data-level="3.3" data-path="nonmem-document.html"><a href="nonmem-document.html#고유값eigenvalue"><i class="fa fa-check"></i><b>3.3</b> 고유값(Eigenvalue)</a></li>
+<li class="chapter" data-level="3.4" data-path="nonmem-document.html"><a href="nonmem-document.html#자료"><i class="fa fa-check"></i><b>3.4</b> 자료</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="result.html"><a href="result.html"><i class="fa fa-check"></i><b>4</b> 결과</a></li>
+<li class="chapter" data-level="5" data-path="acknowledgement.html"><a href="acknowledgement.html"><i class="fa fa-check"></i><b>5</b> 감사의 글</a></li>
+<li class="appendix"><span><b>별첨</b></span></li>
+<li class="chapter" data-level="A" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>A</b> 에디슨 앱</a></li>
+<li class="chapter" data-level="B" data-path="세션정보.html"><a href="세션정보.html"><i class="fa fa-check"></i><b>B</b> 세션정보</a></li>
+<li class="chapter" data-level="" data-path="참고문헌.html"><a href="참고문헌.html"><i class="fa fa-check"></i>참고문헌</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">nmw: R패키지를 통해 이해하는 비선형 혼합효과 모델링</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="nonmem-document" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> NONMEM document</h1>
+<p>NONMEM User’s guide와 help file에는 $COV를 다음과 같이 설명한다. <span class="citation">(Beal <a href="#ref-nonmem" role="doc-biblioref">2018</a>)</span></p>
+<pre><code>$COVARIANCE
+
+ DISCUSSION:
+ Optional.  Requests  that  the  NONMEM Covariance Step be implemented.
+ This step outputs: standard errors, covariance matrix, inverse covari
+ ance  matrix,  and the correlation form of the covariance matrix.
+
+ OPTIONS:
+
+ MATRIX=c
+      Specifies that the covariance matrix will be different  from  the
+      default  (R  sup  -1 S R sup -1).  MATRIX=R requests that 2 times
+      the inverse R matrix be used.  MATRIX=S requests that 4 times the
+      inverse  S  matrix be used.  (R and S are two matrices from  sta-
+      tistical theory,  the Hessian and Cross-Product  Gradient  matri-
+      ces,  respectively.)   With  MATRIX=R the standard errors will be
+      more consistent with other nonlinear regression  software  imple-
+      mentations.
+
+ PRINT=[E][R][S]
+      Additional outputs will be  printed  besides  the  defaults.   E:
+      print  the  eigenvalues  of the correlation matrix.  R: print the
+      matrix .5*R.  S: print the matrix .25*S.
+
+ REFERENCES: Guide IV, section III.B.15
+ REFERENCES: Guide V, section 9.4.2 , 10.6</code></pre>
+<p>
+
+
+</p>
+<div id="r에서의-구현" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> R에서의 구현</h2>
+<p><a href="method.html#actual-example">14.1</a>의 예제를 R로 풀이하면 다음과 같다. 우선 CRAN에 올라와 있는 nmw package를 설치한다. <span class="citation">(Bae <a href="#ref-R-nmw" role="doc-biblioref">2018</a>)</span></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="nonmem-document.html#cb4-1"></a><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(nmw)) <span class="kw">install.packages</span>(<span class="st">&quot;nmw&quot;</span>)</span></code></pre></div>
+<p><code>nmw::CovStep()</code> 함수를 보면 covariance step의 전반적인 개요를 알 수 있다.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="nonmem-document.html#cb5-1"></a><span class="co"># nmw::CovStep</span></span>
+<span id="cb5-2"><a href="nonmem-document.html#cb5-2"></a><span class="cf">function</span> () </span>
+<span id="cb5-3"><a href="nonmem-document.html#cb5-3"></a>{</span>
+<span id="cb5-4"><a href="nonmem-document.html#cb5-4"></a>  e<span class="op">$</span>STEP =<span class="st"> &quot;COV&quot;</span></span>
+<span id="cb5-5"><a href="nonmem-document.html#cb5-5"></a>  StartTime =<span class="st"> </span><span class="kw">Sys.time</span>()</span>
+<span id="cb5-6"><a href="nonmem-document.html#cb5-6"></a>  Rmat =<span class="st"> </span><span class="kw">hessian</span>(Obj, e<span class="op">$</span>FinalPara)<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb5-7"><a href="nonmem-document.html#cb5-7"></a>  Smat =<span class="st"> </span><span class="kw">CalcSmat</span>()</span>
+<span id="cb5-8"><a href="nonmem-document.html#cb5-8"></a>  <span class="cf">if</span> (<span class="kw">is.nan</span>(Smat[<span class="dv">1</span>, <span class="dv">1</span>])) </span>
+<span id="cb5-9"><a href="nonmem-document.html#cb5-9"></a>    <span class="kw">stop</span>(<span class="st">&quot;Error - NaN produced&quot;</span>)</span>
+<span id="cb5-10"><a href="nonmem-document.html#cb5-10"></a>  invR =<span class="st"> </span><span class="kw">solve</span>(Rmat)</span>
+<span id="cb5-11"><a href="nonmem-document.html#cb5-11"></a>  Cov =<span class="st"> </span>invR <span class="op">%*%</span><span class="st"> </span>Smat <span class="op">%*%</span><span class="st"> </span>invR</span>
+<span id="cb5-12"><a href="nonmem-document.html#cb5-12"></a>  SE =<span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">diag</span>(Cov))</span>
+<span id="cb5-13"><a href="nonmem-document.html#cb5-13"></a>  Correl =<span class="st"> </span><span class="kw">cov2cor</span>(Cov)</span>
+<span id="cb5-14"><a href="nonmem-document.html#cb5-14"></a>  InvCov =<span class="st"> </span>Rmat <span class="op">%*%</span><span class="st"> </span><span class="kw">solve</span>(Smat) <span class="op">%*%</span><span class="st"> </span>Rmat</span>
+<span id="cb5-15"><a href="nonmem-document.html#cb5-15"></a>  EigenVal =<span class="st"> </span><span class="kw">sort</span>(<span class="kw">eigen</span>(Correl)<span class="op">$</span>values)</span>
+<span id="cb5-16"><a href="nonmem-document.html#cb5-16"></a>  RunTime =<span class="st"> </span><span class="kw">difftime</span>(<span class="kw">Sys.time</span>(), StartTime)</span>
+<span id="cb5-17"><a href="nonmem-document.html#cb5-17"></a>  Result =<span class="st"> </span><span class="kw">list</span>(RunTime, SE, Cov, Correl, InvCov, EigenVal, </span>
+<span id="cb5-18"><a href="nonmem-document.html#cb5-18"></a>                Rmat, Smat)</span>
+<span id="cb5-19"><a href="nonmem-document.html#cb5-19"></a>  <span class="kw">names</span>(Result) =<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;Time&quot;</span>, <span class="st">&quot;Standard Error&quot;</span>, </span>
+<span id="cb5-20"><a href="nonmem-document.html#cb5-20"></a>                       <span class="st">&quot;Covariance Matrix of Estimates&quot;</span>, </span>
+<span id="cb5-21"><a href="nonmem-document.html#cb5-21"></a>                       <span class="st">&quot;Correlation Matrix of Estimates&quot;</span>, </span>
+<span id="cb5-22"><a href="nonmem-document.html#cb5-22"></a>                       <span class="st">&quot;Inverse Covariance Matrix of Estimates&quot;</span>, </span>
+<span id="cb5-23"><a href="nonmem-document.html#cb5-23"></a>                       <span class="st">&quot;Eigen Values&quot;</span>, </span>
+<span id="cb5-24"><a href="nonmem-document.html#cb5-24"></a>                       <span class="st">&quot;R Matrix&quot;</span>, <span class="st">&quot;S Matrix&quot;</span>)</span>
+<span id="cb5-25"><a href="nonmem-document.html#cb5-25"></a>  <span class="kw">return</span>(Result)</span>
+<span id="cb5-26"><a href="nonmem-document.html#cb5-26"></a>}</span></code></pre></div>
+<p>S matrix를 계산하는 internal obj functions 함수 <code>nmw::CalcSmat()</code>는 다음과 같다.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="nonmem-document.html#cb6-1"></a><span class="co"># nmw::CalcSmat</span></span>
+<span id="cb6-2"><a href="nonmem-document.html#cb6-2"></a><span class="cf">function</span> () </span>
+<span id="cb6-3"><a href="nonmem-document.html#cb6-3"></a>{</span>
+<span id="cb6-4"><a href="nonmem-document.html#cb6-4"></a>  Smat =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rep</span>(<span class="dv">0</span>, e<span class="op">$</span>nPara <span class="op">*</span><span class="st"> </span>e<span class="op">$</span>nPara), <span class="dt">nrow =</span> e<span class="op">$</span>nPara, </span>
+<span id="cb6-5"><a href="nonmem-document.html#cb6-5"></a>                <span class="dt">ncol =</span> e<span class="op">$</span>nPara)</span>
+<span id="cb6-6"><a href="nonmem-document.html#cb6-6"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>e<span class="op">$</span>nID) {</span>
+<span id="cb6-7"><a href="nonmem-document.html#cb6-7"></a>    e<span class="op">$</span>DATAi =<span class="st"> </span>e<span class="op">$</span>DataRef[[i]]</span>
+<span id="cb6-8"><a href="nonmem-document.html#cb6-8"></a>    e<span class="op">$</span>ETAi =<span class="st"> </span>e<span class="op">$</span>EBE[i, e<span class="op">$</span>EtaNames]</span>
+<span id="cb6-9"><a href="nonmem-document.html#cb6-9"></a>    e<span class="op">$</span>nReci =<span class="st"> </span>e<span class="op">$</span>Oi[i, <span class="st">&quot;nRec&quot;</span>]</span>
+<span id="cb6-10"><a href="nonmem-document.html#cb6-10"></a>    <span class="cf">if</span> (e<span class="op">$</span>METHOD <span class="op">==</span><span class="st"> &quot;ZERO&quot;</span>) {</span>
+<span id="cb6-11"><a href="nonmem-document.html#cb6-11"></a>      gr =<span class="st"> </span><span class="kw">grad</span>(OiS0, e<span class="op">$</span>FinalPara)</span>
+<span id="cb6-12"><a href="nonmem-document.html#cb6-12"></a>    }</span>
+<span id="cb6-13"><a href="nonmem-document.html#cb6-13"></a>    <span class="cf">else</span> {</span>
+<span id="cb6-14"><a href="nonmem-document.html#cb6-14"></a>      gr =<span class="st"> </span><span class="kw">grad</span>(OiS1, e<span class="op">$</span>FinalPara)</span>
+<span id="cb6-15"><a href="nonmem-document.html#cb6-15"></a>    }</span>
+<span id="cb6-16"><a href="nonmem-document.html#cb6-16"></a>    Smat =<span class="st"> </span>Smat <span class="op">+</span><span class="st"> </span>gr <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(gr)</span>
+<span id="cb6-17"><a href="nonmem-document.html#cb6-17"></a>  }</span>
+<span id="cb6-18"><a href="nonmem-document.html#cb6-18"></a>  <span class="kw">return</span>(Smat<span class="op">/</span><span class="dv">4</span>)</span>
+<span id="cb6-19"><a href="nonmem-document.html#cb6-19"></a>}</span></code></pre></div>
+</div>
+<div id="Theoph" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Theophylline 예제 데이터셋</h2>
+<p>R에는 기본적으로 nlme 패키지<span class="citation">(Pinheiro, Bates, and R-core <a href="#ref-R-nlme" role="doc-biblioref">2020</a>)</span>가 설치되어 있으며, NONMEM에도 있는 theophylline 데이터가 포함되어 있다. Theophylline 데이터를 그리면 다음과 같다.</p>
+
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="nonmem-document.html#cb7-1"></a><span class="kw">require</span>(nlme)</span>
+<span id="cb7-2"><a href="nonmem-document.html#cb7-2"></a><span class="kw">plot</span>(Theoph)</span></code></pre></div>
+<div class="figure"><span id="fig:theophconctime"></span>
+<img src="nmw_files/figure-html/theophconctime-1.svg" alt="Theophylline 경구 복용 후 농도-시간 곡선" width="100%" />
+<p class="caption">
+Figure 3.1: Theophylline 경구 복용 후 농도-시간 곡선
+</p>
+</div>
+<p>위의 자료를 다음과 같이 경구 1 구획모델에 적합시켜 보기로 한다.
+<span class="math display" id="eq:onecompfit">\[\begin{equation}
+\begin{split}
+  K_{a} &amp; = \theta_{1}e^{\eta_{1}} \\
+  V &amp; = \theta_{2}e^{\eta_{2}} \\
+  K &amp; = \theta_{3}e^{\eta_{3}} \\
+  C(t) &amp; = \frac{\text{DOSE}}{V}\frac{K_{a}}{K_{a} - K}(e^{- Kt} - e^{- K_{a}t})
+\end{split}
+\tag{3.1}
+\end{equation}\]</span></p>
+<p>NONMEM 제어구문 파일의 내용은 <a href="method.html#actual-example">2.2</a>절에서 표시한 것과 같다.</p>
+<p>R에서는 다음과 같은 준비 작업이 필요하다.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="nonmem-document.html#cb8-1"></a>DataAll =<span class="st"> </span>Theoph</span>
+<span id="cb8-2"><a href="nonmem-document.html#cb8-2"></a><span class="kw">colnames</span>(DataAll) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ID&quot;</span>, <span class="st">&quot;BWT&quot;</span>, <span class="st">&quot;DOSE&quot;</span>, <span class="st">&quot;TIME&quot;</span>, <span class="st">&quot;DV&quot;</span>)</span>
+<span id="cb8-3"><a href="nonmem-document.html#cb8-3"></a>DataAll[,<span class="st">&quot;ID&quot;</span>] =<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">as.character</span>(DataAll[,<span class="st">&quot;ID&quot;</span>]))</span>
+<span id="cb8-4"><a href="nonmem-document.html#cb8-4"></a></span>
+<span id="cb8-5"><a href="nonmem-document.html#cb8-5"></a>nTheta =<span class="st"> </span><span class="dv">3</span></span>
+<span id="cb8-6"><a href="nonmem-document.html#cb8-6"></a>nEta =<span class="st"> </span><span class="dv">3</span></span>
+<span id="cb8-7"><a href="nonmem-document.html#cb8-7"></a>nEps =<span class="st"> </span><span class="dv">2</span></span>
+<span id="cb8-8"><a href="nonmem-document.html#cb8-8"></a></span>
+<span id="cb8-9"><a href="nonmem-document.html#cb8-9"></a>THETAinit =<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">50</span>, <span class="fl">0.1</span>)</span>
+<span id="cb8-10"><a href="nonmem-document.html#cb8-10"></a>OMinit =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="fl">0.2</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.2</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.2</span>), </span>
+<span id="cb8-11"><a href="nonmem-document.html#cb8-11"></a>                <span class="dt">nrow=</span>nEta, <span class="dt">ncol=</span>nEta)</span>
+<span id="cb8-12"><a href="nonmem-document.html#cb8-12"></a>SGinit =<span class="st"> </span><span class="kw">diag</span>(<span class="kw">c</span>(<span class="fl">0.1</span>, <span class="fl">0.1</span>))</span>
+<span id="cb8-13"><a href="nonmem-document.html#cb8-13"></a></span>
+<span id="cb8-14"><a href="nonmem-document.html#cb8-14"></a>LB =<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>, nTheta) <span class="co"># Lower bound</span></span>
+<span id="cb8-15"><a href="nonmem-document.html#cb8-15"></a>UB =<span class="st"> </span><span class="kw">rep</span>(<span class="dv">1000000</span>, nTheta) <span class="co"># Upper bound</span></span>
+<span id="cb8-16"><a href="nonmem-document.html#cb8-16"></a></span>
+<span id="cb8-17"><a href="nonmem-document.html#cb8-17"></a>FGD1 =<span class="st"> </span><span class="kw">deriv</span>(<span class="op">~</span>DOSE<span class="op">/</span>(TH2<span class="op">*</span><span class="kw">exp</span>(ETA2))<span class="op">*</span>TH1<span class="op">*</span><span class="kw">exp</span>(ETA1)<span class="op">/</span></span>
+<span id="cb8-18"><a href="nonmem-document.html#cb8-18"></a><span class="st">             </span>(TH1<span class="op">*</span><span class="kw">exp</span>(ETA1) <span class="op">-</span><span class="st"> </span>TH3<span class="op">*</span><span class="kw">exp</span>(ETA3))<span class="op">*</span></span>
+<span id="cb8-19"><a href="nonmem-document.html#cb8-19"></a><span class="st">             </span>(<span class="kw">exp</span>(<span class="op">-</span>TH3<span class="op">*</span><span class="kw">exp</span>(ETA3)<span class="op">*</span>TIME)<span class="op">-</span><span class="kw">exp</span>(<span class="op">-</span>TH1<span class="op">*</span><span class="kw">exp</span>(ETA1)<span class="op">*</span>TIME)),</span>
+<span id="cb8-20"><a href="nonmem-document.html#cb8-20"></a>             <span class="kw">c</span>(<span class="st">&quot;ETA1&quot;</span>,<span class="st">&quot;ETA2&quot;</span>,<span class="st">&quot;ETA3&quot;</span>),</span>
+<span id="cb8-21"><a href="nonmem-document.html#cb8-21"></a>             <span class="dt">function.arg=</span><span class="kw">c</span>(<span class="st">&quot;TH1&quot;</span>, <span class="st">&quot;TH2&quot;</span>, <span class="st">&quot;TH3&quot;</span>, <span class="st">&quot;ETA1&quot;</span>, <span class="st">&quot;ETA2&quot;</span>, <span class="st">&quot;ETA3&quot;</span>, </span>
+<span id="cb8-22"><a href="nonmem-document.html#cb8-22"></a>                            <span class="st">&quot;DOSE&quot;</span>, <span class="st">&quot;TIME&quot;</span>),</span>
+<span id="cb8-23"><a href="nonmem-document.html#cb8-23"></a>             <span class="dt">func=</span><span class="ot">TRUE</span>, <span class="dt">hessian=</span><span class="ot">FALSE</span>)</span>
+<span id="cb8-24"><a href="nonmem-document.html#cb8-24"></a></span>
+<span id="cb8-25"><a href="nonmem-document.html#cb8-25"></a>H =<span class="st"> </span><span class="kw">deriv</span>(<span class="op">~</span>F <span class="op">+</span><span class="st"> </span>F<span class="op">*</span>EPS1 <span class="op">+</span><span class="st"> </span>EPS2, <span class="kw">c</span>(<span class="st">&quot;EPS1&quot;</span>, <span class="st">&quot;EPS2&quot;</span>), </span>
+<span id="cb8-26"><a href="nonmem-document.html#cb8-26"></a>          <span class="dt">function.arg=</span><span class="kw">c</span>(<span class="st">&quot;F&quot;</span>, <span class="st">&quot;EPS1&quot;</span>, <span class="st">&quot;EPS2&quot;</span>), </span>
+<span id="cb8-27"><a href="nonmem-document.html#cb8-27"></a>          <span class="dt">func=</span><span class="ot">TRUE</span>)</span>
+<span id="cb8-28"><a href="nonmem-document.html#cb8-28"></a></span>
+<span id="cb8-29"><a href="nonmem-document.html#cb8-29"></a>PRED1 =<span class="st"> </span><span class="cf">function</span>(THETA, ETA, DATAi)  <span class="co"># for FO and FOCE</span></span>
+<span id="cb8-30"><a href="nonmem-document.html#cb8-30"></a>{</span>
+<span id="cb8-31"><a href="nonmem-document.html#cb8-31"></a>  FGDres =<span class="st"> </span><span class="kw">FGD1</span>(THETA[<span class="dv">1</span>], THETA[<span class="dv">2</span>], THETA[<span class="dv">3</span>], ETA[<span class="dv">1</span>], ETA[<span class="dv">2</span>], ETA[<span class="dv">3</span>], <span class="dt">DOSE=</span><span class="dv">320</span>, </span>
+<span id="cb8-32"><a href="nonmem-document.html#cb8-32"></a>                DATAi[,<span class="st">&quot;TIME&quot;</span>])</span>
+<span id="cb8-33"><a href="nonmem-document.html#cb8-33"></a>  Gres =<span class="st"> </span><span class="kw">attr</span>(FGDres, <span class="st">&quot;gradient&quot;</span>)</span>
+<span id="cb8-34"><a href="nonmem-document.html#cb8-34"></a>  Hres =<span class="st"> </span><span class="kw">attr</span>(<span class="kw">H</span>(FGDres, <span class="dv">0</span>, <span class="dv">0</span>), <span class="st">&quot;gradient&quot;</span>)</span>
+<span id="cb8-35"><a href="nonmem-document.html#cb8-35"></a>  Res =<span class="st"> </span><span class="kw">cbind</span>(FGDres, Gres, Hres)</span>
+<span id="cb8-36"><a href="nonmem-document.html#cb8-36"></a>  <span class="kw">colnames</span>(Res) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;F&quot;</span>, <span class="st">&quot;G1&quot;</span>, <span class="st">&quot;G2&quot;</span>, <span class="st">&quot;G3&quot;</span>, <span class="st">&quot;H1&quot;</span>, <span class="st">&quot;H2&quot;</span>)</span>
+<span id="cb8-37"><a href="nonmem-document.html#cb8-37"></a>  <span class="kw">return</span>(Res)</span>
+<span id="cb8-38"><a href="nonmem-document.html#cb8-38"></a>}</span></code></pre></div>
+<p></p>
+<p>위 PRED 함수의 return 값 중에 F는 model prediction value이고, G들은 model predictiion function(structural model)을 각 η에 대하여 편미분한 값들이다. H들은 잔차에 대한 통계모형(model prediction에 noise가 섞여 관찰값을 이루는 모형)을 각 ε으로 편미분한 값들이다. F, G, H는 목적함수값을 구할 때 필요하다. NONMEM에서는 <strong>nmtran</strong>이 G와 H를 구하는 수식을 기호미분(symbolic differentiation)으로 구하나, R에서는 자동으로 해주는 것이 없으므로, 위와 같이 사용자가 직접 구성해 주어야 한다.</p>
+<p>이후에 다음과 같은 R script를 실행하면 NONMEM output과 형태는 다르지만 내용은 동일한 결과를 얻을 수 있다.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="nonmem-document.html#cb9-1"></a><span class="kw">library</span>(nmw)</span>
+<span id="cb9-2"><a href="nonmem-document.html#cb9-2"></a><span class="co"># First Order Approximation Method</span></span>
+<span id="cb9-3"><a href="nonmem-document.html#cb9-3"></a><span class="kw">InitStep</span>(DataAll, <span class="dt">THETAinit=</span>THETAinit, <span class="dt">OMinit=</span>OMinit, <span class="dt">SGinit=</span>SGinit, </span>
+<span id="cb9-4"><a href="nonmem-document.html#cb9-4"></a>         <span class="dt">LB=</span>LB, <span class="dt">UB=</span>UB, <span class="dt">Pred=</span>PRED1, <span class="dt">METHOD=</span><span class="st">&quot;ZERO&quot;</span>)</span>
+<span id="cb9-5"><a href="nonmem-document.html#cb9-5"></a>(<span class="dt">EstRes1 =</span> <span class="kw">EstStep</span>())</span>
+<span id="cb9-6"><a href="nonmem-document.html#cb9-6"></a><span class="co">## $`Initial OFV`</span></span>
+<span id="cb9-7"><a href="nonmem-document.html#cb9-7"></a><span class="co">## [1] 141.3076</span></span>
+<span id="cb9-8"><a href="nonmem-document.html#cb9-8"></a><span class="co">## </span></span>
+<span id="cb9-9"><a href="nonmem-document.html#cb9-9"></a><span class="co">## $Time</span></span>
+<span id="cb9-10"><a href="nonmem-document.html#cb9-10"></a><span class="co">## Time difference of 2.999814 secs</span></span>
+<span id="cb9-11"><a href="nonmem-document.html#cb9-11"></a><span class="co">## </span></span>
+<span id="cb9-12"><a href="nonmem-document.html#cb9-12"></a><span class="co">## $Optim</span></span>
+<span id="cb9-13"><a href="nonmem-document.html#cb9-13"></a><span class="co">## $Optim$par</span></span>
+<span id="cb9-14"><a href="nonmem-document.html#cb9-14"></a><span class="co">##  [1]  0.560417594 -0.167835388  0.148962362  0.995143048  0.056166719</span></span>
+<span id="cb9-15"><a href="nonmem-document.html#cb9-15"></a><span class="co">##  [6]  0.151227211 -1.032468525  0.005776729  0.110936464 -0.956899772</span></span>
+<span id="cb9-16"><a href="nonmem-document.html#cb9-16"></a><span class="co">## [11] -0.205559310</span></span>
+<span id="cb9-17"><a href="nonmem-document.html#cb9-17"></a><span class="co">## </span></span>
+<span id="cb9-18"><a href="nonmem-document.html#cb9-18"></a><span class="co">## $Optim$value</span></span>
+<span id="cb9-19"><a href="nonmem-document.html#cb9-19"></a><span class="co">## [1] 57.32106</span></span>
+<span id="cb9-20"><a href="nonmem-document.html#cb9-20"></a><span class="co">## </span></span>
+<span id="cb9-21"><a href="nonmem-document.html#cb9-21"></a><span class="co">## $Optim$counts</span></span>
+<span id="cb9-22"><a href="nonmem-document.html#cb9-22"></a><span class="co">## function gradient </span></span>
+<span id="cb9-23"><a href="nonmem-document.html#cb9-23"></a><span class="co">##       74       74 </span></span>
+<span id="cb9-24"><a href="nonmem-document.html#cb9-24"></a><span class="co">## </span></span>
+<span id="cb9-25"><a href="nonmem-document.html#cb9-25"></a><span class="co">## $Optim$convergence</span></span>
+<span id="cb9-26"><a href="nonmem-document.html#cb9-26"></a><span class="co">## [1] 0</span></span>
+<span id="cb9-27"><a href="nonmem-document.html#cb9-27"></a><span class="co">## </span></span>
+<span id="cb9-28"><a href="nonmem-document.html#cb9-28"></a><span class="co">## $Optim$message</span></span>
+<span id="cb9-29"><a href="nonmem-document.html#cb9-29"></a><span class="co">## [1] &quot;CONVERGENCE: REL_REDUCTION_OF_F &lt;= FACTR*EPSMCH&quot;</span></span>
+<span id="cb9-30"><a href="nonmem-document.html#cb9-30"></a><span class="co">## </span></span>
+<span id="cb9-31"><a href="nonmem-document.html#cb9-31"></a><span class="co">## </span></span>
+<span id="cb9-32"><a href="nonmem-document.html#cb9-32"></a><span class="co">## $`Final Estimates`</span></span>
+<span id="cb9-33"><a href="nonmem-document.html#cb9-33"></a><span class="co">##  [1]  3.16946754 38.25213460  0.10501808  1.19823325  0.13747849</span></span>
+<span id="cb9-34"><a href="nonmem-document.html#cb9-34"></a><span class="co">##  [6]  0.03134899  0.37015671  0.04340042  0.25068582  0.01207782</span></span>
+<span id="cb9-35"><a href="nonmem-document.html#cb9-35"></a><span class="co">## [11]  0.05427434</span></span></code></pre></div>
+<p><code>InitStep()</code>과 <code>EstStep()</code>을 마친 후 <code>CovStep()</code>을 실행하면 아래와 같은 표준오차와 분산 행렬을 계산할 수 있다.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="nonmem-document.html#cb10-1"></a>(<span class="dt">CovRes1 =</span> <span class="kw">CovStep</span>())</span>
+<span id="cb10-2"><a href="nonmem-document.html#cb10-2"></a><span class="co">## $Time</span></span>
+<span id="cb10-3"><a href="nonmem-document.html#cb10-3"></a><span class="co">## Time difference of 1.0468 secs</span></span>
+<span id="cb10-4"><a href="nonmem-document.html#cb10-4"></a><span class="co">## </span></span>
+<span id="cb10-5"><a href="nonmem-document.html#cb10-5"></a><span class="co">## $`Standard Error`</span></span>
+<span id="cb10-6"><a href="nonmem-document.html#cb10-6"></a><span class="co">##  [1] 0.641076544 1.685217844 0.023072024 0.420617306 0.082197497</span></span>
+<span id="cb10-7"><a href="nonmem-document.html#cb10-7"></a><span class="co">##  [6] 0.019812976 0.340273208 0.023052142 0.289524327 0.003576926</span></span>
+<span id="cb10-8"><a href="nonmem-document.html#cb10-8"></a><span class="co">## [11] 0.032078283</span></span>
+<span id="cb10-9"><a href="nonmem-document.html#cb10-9"></a><span class="co">## </span></span>
+<span id="cb10-10"><a href="nonmem-document.html#cb10-10"></a><span class="co">## $`Covariance Matrix of Estimates`</span></span>
+<span id="cb10-11"><a href="nonmem-document.html#cb10-11"></a><span class="co">##                [,1]         [,2]          [,3]          [,4]          [,5]</span></span>
+<span id="cb10-12"><a href="nonmem-document.html#cb10-12"></a><span class="co">##  [1,]  0.4109791347  0.339158144  5.746694e-03  0.2058089645  2.003772e-03</span></span>
+<span id="cb10-13"><a href="nonmem-document.html#cb10-13"></a><span class="co">##  [2,]  0.3391581437  2.839959182  5.032613e-03  0.3376028346  3.490465e-02</span></span>
+<span id="cb10-14"><a href="nonmem-document.html#cb10-14"></a><span class="co">##  [3,]  0.0057466939  0.005032613  5.323183e-04  0.0016294512 -1.041991e-03</span></span>
+<span id="cb10-15"><a href="nonmem-document.html#cb10-15"></a><span class="co">##  [4,]  0.2058089645  0.337602835  1.629451e-03  0.1769189182  1.951490e-02</span></span>
+<span id="cb10-16"><a href="nonmem-document.html#cb10-16"></a><span class="co">##  [5,]  0.0020037724  0.034904655 -1.041991e-03  0.0195149026  6.756428e-03</span></span>
+<span id="cb10-17"><a href="nonmem-document.html#cb10-17"></a><span class="co">##  [6,] -0.0021925236  0.012804811 -2.503963e-04  0.0032072246  1.504690e-03</span></span>
+<span id="cb10-18"><a href="nonmem-document.html#cb10-18"></a><span class="co">##  [7,]  0.1215890847  0.149089319  7.111900e-03  0.0575731487 -1.010198e-02</span></span>
+<span id="cb10-19"><a href="nonmem-document.html#cb10-19"></a><span class="co">##  [8,]  0.0009971098  0.023865634  6.271266e-05  0.0042158445  8.584714e-04</span></span>
+<span id="cb10-20"><a href="nonmem-document.html#cb10-20"></a><span class="co">##  [9,]  0.0669924083  0.057326151  6.226096e-03  0.0179862543 -1.309239e-02</span></span>
+<span id="cb10-21"><a href="nonmem-document.html#cb10-21"></a><span class="co">## [10,]  0.0010500117  0.001807746  5.805488e-05  0.0005143569 -7.516774e-05</span></span>
+<span id="cb10-22"><a href="nonmem-document.html#cb10-22"></a><span class="co">## [11,] -0.0049728997 -0.009950377 -4.790610e-04 -0.0010145003  9.532948e-04</span></span>
+<span id="cb10-23"><a href="nonmem-document.html#cb10-23"></a><span class="co">##                [,6]          [,7]         [,8]          [,9]         [,10]</span></span>
+<span id="cb10-24"><a href="nonmem-document.html#cb10-24"></a><span class="co">##  [1,] -2.192524e-03  0.1215890847 9.971098e-04  0.0669924083  1.050012e-03</span></span>
+<span id="cb10-25"><a href="nonmem-document.html#cb10-25"></a><span class="co">##  [2,]  1.280481e-02  0.1490893190 2.386563e-02  0.0573261514  1.807746e-03</span></span>
+<span id="cb10-26"><a href="nonmem-document.html#cb10-26"></a><span class="co">##  [3,] -2.503963e-04  0.0071119003 6.271266e-05  0.0062260963  5.805488e-05</span></span>
+<span id="cb10-27"><a href="nonmem-document.html#cb10-27"></a><span class="co">##  [4,]  3.207225e-03  0.0575731487 4.215844e-03  0.0179862543  5.143569e-04</span></span>
+<span id="cb10-28"><a href="nonmem-document.html#cb10-28"></a><span class="co">##  [5,]  1.504690e-03 -0.0101019780 8.584714e-04 -0.0130923877 -7.516774e-05</span></span>
+<span id="cb10-29"><a href="nonmem-document.html#cb10-29"></a><span class="co">##  [6,]  3.925540e-04 -0.0028272756 2.326326e-04 -0.0032697941 -2.051327e-05</span></span>
+<span id="cb10-30"><a href="nonmem-document.html#cb10-30"></a><span class="co">##  [7,] -2.827276e-03  0.1157858558 3.116262e-03  0.0940102394  9.767199e-04</span></span>
+<span id="cb10-31"><a href="nonmem-document.html#cb10-31"></a><span class="co">##  [8,]  2.326326e-04  0.0031162617 5.314013e-04  0.0018656807  2.786064e-05</span></span>
+<span id="cb10-32"><a href="nonmem-document.html#cb10-32"></a><span class="co">##  [9,] -3.269794e-03  0.0940102394 1.865681e-03  0.0838243357  8.055388e-04</span></span>
+<span id="cb10-33"><a href="nonmem-document.html#cb10-33"></a><span class="co">## [10,] -2.051327e-05  0.0009767199 2.786064e-05  0.0008055388  1.279440e-05</span></span>
+<span id="cb10-34"><a href="nonmem-document.html#cb10-34"></a><span class="co">## [11,]  1.806783e-04 -0.0038608273 2.199601e-04 -0.0033970159 -2.824858e-05</span></span>
+<span id="cb10-35"><a href="nonmem-document.html#cb10-35"></a><span class="co">##               [,11]</span></span>
+<span id="cb10-36"><a href="nonmem-document.html#cb10-36"></a><span class="co">##  [1,] -4.972900e-03</span></span>
+<span id="cb10-37"><a href="nonmem-document.html#cb10-37"></a><span class="co">##  [2,] -9.950377e-03</span></span>
+<span id="cb10-38"><a href="nonmem-document.html#cb10-38"></a><span class="co">##  [3,] -4.790610e-04</span></span>
+<span id="cb10-39"><a href="nonmem-document.html#cb10-39"></a><span class="co">##  [4,] -1.014500e-03</span></span>
+<span id="cb10-40"><a href="nonmem-document.html#cb10-40"></a><span class="co">##  [5,]  9.532948e-04</span></span>
+<span id="cb10-41"><a href="nonmem-document.html#cb10-41"></a><span class="co">##  [6,]  1.806783e-04</span></span>
+<span id="cb10-42"><a href="nonmem-document.html#cb10-42"></a><span class="co">##  [7,] -3.860827e-03</span></span>
+<span id="cb10-43"><a href="nonmem-document.html#cb10-43"></a><span class="co">##  [8,]  2.199601e-04</span></span>
+<span id="cb10-44"><a href="nonmem-document.html#cb10-44"></a><span class="co">##  [9,] -3.397016e-03</span></span>
+<span id="cb10-45"><a href="nonmem-document.html#cb10-45"></a><span class="co">## [10,] -2.824858e-05</span></span>
+<span id="cb10-46"><a href="nonmem-document.html#cb10-46"></a><span class="co">## [11,]  1.029016e-03</span></span>
+<span id="cb10-47"><a href="nonmem-document.html#cb10-47"></a><span class="co">## </span></span>
+<span id="cb10-48"><a href="nonmem-document.html#cb10-48"></a><span class="co">## $`Correlation Matrix of Estimates`</span></span>
+<span id="cb10-49"><a href="nonmem-document.html#cb10-49"></a><span class="co">##              [,1]       [,2]       [,3]        [,4]        [,5]       [,6]</span></span>
+<span id="cb10-50"><a href="nonmem-document.html#cb10-50"></a><span class="co">##  [1,]  1.00000000  0.3139325  0.3885281  0.76325079  0.03802594 -0.1726174</span></span>
+<span id="cb10-51"><a href="nonmem-document.html#cb10-51"></a><span class="co">##  [2,]  0.31393253  1.0000000  0.1294350  0.47628061  0.25198153  0.3835018</span></span>
+<span id="cb10-52"><a href="nonmem-document.html#cb10-52"></a><span class="co">##  [3,]  0.38852814  0.1294350  1.0000000  0.16790689 -0.54943908 -0.5477629</span></span>
+<span id="cb10-53"><a href="nonmem-document.html#cb10-53"></a><span class="co">##  [4,]  0.76325079  0.4762806  0.1679069  1.00000000  0.56444374  0.3848509</span></span>
+<span id="cb10-54"><a href="nonmem-document.html#cb10-54"></a><span class="co">##  [5,]  0.03802594  0.2519815 -0.5494391  0.56444374  1.00000000  0.9239295</span></span>
+<span id="cb10-55"><a href="nonmem-document.html#cb10-55"></a><span class="co">##  [6,] -0.17261745  0.3835018 -0.5477629  0.38485092  0.92392947  1.0000000</span></span>
+<span id="cb10-56"><a href="nonmem-document.html#cb10-56"></a><span class="co">##  [7,]  0.55738714  0.2599936  0.9058832  0.40225837 -0.36117699 -0.4193635</span></span>
+<span id="cb10-57"><a href="nonmem-document.html#cb10-57"></a><span class="co">##  [8,]  0.06747173  0.6143355  0.1179121  0.43479661  0.45306025  0.5093422</span></span>
+<span id="cb10-58"><a href="nonmem-document.html#cb10-58"></a><span class="co">##  [9,]  0.36093637  0.1174929  0.9320626  0.14769593 -0.55014251 -0.5700142</span></span>
+<span id="cb10-59"><a href="nonmem-document.html#cb10-59"></a><span class="co">## [10,]  0.45790382  0.2998965  0.7034659  0.34187510 -0.25566008 -0.2894510</span></span>
+<span id="cb10-60"><a href="nonmem-document.html#cb10-60"></a><span class="co">## [11,] -0.24181804 -0.1840655 -0.6472826 -0.07518893  0.36154098  0.2842792</span></span>
+<span id="cb10-61"><a href="nonmem-document.html#cb10-61"></a><span class="co">##             [,7]       [,8]       [,9]      [,10]       [,11]</span></span>
+<span id="cb10-62"><a href="nonmem-document.html#cb10-62"></a><span class="co">##  [1,]  0.5573871 0.06747173  0.3609364  0.4579038 -0.24181804</span></span>
+<span id="cb10-63"><a href="nonmem-document.html#cb10-63"></a><span class="co">##  [2,]  0.2599936 0.61433553  0.1174929  0.2998965 -0.18406548</span></span>
+<span id="cb10-64"><a href="nonmem-document.html#cb10-64"></a><span class="co">##  [3,]  0.9058832 0.11791205  0.9320626  0.7034659 -0.64728263</span></span>
+<span id="cb10-65"><a href="nonmem-document.html#cb10-65"></a><span class="co">##  [4,]  0.4022584 0.43479661  0.1476959  0.3418751 -0.07518893</span></span>
+<span id="cb10-66"><a href="nonmem-document.html#cb10-66"></a><span class="co">##  [5,] -0.3611770 0.45306025 -0.5501425 -0.2556601  0.36154098</span></span>
+<span id="cb10-67"><a href="nonmem-document.html#cb10-67"></a><span class="co">##  [6,] -0.4193635 0.50934216 -0.5700142 -0.2894510  0.28427925</span></span>
+<span id="cb10-68"><a href="nonmem-document.html#cb10-68"></a><span class="co">##  [7,]  1.0000000 0.39727833  0.9542504  0.8024764 -0.35370524</span></span>
+<span id="cb10-69"><a href="nonmem-document.html#cb10-69"></a><span class="co">##  [8,]  0.3972783 1.00000000  0.2795381  0.3378856  0.29745513</span></span>
+<span id="cb10-70"><a href="nonmem-document.html#cb10-70"></a><span class="co">##  [9,]  0.9542504 0.27953807  1.0000000  0.7778421 -0.36576437</span></span>
+<span id="cb10-71"><a href="nonmem-document.html#cb10-71"></a><span class="co">## [10,]  0.8024764 0.33788563  0.7778421  1.0000000 -0.24619292</span></span>
+<span id="cb10-72"><a href="nonmem-document.html#cb10-72"></a><span class="co">## [11,] -0.3537052 0.29745513 -0.3657644 -0.2461929  1.00000000</span></span>
+<span id="cb10-73"><a href="nonmem-document.html#cb10-73"></a><span class="co">## </span></span>
+<span id="cb10-74"><a href="nonmem-document.html#cb10-74"></a><span class="co">## $`Inverse Covariance Matrix of Estimates`</span></span>
+<span id="cb10-75"><a href="nonmem-document.html#cb10-75"></a><span class="co">##              [,1]         [,2]        [,3]        [,4]        [,5]</span></span>
+<span id="cb10-76"><a href="nonmem-document.html#cb10-76"></a><span class="co">##  [1,]   106.16085    -68.57396    6449.005    335.8698   -2554.409</span></span>
+<span id="cb10-77"><a href="nonmem-document.html#cb10-77"></a><span class="co">##  [2,]   -68.57396     58.03937   -4878.746   -302.1420    2175.297</span></span>
+<span id="cb10-78"><a href="nonmem-document.html#cb10-78"></a><span class="co">##  [3,]  6449.00514  -4878.74594  589180.809  26966.6055 -188642.065</span></span>
+<span id="cb10-79"><a href="nonmem-document.html#cb10-79"></a><span class="co">##  [4,]   335.86981   -302.14199   26966.605   1681.5577  -11681.346</span></span>
+<span id="cb10-80"><a href="nonmem-document.html#cb10-80"></a><span class="co">##  [5,] -2554.40932   2175.29716 -188642.065 -11681.3456   84767.297</span></span>
+<span id="cb10-81"><a href="nonmem-document.html#cb10-81"></a><span class="co">##  [6,]  -386.87894    570.22260  -66147.099  -3404.8900   13635.511</span></span>
+<span id="cb10-82"><a href="nonmem-document.html#cb10-82"></a><span class="co">##  [7,] -1202.16352    939.99684  -90186.464  -5086.8917   35747.140</span></span>
+<span id="cb10-83"><a href="nonmem-document.html#cb10-83"></a><span class="co">##  [8,] 10794.57609  -8973.04621  795473.397  47387.2333 -336778.082</span></span>
+<span id="cb10-84"><a href="nonmem-document.html#cb10-84"></a><span class="co">##  [9,]   -49.38187     87.68163  -10522.263   -442.6127    3308.451</span></span>
+<span id="cb10-85"><a href="nonmem-document.html#cb10-85"></a><span class="co">## [10,] 11656.77324 -10122.84537  899033.055  53311.6422 -378718.161</span></span>
+<span id="cb10-86"><a href="nonmem-document.html#cb10-86"></a><span class="co">## [11,] -1043.11500   1001.74635  -47225.438  -4879.5431   35063.038</span></span>
+<span id="cb10-87"><a href="nonmem-document.html#cb10-87"></a><span class="co">##               [,6]         [,7]        [,8]         [,9]      [,10]</span></span>
+<span id="cb10-88"><a href="nonmem-document.html#cb10-88"></a><span class="co">##  [1,]    -386.8789   -1202.1635   10794.576    -49.38187   11656.77</span></span>
+<span id="cb10-89"><a href="nonmem-document.html#cb10-89"></a><span class="co">##  [2,]     570.2226     939.9968   -8973.046     87.68163  -10122.85</span></span>
+<span id="cb10-90"><a href="nonmem-document.html#cb10-90"></a><span class="co">##  [3,]  -66147.0986  -90186.4639  795473.397 -10522.26321  899033.06</span></span>
+<span id="cb10-91"><a href="nonmem-document.html#cb10-91"></a><span class="co">##  [4,]   -3404.8900   -5086.8917   47387.233   -442.61268   53311.64</span></span>
+<span id="cb10-92"><a href="nonmem-document.html#cb10-92"></a><span class="co">##  [5,]   13635.5106   35747.1396 -336778.082   3308.45066 -378718.16</span></span>
+<span id="cb10-93"><a href="nonmem-document.html#cb10-93"></a><span class="co">##  [6,]   72186.1449   10923.7488 -116902.668   2827.92008 -138707.39</span></span>
+<span id="cb10-94"><a href="nonmem-document.html#cb10-94"></a><span class="co">##  [7,]   10923.7488   16640.0641 -149635.854    965.72182 -166637.08</span></span>
+<span id="cb10-95"><a href="nonmem-document.html#cb10-95"></a><span class="co">##  [8,] -116902.6684 -149635.8536 1416416.077 -14025.69870 1587796.18</span></span>
+<span id="cb10-96"><a href="nonmem-document.html#cb10-96"></a><span class="co">##  [9,]    2827.9201     965.7218  -14025.699    954.65511  -20047.21</span></span>
+<span id="cb10-97"><a href="nonmem-document.html#cb10-97"></a><span class="co">## [10,] -138707.3931 -166637.0784 1587796.183 -20047.20949 2031529.82</span></span>
+<span id="cb10-98"><a href="nonmem-document.html#cb10-98"></a><span class="co">## [11,]   15687.7641   14275.7793 -151936.736    935.29881 -170271.34</span></span>
+<span id="cb10-99"><a href="nonmem-document.html#cb10-99"></a><span class="co">##              [,11]</span></span>
+<span id="cb10-100"><a href="nonmem-document.html#cb10-100"></a><span class="co">##  [1,]   -1043.1150</span></span>
+<span id="cb10-101"><a href="nonmem-document.html#cb10-101"></a><span class="co">##  [2,]    1001.7464</span></span>
+<span id="cb10-102"><a href="nonmem-document.html#cb10-102"></a><span class="co">##  [3,]  -47225.4381</span></span>
+<span id="cb10-103"><a href="nonmem-document.html#cb10-103"></a><span class="co">##  [4,]   -4879.5431</span></span>
+<span id="cb10-104"><a href="nonmem-document.html#cb10-104"></a><span class="co">##  [5,]   35063.0376</span></span>
+<span id="cb10-105"><a href="nonmem-document.html#cb10-105"></a><span class="co">##  [6,]   15687.7641</span></span>
+<span id="cb10-106"><a href="nonmem-document.html#cb10-106"></a><span class="co">##  [7,]   14275.7793</span></span>
+<span id="cb10-107"><a href="nonmem-document.html#cb10-107"></a><span class="co">##  [8,] -151936.7362</span></span>
+<span id="cb10-108"><a href="nonmem-document.html#cb10-108"></a><span class="co">##  [9,]     935.2988</span></span>
+<span id="cb10-109"><a href="nonmem-document.html#cb10-109"></a><span class="co">## [10,] -170271.3406</span></span>
+<span id="cb10-110"><a href="nonmem-document.html#cb10-110"></a><span class="co">## [11,]   28036.5550</span></span>
+<span id="cb10-111"><a href="nonmem-document.html#cb10-111"></a><span class="co">## </span></span>
+<span id="cb10-112"><a href="nonmem-document.html#cb10-112"></a><span class="co">## $`Eigen Values`</span></span>
+<span id="cb10-113"><a href="nonmem-document.html#cb10-113"></a><span class="co">##  [1] 0.0002519304 0.0096729015 0.0108358602 0.0233184643 0.0520725533</span></span>
+<span id="cb10-114"><a href="nonmem-document.html#cb10-114"></a><span class="co">##  [6] 0.2982375053 0.5047779131 0.9114702297 1.2088053283 3.2082379737</span></span>
+<span id="cb10-115"><a href="nonmem-document.html#cb10-115"></a><span class="co">## [11] 4.7723193401</span></span>
+<span id="cb10-116"><a href="nonmem-document.html#cb10-116"></a><span class="co">## </span></span>
+<span id="cb10-117"><a href="nonmem-document.html#cb10-117"></a><span class="co">## $`R Matrix`</span></span>
+<span id="cb10-118"><a href="nonmem-document.html#cb10-118"></a><span class="co">##              [,1]         [,2]         [,3]         [,4]         [,5]</span></span>
+<span id="cb10-119"><a href="nonmem-document.html#cb10-119"></a><span class="co">##  [1,]   17.924787   -1.3343223  -162.767654   -4.1309683    21.546405</span></span>
+<span id="cb10-120"><a href="nonmem-document.html#cb10-120"></a><span class="co">##  [2,]   -1.334322    0.5507357    -7.672315    0.1118322    -1.462878</span></span>
+<span id="cb10-121"><a href="nonmem-document.html#cb10-121"></a><span class="co">##  [3,] -162.767654   -7.6723148 34333.363150   86.0269293   433.962384</span></span>
+<span id="cb10-122"><a href="nonmem-document.html#cb10-122"></a><span class="co">##  [4,]   -4.130968    0.1118322    86.026929   28.6263094  -177.270130</span></span>
+<span id="cb10-123"><a href="nonmem-document.html#cb10-123"></a><span class="co">##  [5,]   21.546405   -1.4628778   433.962384 -177.2701302  1930.445843</span></span>
+<span id="cb10-124"><a href="nonmem-document.html#cb10-124"></a><span class="co">##  [6,]   10.225928  -16.5210396    13.387686  272.9370786 -4270.878832</span></span>
+<span id="cb10-125"><a href="nonmem-document.html#cb10-125"></a><span class="co">##  [7,]  -11.022690    2.9849069   -90.741373  -52.9261900   210.709300</span></span>
+<span id="cb10-126"><a href="nonmem-document.html#cb10-126"></a><span class="co">##  [8,]   52.304346  -18.2457139   956.482064  164.3158075 -1421.957500</span></span>
+<span id="cb10-127"><a href="nonmem-document.html#cb10-127"></a><span class="co">##  [9,]    7.044855   -2.2338946 -1350.939646   24.4536958   -43.763546</span></span>
+<span id="cb10-128"><a href="nonmem-document.html#cb10-128"></a><span class="co">## [10,]  248.456482 -120.7991176 -7033.212482   50.2328789 -1013.856688</span></span>
+<span id="cb10-129"><a href="nonmem-document.html#cb10-129"></a><span class="co">## [11,]   -1.752135   -5.2052276 -1992.414213    6.0120604   124.417556</span></span>
+<span id="cb10-130"><a href="nonmem-document.html#cb10-130"></a><span class="co">##              [,6]        [,7]        [,8]         [,9]        [,10]</span></span>
+<span id="cb10-131"><a href="nonmem-document.html#cb10-131"></a><span class="co">##  [1,]    10.22593  -11.022690    52.30435     7.044855    248.45648</span></span>
+<span id="cb10-132"><a href="nonmem-document.html#cb10-132"></a><span class="co">##  [2,]   -16.52104    2.984907   -18.24571    -2.233895   -120.79912</span></span>
+<span id="cb10-133"><a href="nonmem-document.html#cb10-133"></a><span class="co">##  [3,]    13.38769  -90.741373   956.48206 -1350.939646  -7033.21248</span></span>
+<span id="cb10-134"><a href="nonmem-document.html#cb10-134"></a><span class="co">##  [4,]   272.93708  -52.926190   164.31581    24.453696     50.23288</span></span>
+<span id="cb10-135"><a href="nonmem-document.html#cb10-135"></a><span class="co">##  [5,] -4270.87883  210.709300 -1421.95750   -43.763546  -1013.85669</span></span>
+<span id="cb10-136"><a href="nonmem-document.html#cb10-136"></a><span class="co">##  [6,] 16610.43942 -139.814385  1113.59904    18.726078   4680.59998</span></span>
+<span id="cb10-137"><a href="nonmem-document.html#cb10-137"></a><span class="co">##  [7,]  -139.81438  213.228947  -555.99366  -151.083275     96.25915</span></span>
+<span id="cb10-138"><a href="nonmem-document.html#cb10-138"></a><span class="co">##  [8,]  1113.59904 -555.993663  4043.51428   130.794770   -555.76917</span></span>
+<span id="cb10-139"><a href="nonmem-document.html#cb10-139"></a><span class="co">##  [9,]    18.72608 -151.083275   130.79477   236.875935    -20.42601</span></span>
+<span id="cb10-140"><a href="nonmem-document.html#cb10-140"></a><span class="co">## [10,]  4680.59998   96.259149  -555.76917   -20.426010 192857.05263</span></span>
+<span id="cb10-141"><a href="nonmem-document.html#cb10-141"></a><span class="co">## [11,]   -46.02961  -62.941133  -201.26760    92.656857   6568.90926</span></span>
+<span id="cb10-142"><a href="nonmem-document.html#cb10-142"></a><span class="co">##              [,11]</span></span>
+<span id="cb10-143"><a href="nonmem-document.html#cb10-143"></a><span class="co">##  [1,]    -1.752135</span></span>
+<span id="cb10-144"><a href="nonmem-document.html#cb10-144"></a><span class="co">##  [2,]    -5.205228</span></span>
+<span id="cb10-145"><a href="nonmem-document.html#cb10-145"></a><span class="co">##  [3,] -1992.414213</span></span>
+<span id="cb10-146"><a href="nonmem-document.html#cb10-146"></a><span class="co">##  [4,]     6.012060</span></span>
+<span id="cb10-147"><a href="nonmem-document.html#cb10-147"></a><span class="co">##  [5,]   124.417556</span></span>
+<span id="cb10-148"><a href="nonmem-document.html#cb10-148"></a><span class="co">##  [6,]   -46.029614</span></span>
+<span id="cb10-149"><a href="nonmem-document.html#cb10-149"></a><span class="co">##  [7,]   -62.941133</span></span>
+<span id="cb10-150"><a href="nonmem-document.html#cb10-150"></a><span class="co">##  [8,]  -201.267605</span></span>
+<span id="cb10-151"><a href="nonmem-document.html#cb10-151"></a><span class="co">##  [9,]    92.656857</span></span>
+<span id="cb10-152"><a href="nonmem-document.html#cb10-152"></a><span class="co">## [10,]  6568.909257</span></span>
+<span id="cb10-153"><a href="nonmem-document.html#cb10-153"></a><span class="co">## [11,]  3974.804398</span></span>
+<span id="cb10-154"><a href="nonmem-document.html#cb10-154"></a><span class="co">## </span></span>
+<span id="cb10-155"><a href="nonmem-document.html#cb10-155"></a><span class="co">## $`S Matrix`</span></span>
+<span id="cb10-156"><a href="nonmem-document.html#cb10-156"></a><span class="co">##               [,1]         [,2]         [,3]         [,4]        [,5]</span></span>
+<span id="cb10-157"><a href="nonmem-document.html#cb10-157"></a><span class="co">##  [1,]    78.316509   -4.6468525  -1295.13192   -11.873085   142.72165</span></span>
+<span id="cb10-158"><a href="nonmem-document.html#cb10-158"></a><span class="co">##  [2,]    -4.646852    0.7648878     64.36589     2.623533   -28.61925</span></span>
+<span id="cb10-159"><a href="nonmem-document.html#cb10-159"></a><span class="co">##  [3,] -1295.131915   64.3658917 183632.39790  -230.636173   840.38211</span></span>
+<span id="cb10-160"><a href="nonmem-document.html#cb10-160"></a><span class="co">##  [4,]   -11.873085    2.6235332   -230.63617    18.368716  -171.71679</span></span>
+<span id="cb10-161"><a href="nonmem-document.html#cb10-161"></a><span class="co">##  [5,]   142.721653  -28.6192545    840.38211  -171.716794  2005.81552</span></span>
+<span id="cb10-162"><a href="nonmem-document.html#cb10-162"></a><span class="co">##  [6,]  -145.835176   29.4905947   9000.10289   291.779615 -3809.95407</span></span>
+<span id="cb10-163"><a href="nonmem-document.html#cb10-163"></a><span class="co">##  [7,]   -26.707401    0.2387057   3794.27704   -19.686952    51.76139</span></span>
+<span id="cb10-164"><a href="nonmem-document.html#cb10-164"></a><span class="co">##  [8,]    44.375129   10.7614124 -10813.66435    84.841787  -765.19107</span></span>
+<span id="cb10-165"><a href="nonmem-document.html#cb10-165"></a><span class="co">##  [9,]    13.946014   -4.4042212  -6396.75146     3.480210    87.90129</span></span>
+<span id="cb10-166"><a href="nonmem-document.html#cb10-166"></a><span class="co">## [10,]  2039.647982 -397.4745827  -4148.02643 -1170.279733  8916.77585</span></span>
+<span id="cb10-167"><a href="nonmem-document.html#cb10-167"></a><span class="co">## [11,]   279.500822  -47.3111189 -60483.51062   -22.729230   670.78875</span></span>
+<span id="cb10-168"><a href="nonmem-document.html#cb10-168"></a><span class="co">##              [,6]          [,7]         [,8]         [,9]       [,10]</span></span>
+<span id="cb10-169"><a href="nonmem-document.html#cb10-169"></a><span class="co">##  [1,]  -145.83518   -26.7074010     44.37513    13.946014   2039.6480</span></span>
+<span id="cb10-170"><a href="nonmem-document.html#cb10-170"></a><span class="co">##  [2,]    29.49059     0.2387057     10.76141    -4.404221   -397.4746</span></span>
+<span id="cb10-171"><a href="nonmem-document.html#cb10-171"></a><span class="co">##  [3,]  9000.10289  3794.2770370 -10813.66435 -6396.751456  -4148.0264</span></span>
+<span id="cb10-172"><a href="nonmem-document.html#cb10-172"></a><span class="co">##  [4,]   291.77961   -19.6869516     84.84179     3.480210  -1170.2797</span></span>
+<span id="cb10-173"><a href="nonmem-document.html#cb10-173"></a><span class="co">##  [5,] -3809.95407    51.7613883   -765.19107    87.901295   8916.7758</span></span>
+<span id="cb10-174"><a href="nonmem-document.html#cb10-174"></a><span class="co">##  [6,] 12023.28652   188.5688359    667.62858  -711.894529  -3829.1367</span></span>
+<span id="cb10-175"><a href="nonmem-document.html#cb10-175"></a><span class="co">##  [7,]   188.56884   129.3349739   -292.66398  -155.764410   1796.9713</span></span>
+<span id="cb10-176"><a href="nonmem-document.html#cb10-176"></a><span class="co">##  [8,]   667.62858  -292.6639799   1121.03185   294.247258 -10631.8774</span></span>
+<span id="cb10-177"><a href="nonmem-document.html#cb10-177"></a><span class="co">##  [9,]  -711.89453  -155.7644099    294.24726   327.282119   1812.2113</span></span>
+<span id="cb10-178"><a href="nonmem-document.html#cb10-178"></a><span class="co">## [10,] -3829.13667  1796.9713202 -10631.87742  1812.211286 419517.6543</span></span>
+<span id="cb10-179"><a href="nonmem-document.html#cb10-179"></a><span class="co">## [11,] -3489.01512 -1105.9231026   2773.71160  2358.454995  18067.4267</span></span>
+<span id="cb10-180"><a href="nonmem-document.html#cb10-180"></a><span class="co">##              [,11]</span></span>
+<span id="cb10-181"><a href="nonmem-document.html#cb10-181"></a><span class="co">##  [1,]    279.50082</span></span>
+<span id="cb10-182"><a href="nonmem-document.html#cb10-182"></a><span class="co">##  [2,]    -47.31112</span></span>
+<span id="cb10-183"><a href="nonmem-document.html#cb10-183"></a><span class="co">##  [3,] -60483.51062</span></span>
+<span id="cb10-184"><a href="nonmem-document.html#cb10-184"></a><span class="co">##  [4,]    -22.72923</span></span>
+<span id="cb10-185"><a href="nonmem-document.html#cb10-185"></a><span class="co">##  [5,]    670.78875</span></span>
+<span id="cb10-186"><a href="nonmem-document.html#cb10-186"></a><span class="co">##  [6,]  -3489.01512</span></span>
+<span id="cb10-187"><a href="nonmem-document.html#cb10-187"></a><span class="co">##  [7,]  -1105.92310</span></span>
+<span id="cb10-188"><a href="nonmem-document.html#cb10-188"></a><span class="co">##  [8,]   2773.71160</span></span>
+<span id="cb10-189"><a href="nonmem-document.html#cb10-189"></a><span class="co">##  [9,]   2358.45500</span></span>
+<span id="cb10-190"><a href="nonmem-document.html#cb10-190"></a><span class="co">## [10,]  18067.42672</span></span>
+<span id="cb10-191"><a href="nonmem-document.html#cb10-191"></a><span class="co">## [11,]  24042.66052</span></span></code></pre></div>
+<p><code>PostHocEta()</code>, <code>TabStep()</code>의 실행화면은 아래와 같다.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="nonmem-document.html#cb11-1"></a>(<span class="dt">EBE1 =</span> <span class="kw">PostHocEta</span>()) <span class="co"># Using e$FinalPara from EstStep()</span></span>
+<span id="cb11-2"><a href="nonmem-document.html#cb11-2"></a><span class="co">##       ID       ETA1         ETA2        ETA3</span></span>
+<span id="cb11-3"><a href="nonmem-document.html#cb11-3"></a><span class="co">##  [1,]  1 -0.6367109 -0.232258352 -0.73648224</span></span>
+<span id="cb11-4"><a href="nonmem-document.html#cb11-4"></a><span class="co">##  [2,]  2 -0.5895843 -0.153341805 -0.06619115</span></span>
+<span id="cb11-5"><a href="nonmem-document.html#cb11-5"></a><span class="co">##  [3,]  3 -0.3083755 -0.124816676 -0.21013190</span></span>
+<span id="cb11-6"><a href="nonmem-document.html#cb11-6"></a><span class="co">##  [4,]  4 -1.0305984 -0.186821177 -0.21195510</span></span>
+<span id="cb11-7"><a href="nonmem-document.html#cb11-7"></a><span class="co">##  [5,]  5 -0.8235560 -0.302352128 -0.24453948</span></span>
+<span id="cb11-8"><a href="nonmem-document.html#cb11-8"></a><span class="co">##  [6,]  6 -1.0025271  0.068181532 -0.08745089</span></span>
+<span id="cb11-9"><a href="nonmem-document.html#cb11-9"></a><span class="co">##  [7,]  7 -1.4316285 -0.097903076 -0.13802639</span></span>
+<span id="cb11-10"><a href="nonmem-document.html#cb11-10"></a><span class="co">##  [8,]  8 -0.7541785 -0.039239022 -0.19621190</span></span>
+<span id="cb11-11"><a href="nonmem-document.html#cb11-11"></a><span class="co">##  [9,]  9  0.7875803  0.010757282 -0.19937965</span></span>
+<span id="cb11-12"><a href="nonmem-document.html#cb11-12"></a><span class="co">## [10,] 10 -1.4555649 -0.369057237 -0.40057582</span></span>
+<span id="cb11-13"><a href="nonmem-document.html#cb11-13"></a><span class="co">## [11,] 11  0.1541451 -0.005061315 -0.08005791</span></span>
+<span id="cb11-14"><a href="nonmem-document.html#cb11-14"></a><span class="co">## [12,] 12 -1.2863346 -0.388864841 -0.10134440</span></span>
+<span id="cb11-15"><a href="nonmem-document.html#cb11-15"></a><span class="co"># (Tab1 = TabStep())</span></span></code></pre></div>
+</div>
+<div id="고유값eigenvalue" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> 고유값(Eigenvalue)</h2>
+<p>공분산단계에서는 상관행렬(correlation matrix)의 고유값(eigenvalue)도 출력된다.</p>
+<p>어떤 행렬 A를 스칼라 <span class="math inline">\(\lambda\)</span>와 벡터u를 이용하여 다음과 같이 표시할 수 있을 때,</p>
+<p><span class="math display" id="eq:au-lu">\[\begin{equation}
+Au = \lambda u
+\tag{3.2}
+\end{equation}\]</span></p>
+<p><span class="math inline">\(\lambda\)</span>를 A의 고유값이라 하고 그 고유값에 해당하는 벡터 u를 고유벡터(eigenvector)라고 한다.</p>
+<p><span class="math inline">\(\lambda\)</span>는</p>
+<p><span class="math display" id="eq:a-li-zero">\[\begin{equation}
+\left| A - \lambda I \right| = 0
+\tag{3.3}
+\end{equation}\]</span></p>
+<p>이라는 특성 방정식의 근들로 구할 수 있다.</p>
+<p>Minimization에서 고유값을 출력하는 이유는 minimization 과정이 얼마나 어려웠는가를 표시하기 위해서이다. 조건수(condition number)란 고유값의 최대치/최소치에다 1/2승한 것인데, 이것이 크다면 그만큼 수치계산의 어려움을 겪었다는 것이다. 조건수가 크다고 모형이 잘못되었다는 것을 의미하는 것은 아니다. 혹시 minimization(fitting)에 실패하였다면 그 원인 중의 하나가 조건수가 크기 때문일 수 있다.</p>
+
+</div>
+<div id="자료" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> 자료</h2>
+<!--```{r, code = readLines('lib/nmw/inst/doc/nmw-vignette.R'), cache = TRUE}
+```-->
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="nonmem-document.html#cb12-1"></a>DataAll &lt;-<span class="st"> </span>Theoph</span>
+<span id="cb12-2"><a href="nonmem-document.html#cb12-2"></a><span class="kw">colnames</span>(DataAll) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ID&quot;</span>, <span class="st">&quot;BWT&quot;</span>, <span class="st">&quot;DOSE&quot;</span>, <span class="st">&quot;TIME&quot;</span>, <span class="st">&quot;DV&quot;</span>)</span>
+<span id="cb12-3"><a href="nonmem-document.html#cb12-3"></a>DataAll[,<span class="st">&quot;ID&quot;</span>] &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">as.character</span>(DataAll[,<span class="st">&quot;ID&quot;</span>]))</span></code></pre></div>
+<p>이후 <code>?nmw</code> 명령어를 통해 내장되어 있는 예제를 볼 수 있고 이를 실행해 볼 수 있습니다. 사용되는 자료는 R에 내장되어 있는 Theoph이며 이 자료는 12명의 환자에서 테오필린 320 mg을 경구 투여한 후 24시간 동안 혈장에서 측정한 농도를 포함하고 있습니다. 그림을 그려보면 다음과 같습니다. (Figure <a href="nonmem-document.html#fig:xyplot">3.2</a>)</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="nonmem-document.html#cb13-1"></a>lattice<span class="op">::</span><span class="kw">xyplot</span>(DV <span class="op">~</span><span class="st"> </span>TIME <span class="op">|</span><span class="st"> </span><span class="kw">as.factor</span>(ID), <span class="dt">data=</span>DataAll, <span class="dt">type=</span><span class="st">&quot;b&quot;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:xyplot"></span>
+<img src="nmw_files/figure-html/xyplot-1.svg" alt="R에 내장된 Theoph 자료. 이 자료를 사용하여 분석을 시행하였습니다." width="100%" />
+<p class="caption">
+Figure 3.2: R에 내장된 Theoph 자료. 이 자료를 사용하여 분석을 시행하였습니다.
+</p>
+</div>
+
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="nonmem-document.html#cb14-1"></a>nTheta =<span class="st"> </span><span class="dv">3</span></span>
+<span id="cb14-2"><a href="nonmem-document.html#cb14-2"></a>nEta =<span class="st"> </span><span class="dv">3</span></span>
+<span id="cb14-3"><a href="nonmem-document.html#cb14-3"></a>nEps =<span class="st"> </span><span class="dv">2</span></span>
+<span id="cb14-4"><a href="nonmem-document.html#cb14-4"></a></span>
+<span id="cb14-5"><a href="nonmem-document.html#cb14-5"></a>THETAinit =<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">50</span>, <span class="fl">0.1</span>) </span>
+<span id="cb14-6"><a href="nonmem-document.html#cb14-6"></a>OMinit =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="fl">0.2</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.2</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.2</span>), </span>
+<span id="cb14-7"><a href="nonmem-document.html#cb14-7"></a>                <span class="dt">nrow=</span>nEta, <span class="dt">ncol=</span>nEta)</span>
+<span id="cb14-8"><a href="nonmem-document.html#cb14-8"></a>SGinit =<span class="st"> </span><span class="kw">diag</span>(<span class="kw">c</span>(<span class="fl">0.1</span>, <span class="fl">0.1</span>))</span>
+<span id="cb14-9"><a href="nonmem-document.html#cb14-9"></a></span>
+<span id="cb14-10"><a href="nonmem-document.html#cb14-10"></a>LB =<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>, nTheta) <span class="co"># Lower bound</span></span>
+<span id="cb14-11"><a href="nonmem-document.html#cb14-11"></a>UB =<span class="st"> </span><span class="kw">rep</span>(<span class="dv">1000000</span>, nTheta) <span class="co"># Upper bound</span></span></code></pre></div>
+<p>위 코드는 같이 θ (nTheta), η (nEta), ϵ (nEps)개수를 먼저 지정하고 초기값 (THETAinit, OMinit, SGinit)을 설정하는 과정이며 LB, UB는 θ값 추정의 상한값과 하한값을 정해주는 것으로 적합 (fit)을 성공적으로 수행하기 위해 적절한 범위를 지정해야 한다.</p>
+<p>초기값, 하한값, 상한값은 InitStep() 함수의 인자로 입력되어 initialization step에 사용됩니다. (Figure 2) 이때 PRED 함수 (Figure 3)도 InitStep()의 입력 인자로 사용되는데, 이는 약동학 모델을 미분방정식 형태로 구현한 함수입니다. {<span class="citation">Kang et al. (<a href="#ref-kang2012standard" role="doc-biblioref">2012</a>)</span>}</p>
+<p>InitStep()의 추정방식으로 세가지가 지원되며 ZERO (First Order Approximation Method), COND (First Order Conditional Estimation with Interaction Method), LAPL(Laplacian Approximation with Interacton Method) 에 따라 PRED 함수의 추정 방법이 달라지게 됩니다. [1, 2] 이후 EstStep(), CovStep(), PostHocEta(), TabStep() 함수를 실행하며 계산을 수행해 나가고 각 함수에 대해 Table 1에서 설명하였습니다.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="nonmem-document.html#cb15-1"></a><span class="co">######### First Order Approximation Method</span></span>
+<span id="cb15-2"><a href="nonmem-document.html#cb15-2"></a><span class="kw">InitStep</span>(DataAll, <span class="dt">THETAinit=</span>THETAinit, <span class="dt">OMinit=</span>OMinit, <span class="dt">SGinit=</span>SGinit, </span>
+<span id="cb15-3"><a href="nonmem-document.html#cb15-3"></a>         <span class="dt">LB=</span>LB, <span class="dt">UB=</span>UB, <span class="dt">Pred=</span>PRED, <span class="dt">METHOD=</span><span class="st">&quot;ZERO&quot;</span>)</span>
+<span id="cb15-4"><a href="nonmem-document.html#cb15-4"></a>(<span class="dt">EstRes =</span> <span class="kw">EstStep</span>())           <span class="co"># 4 sec</span></span>
+<span id="cb15-5"><a href="nonmem-document.html#cb15-5"></a>(<span class="dt">CovRes =</span> <span class="kw">CovStep</span>())           <span class="co"># 2 sec</span></span>
+<span id="cb15-6"><a href="nonmem-document.html#cb15-6"></a><span class="kw">PostHocEta</span>() <span class="co"># Using e$FinalPara from EstStep()</span></span>
+<span id="cb15-7"><a href="nonmem-document.html#cb15-7"></a><span class="kw">TabStep</span>()</span></code></pre></div>
+
+</div>
+</div>
+<h3>참고문헌</h3>
+<div id="refs" class="references">
+<div id="ref-R-nmw">
+<p>Bae, Kyun-Seop. 2018. <em>Nmw: Understanding Nonlinear Mixed Effects Modeling for Population Pharmacokinetics</em>. <a href="https://CRAN.R-project.org/package=nmw">https://CRAN.R-project.org/package=nmw</a>.</p>
+</div>
+<div id="ref-nonmem">
+<p>Beal, Sheiner, S. L. 2018. <em>NONMEM 7.4 Users Guides</em>. Gaithersburg, Maryland: ICON plc. <a href="https://nonmem.iconplc.com/nonmem743/guides">https://nonmem.iconplc.com/nonmem743/guides</a>.</p>
+</div>
+<div id="ref-kang2012standard">
+<p>Kang, Dongwoo, Kyun-Seop Bae, Brett E Houk, Radojka M Savic, and Mats O Karlsson. 2012. “Standard Error of Empirical Bayes Estimate in Nonmem Vi.” <em>The Korean Journal of Physiology &amp; Pharmacology</em> 16 (2): 97–106.</p>
+</div>
+<div id="ref-R-nlme">
+<p>Pinheiro, Jose, Douglas Bates, and R-core. 2020. <em>Nlme: Linear and Nonlinear Mixed Effects Models</em>. <a href="https://CRAN.R-project.org/package=nlme">https://CRAN.R-project.org/package=nlme</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="method.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="result.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/asancpt/nmw-nonmem/edit/master/inst/examples/02.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["nmw.pdf"],
+"toc": {
+"collapse": "chapter"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
