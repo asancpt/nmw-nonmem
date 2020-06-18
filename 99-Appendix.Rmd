@@ -14,7 +14,7 @@ Nmw 패키지가 사용되어 개발된 에디슨 앱을 사용할 수 있으며
 이를 바탕으로 구현된 모델링 원리는 약물의 용법/용량, 모델 파라미터의 변화에 따른 혈중농도 등의 약동학 변화에 대한 다양한 시뮬레이션 등으로 응용될 수 있을 것입니다. 
 
 ```{r edison-app, fig.cap = "에디슨 앱의 입력화면", echo = FALSE}
-include_graphics("assets/figure-4.png")
+include_graphics("images/figure-4.png")
 ```
 
 # 세션정보

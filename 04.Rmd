@@ -36,13 +36,13 @@ $`Final Estimates`
 
 
 ```{r flow, fig.cap="(ref:flow)", echo = FALSE}
-include_graphics("assets/figure-2.png")
+include_graphics("images/figure-2.png")
 ```
 
 (ref:flow) nmw R 패키지를 활용한 비선형 혼합효과 모델 사용 흐름도
 
 ```{r pred-deriv, fig.cap="(ref:pred-deriv)", echo = FALSE}
-include_graphics("assets/figure-3.png")
+include_graphics("images/figure-3.png")
 ```
 
 (ref:pred-deriv) PRED 함수를 정의하여numDeriv 패키지의 deriv() 함수를 사용하여 정의하고 InitStep() 함수의 인자로 입력함
